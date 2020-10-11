@@ -1,15 +1,14 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.Transaction;
+
 
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class jedisTest {
-    @Test
+    /*@Test
     public void  main() throws JsonProcessingException {
         Jedis jedis = new Jedis("95.169.19.152",6379);
         System.out.println(jedis.ping());
@@ -41,5 +40,5 @@ public class jedisTest {
             jedis.close();
         }
 
-    }
+    }*/
 }
