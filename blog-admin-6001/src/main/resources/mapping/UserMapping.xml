@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eva.mapper.UserMapper">
+    <select id="selectUser" resultType="com.eva.dto.User">
+        select * from user
+    </select>
+
+    <select id="findByUsernameAndPassword" parameterType="map" resultType="com.eva.dto.User">
+        select nickname,password from user where nickname=#{username} and password=#{password} ;
+    </select>
+</mapper>

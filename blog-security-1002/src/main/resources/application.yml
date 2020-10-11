@@ -1,0 +1,12 @@
+server:
+  port: 1002
+spring:
+  application:
+    name: blog-security-1002
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7961/eureka/
+  instance:
+#    instance-id: zuul1000.com
+    perfer-ip-address: true

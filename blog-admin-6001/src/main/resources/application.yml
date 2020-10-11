@@ -1,0 +1,29 @@
+server:
+  port: 6001
+
+eureka:
+  client:
+    #是否从注册中心抓取服务信息
+    fetch-registry: false
+    #是否将此服务注册到注册中心
+    register-with-eureka: true
+    #eureka的地址
+    service-url:
+      defaultZone: http://localhost:7961/eureka/
+  instance:
+    prefer-ip-address: true
+
+
+spring:
+  application:
+    name: blog-admin
+  datasource:
+    username: root
+#    123456 root
+    password: root
+    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapping/*Mapping.xml
+  type-aliases-package: com.eva.dto

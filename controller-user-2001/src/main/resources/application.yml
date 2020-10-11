@@ -1,0 +1,17 @@
+server:
+  port: 2001
+
+eureka:
+  client:
+    #是否从注册中心抓取服务信息
+    fetch-registry: true
+    #是否将此服务注册到注册中心
+    register-with-eureka: false
+    #eureka的地址
+    service-url:
+      defaultZone: http://localhost:7961/eureka/
+  instance:
+    prefer-ip-address: true
+spring:
+  application:
+    name: controller-user

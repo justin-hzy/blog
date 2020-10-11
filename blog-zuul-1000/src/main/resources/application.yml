@@ -1,0 +1,22 @@
+server:
+  port: 1000
+spring:
+  application:
+    name: blog-zuul
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7961/eureka/
+  instance:
+    instance-id: zuul1000.com
+    perfer-ip-address: true
+
+zuul:
+  routes:
+    blog.serviceId : controller-admin
+    blog.path: /ad/**
+  #  隐藏controller-admin的服务名，调用controller-admind的接口用/blog/
+  #  如果 是"*" 就是隐藏 全部
+  ignored-services: "*"
+  prefix: /blog
+#  ignored-patterns: /**/hello/**

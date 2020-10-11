@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理后台</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+</head>
+
+<body>
+    <!-- 导航 -->
+    <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-samll">
+        <div class="ui container">
+            <div class="ui inverted secondary menu">
+                <h2 class="ui teal header item">管理后台</h2>
+                <a href="" class="active m-item item m-mobile-hide"><i class="home icon"></i>博客</a>
+                <a href="" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
+                <a href="" class=" m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
+                <div class="right m-item m-mobile-hide menu">
+                    <div class="ui dropdown item">
+                        <div class="text">
+                            <img class="ui avatar image" src="https://unsplash.it/100/100?image=1005">
+                                何子毅
+                            </img>
+                        </div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <a href="#" class="item">注销</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="" class="ui menu toggle black icon button m-right-top m-mobile-show">
+            <i class="sidebar icon">
+                
+            </i>
+        </a>
+    </nav>
+
+    <!-- 二级导航 -->
+    <div class="ui attached pointing menu">
+        <div class="ui container">
+            <div class="right menu">
+                <a href="#" class="item">发布</a>
+                <a href="#" class="active teal item">列表</a>
+            </div>
+        </div>
+    </div>
+<!--详情页开始-->
+    <!-- 中间内容 -->
+    <div class = "m-container-small m-padded-tb-big">
+        <div class="ui container">
+            <form action="#" method="POST" class="ui segment form">
+                <div class="inline fields">
+                    <div class="field">
+                        <input type="text" name="title" placeholder="标题">
+                    </div>
+                    <div class="field">
+                        <div class="ui selection dropdown">
+                            <input type="hiden" name="type">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">分类</div>
+                            <div class="menu">
+                                <div class="item" data-value="1">错误日志</div>
+                                <div class="item" data-value="2">开发者手册</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" id="recommend" name="recommend">
+                            <label for="recommend">推荐</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <button class="ui mini teal basic button">
+                            <i class="search icon"></i>
+                            搜索
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <table class="ui celled table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>标题</th>
+                        <th>类型</th>
+                        <th>推荐</th>
+                        <th>更新时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <td>1</td>
+                    <td>刻意联系清单</td>
+                    <td>认知升级</td>
+                    <td>是</td>
+                    <td>2017-10-02 09:45</td>
+                    <td>
+                        <a href="#" class="ui mini teal basic button">编辑</a>
+                        <a href="#" class="ui mini red basic button">删除</a>
+                    </td>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="6">
+                            <div class="ui mini floated pagination menu">
+                                <a href="#" class="icon item">上一页</a>
+                                <a href="#" class="icon item">下一页</a>
+                            </div>
+                            <a href="#" class="ui mini right floated  teal basic button">新增</a>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+<!--详情页结束-->
+    <!-- 底部footer -->
+    <footer class="ui inverted vertical segment m-padded-tb-massive">
+        <div class="ui container">
+            <div class="ui inverted divided grid">
+                <div class="three wide column">
+                    <img src="./static/images/wechat.jpg" class="ui rounded image" alt="">
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">用户故事</a>
+                        <a href="#" class="item">用户故事</a>
+                        <a href="#" class="item">用户故事</a>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header">联系我</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">Email:771736395@qq.com</a>
+                        <a href="#" class="item">QQ:771736395</a>
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <h4 class="ui inverted header">满江红</h4>
+                    <p class="m-text-thin m-text-spaced m-opacity-mini">
+                        怒发冲冠，凭栏处、潇潇雨歇。抬望眼、仰天长啸，壮怀激烈。三十功名尘与土，八千里路云和月。莫等闲、白了少年头，空悲切。 靖康耻，犹未雪。臣子恨，何时灭。驾长车，踏破贺兰山缺。壮志饥餐胡虏肉，笑谈渴饮匈奴血。待从头、收拾旧山河，朝天阙。
+                    </p>
+                </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <p class="m-text-thin m-text-spaced m-opacity-mini" style="text-align: center;">Copyringt 2016-2017 Lirenmi Designed by Lirenmi</p>
+        </div>
+    </footer>
+
+
+<!--    详情页新增-->
+<script>
+    $('.menu.toggle').click(function(){
+        $('.m-item').toggleClass('m-mobile-hide');
+    })
+    $('.ui.dropdown').dropdown({
+        on : 'hover'
+    });
+</script>
+
+</body>
+
+</html>
