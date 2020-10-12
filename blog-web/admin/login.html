@@ -6,6 +6,7 @@
     <title>博客管理登录</title>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.4/dist/semantic.min.js"></script>
+    <script src="../static/js/const.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.4/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
 </head>
@@ -17,7 +18,7 @@
                 <div class="column">
                   <h2 class="ui teal image header">
                     <div class="content">
-                      Log-in to your account
+                      管理后台登录界面
                     </div>
                   </h2>
                   <form class="ui large form">
@@ -25,20 +26,19 @@
                       <div class="field">
                         <div class="ui left icon input">
                           <i class="user icon"></i>
-                          <input id="username" type="text" name="username" placeholder="请输入用户名">
+                          <input id="username" type="text" name="username" placeholder="你的用户名">
                         </div>
                       </div>
                       <div class="field">
                         <div class="ui left icon input">
                           <i class="lock icon"></i>
-                          <input id="password" type="password" name="password" placeholder="请输入密码">
+                          <input id="password" type="password" name="password" placeholder="密码">
                         </div>
                       </div>
-                      <div id="login" class="ui fluid large teal submit button">Login</div>
+                      <div id="loginButton" class="ui fluid large teal submit button">登录</div>
                     </div>
               
                     <div class="ui error message"></div>
-              
                   </form>
                 </div>
               </div>
@@ -47,7 +47,6 @@
 </body>
 <script>
   $(function(){
-    login();
     click();
   })
 
@@ -59,30 +58,45 @@
         password:password
       },
       url:"",
-      success:function(data){
-        console.log(data)
+      success:function(result){
+        console.log(result)
       }
     })
   }
   function click(){
-    var username = $("#username").val()
-    var password = $("#password").val()
-    var domain = document.domain;
-    console.log("domain="+domain)
-    $("#login").click(function(){
-      login(username,password);
+    $("#loginButton").click(function(){
+      var username = $("#username").val()
+      var password = $("#password").val()
+      var flag = verify(username,password)
+      if(flag == true){
+        login(username,password)
+      }
     })
   }
 
   function verify(username,password){
-    if(username != null){
-      
+    var flag
+    var patter = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/
+    if(username != undefined & username != "" & password != undefined & password != "" ){
+     var matchResult =  patter.test(password);
+     if(!matchResult){      
+       $("#password").val("")
+       $("#password").addClass("input-border-color-red")
+       $("#password").attr('placeholder',"密码必须由数字和字母组合")
+     }else{
+      console.log('---------符合正则表达式----------')
+     }
+    }else{
+      $("#password").addClass("input-border-color-red")
+      $("#username").addClass("input-border-color-red")
+      $("#username").attr('placeholder',"请输入注册时用的邮箱")
+      $("#password").attr('placeholder',"喵，你没输入密码么？")
+      $("#loginButton").attr('disabled','false')
+      flag = false;
+      return false
     }
-
-    if(password != null){
-      
-    }
-
   }
 </script>
 </html>
+<!--  -->
+
