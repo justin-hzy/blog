@@ -35,10 +35,9 @@ public class DefaultFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
-        RequestContext currentContext = RequestContext.getCurrentContext();
+        /*RequestContext currentContext = RequestContext.getCurrentContext();
         HttpServletRequest request = currentContext.getRequest();
         StringBuffer stringBuffer = request.getRequestURL();
-
         String  username = request.getParameter("username");
         System.out.println("------------ username="+username);
         if (StringUtils.isEmpty(username)){
@@ -46,18 +45,18 @@ public class DefaultFilter extends ZuulFilter {
             HttpServletResponse response = currentContext.getResponse();
             try {
                 int responseStatusCode =  currentContext.getResponseStatusCode();
-                String str = "username为空，程序不再向下执行";
-                response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
+                String str = "no";
+                response.setContentType(str);
                 response.getOutputStream().write(str.getBytes());
             } catch (IOException e) {
                 ReflectionUtils.rethrowRuntimeException(e);
                 e.printStackTrace();
             }
-//            currentContext.setSendZuulResponse(false); //不会继续往下执行 不会调用服务接口了 网关直接响应给客户了
-//            currentContext.setResponseBody("username为空，程序不再向下执行");
-//            currentContext.setResponseStatusCode(401);
+            currentContext.setSendZuulResponse(false); //不会继续往下执行 不会调用服务接口了 网关直接响应给客户了
+            currentContext.setResponseBody("username为空，程序不再向下执行");
+            currentContext.setResponseStatusCode(401);
 
-        }
+        }*/
 
 
 

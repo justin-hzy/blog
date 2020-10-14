@@ -28,16 +28,6 @@ public class LoginController {
         }
     }
 
-    @GetMapping("/hello")
-    public JSONResult Hello(){
 
-        String str = feignService.hello1();
-
-        if (str != null){
-            return JSONResult.build(200,"执行成功",str);
-        }else{
-            return JSONResult.build(404,"执行失败",null);
-        }
-    }
 
 }

@@ -52,7 +52,7 @@
 
   function login(username,password){
     $.ajax({
-      type:"post",
+      type:"get",
       data:{
         username:username,
         password:password
@@ -63,13 +63,25 @@
       }
     })
   }
+
+  function test(username,password){
+    $.ajax({
+      type:"get",
+      url:"http://127.0.0.1:80/blog/ad/hello/hello",
+      success:function(result){
+        console.log(result)
+      }
+    })
+  }
+
   function click(){
     $("#loginButton").click(function(){
       var username = $("#username").val()
       var password = $("#password").val()
       var flag = verify(username,password)
+      console.log('flag='+flag)
       if(flag == true){
-        login(username,password)
+        test(username,password)
       }
     })
   }
@@ -84,7 +96,9 @@
        $("#password").addClass("input-border-color-red")
        $("#password").attr('placeholder',"密码必须由数字和字母组合")
      }else{
+      flag = true
       console.log('---------符合正则表达式----------')
+      return flag
      }
     }else{
       $("#password").addClass("input-border-color-red")
@@ -93,7 +107,7 @@
       $("#password").attr('placeholder',"喵，你没输入密码么？")
       $("#loginButton").attr('disabled','false')
       flag = false;
-      return false
+      return flag
     }
   }
 </script>
