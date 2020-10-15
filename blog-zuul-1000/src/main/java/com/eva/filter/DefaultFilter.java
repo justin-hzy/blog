@@ -7,6 +7,7 @@ import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
@@ -16,6 +17,9 @@ import java.io.IOException;
 
 @Component
 public class DefaultFilter extends ZuulFilter {
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Override
     public String filterType() {
@@ -35,31 +39,17 @@ public class DefaultFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
-        /*RequestContext currentContext = RequestContext.getCurrentContext();
+        RequestContext currentContext = RequestContext.getCurrentContext();
         HttpServletRequest request = currentContext.getRequest();
-        StringBuffer stringBuffer = request.getRequestURL();
-        String  username = request.getParameter("username");
-        System.out.println("------------ username="+username);
-        if (StringUtils.isEmpty(username)){
+        if(request.getRequestURI().contains("ad")){
+           /* String value = (String) redisTemplate.boundValueOps("StringKey").get();*/
+            System.out.println("被DefaultFilter拦截了");
             currentContext.setSendZuulResponse(false);
-            HttpServletResponse response = currentContext.getResponse();
-            try {
-                int responseStatusCode =  currentContext.getResponseStatusCode();
-                String str = "no";
-                response.setContentType(str);
-                response.getOutputStream().write(str.getBytes());
-            } catch (IOException e) {
-                ReflectionUtils.rethrowRuntimeException(e);
-                e.printStackTrace();
-            }
-            currentContext.setSendZuulResponse(false); //不会继续往下执行 不会调用服务接口了 网关直接响应给客户了
-            currentContext.setResponseBody("username为空，程序不再向下执行");
-            currentContext.setResponseStatusCode(401);
-
-        }*/
-
-
-
+        }else {
+            /*通过，filter 拦截*/
+            System.out.println("没有被DefaultFilter拦截了");
+            currentContext.setSendZuulResponse(true);
+        }
         return null;
     }
 }
