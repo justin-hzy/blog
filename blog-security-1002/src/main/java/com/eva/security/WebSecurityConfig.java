@@ -17,17 +17,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AdminAuthenticationEntryPoint adminAuthenticationEntryPoint;
 
+    //认证 登录
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        super.configure(auth);
+        /*super.configure(auth);*/
+        /*auth.userDetailsService();*/
     }
 
+    //授权 链式编程
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.cors().and().cors().disable();
-//        http.authorizeRequests().
-//                antMatchers("/login").hasAnyAuthority("query_user").
-//                and().exceptionHandling().authenticationEntryPoint(adminAuthenticationEntryPoint);
+        /*antMatchers括号里面定义的是api地址 */
+//       http.authorizeRequests().antMatchers("/").hasRole();
+        http.authorizeRequests().antMatchers("/ad/**").hasRole("vip");
     }
 
     @Bean

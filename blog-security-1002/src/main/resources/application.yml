@@ -5,6 +5,10 @@ spring:
     name: blog-security-1002
 eureka:
   client:
+    #是否从注册中心抓取服务信息
+    fetch-registry: true
+    #是否将此服务注册到注册中心
+    register-with-eureka: true
     service-url:
       defaultZone: http://localhost:7961/eureka/
   instance:

@@ -44,7 +44,7 @@ public class DefaultFilter extends ZuulFilter {
         if(request.getRequestURI().contains("ad")){
            /* String value = (String) redisTemplate.boundValueOps("StringKey").get();*/
             System.out.println("被DefaultFilter拦截了");
-            currentContext.setSendZuulResponse(false);
+            currentContext.setSendZuulResponse(true);
         }else {
             /*通过，filter 拦截*/
             System.out.println("没有被DefaultFilter拦截了");
