@@ -13,10 +13,12 @@ eureka:
 
 zuul:
   routes:
-    blog.serviceId : controller-admin
-    blog.path: /ad/**
+    blog-controller-admin.serviceId : controller-admin
+    blog-controller-admin.path : /ad/**
+    blog-controller-user.serviceId : controller-user
+    blog-controller-user.path : /user/**
   #  隐藏controller-admin的服务名，调用controller-admind的接口用/blog/
   #  如果 是"*" 就是隐藏 全部
   ignored-services: "*"
-  prefix: /blog
+#  prefix: /blog
 #  ignored-patterns: /**/hello/**

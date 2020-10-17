@@ -1,6 +1,6 @@
 
 body {
-    background: url("../images/bg.png");
+    /* background: url("../images/bg.png"); */
 }
 
 .m-padded-mini {
@@ -157,6 +157,10 @@ body {
    display: none !important;
 }
 
+.input-border-color-red {
+    border-color: #ff0000 !important;
+}
+
 @media screen and (max-width: 768px){
     .m-mobile-hide {
         display: none !important;
@@ -226,3 +230,4 @@ body {
     font-weight: 700;
     pointer-events: none;
 }
+

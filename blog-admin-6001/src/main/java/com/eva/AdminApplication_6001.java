@@ -1,6 +1,5 @@
 package com.eva;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -20,11 +19,11 @@ import org.springframework.context.annotation.Bean;
 @EnableEurekaClient //开启Eureka
 @EnableDiscoveryClient
 @EnableCircuitBreaker
-public class AdminApplication
+public class AdminApplication_6001
 {
     public static void main( String[] args )
     {
-        SpringApplication.run(AdminApplication.class,args);
+        SpringApplication.run(AdminApplication_6001.class,args);
     }
 
     /*维拉配合监控编写的固定代码，增加一个servlet*/
