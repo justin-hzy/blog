@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: blog-zuul
+  redis:
+    host:  95.169.19.152
+    port: 6379
+
 eureka:
   client:
     service-url:
@@ -22,3 +26,7 @@ zuul:
   ignored-services: "*"
 #  prefix: /blog
 #  ignored-patterns: /**/hello/**
+
+#urlList :
+#  127.0.0.1
+

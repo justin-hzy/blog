@@ -34,22 +34,35 @@ public class DefaultFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
+        System.out.println("执行shouldFilter");
+        /*System.out.println("执行shouldFilter");
+        RequestContext currentContext = RequestContext.getCurrentContext();
+        HttpServletRequest request = currentContext.getRequest();
+        if(request.getRequestURI().contains("ad")){
+            *//* String value = (String) redisTemplate.boundValueOps("StringKey").get();*//*
+            System.out.println("执行包含admin的api");
+            return true;
+        }else {
+            System.out.println("过滤器不生效");
+            return false;
+        }*/
         return true;
     }
 
     @Override
     public Object run() throws ZuulException {
-        RequestContext currentContext = RequestContext.getCurrentContext();
+        System.out.println("DefaultFilter执行");
+      /*  RequestContext currentContext = RequestContext.getCurrentContext();
         HttpServletRequest request = currentContext.getRequest();
-        if(request.getRequestURI().contains("ad")){
-           /* String value = (String) redisTemplate.boundValueOps("StringKey").get();*/
+        if(request.getRequestURI().contains("ad") & request.getRequestURI().contains("user")){
+           *//* String value = (String) redisTemplate.boundValueOps("StringKey").get();*//*
             System.out.println("被DefaultFilter拦截了");
             currentContext.setSendZuulResponse(true);
         }else {
-            /*通过，filter 拦截*/
+            *//*通过，filter 拦截*//*
             System.out.println("没有被DefaultFilter拦截了");
             currentContext.setSendZuulResponse(true);
-        }
+        }*/
         return null;
     }
 }

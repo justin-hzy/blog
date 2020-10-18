@@ -23,7 +23,7 @@ public class ErrorFilter extends ZuulFilter {
 
     @Override
     public Object run() throws ZuulException {
-        
+        System.out.println("执行ErrorFilter");
         return null;
     }
 }

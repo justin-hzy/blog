@@ -18,7 +18,7 @@ public class TestController {
     public JSONResult Hello(){
 
         String str = feignService.hello1();
-
+        /*int i = 1/0;*/
         if (str != null){
             return JSONResult.build(200,"执行成功",str);
         }else{
