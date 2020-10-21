@@ -14,12 +14,16 @@ import org.springframework.util.ReflectionUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Component
 public class DefaultFilter extends ZuulFilter {
 
     @Autowired
     private RedisTemplate redisTemplate;
+
+    private static final String REGEX = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$";;
 
     @Override
     public String filterType() {
@@ -35,34 +39,33 @@ public class DefaultFilter extends ZuulFilter {
     @Override
     public boolean shouldFilter() {
         System.out.println("执行shouldFilter");
-        /*System.out.println("执行shouldFilter");
         RequestContext currentContext = RequestContext.getCurrentContext();
         HttpServletRequest request = currentContext.getRequest();
         if(request.getRequestURI().contains("ad")){
-            *//* String value = (String) redisTemplate.boundValueOps("StringKey").get();*//*
-            System.out.println("执行包含admin的api");
+            System.out.println("DefaultFilter生效");
             return true;
-        }else {
-            System.out.println("过滤器不生效");
-            return false;
-        }*/
+        }
         return true;
     }
 
     @Override
     public Object run() throws ZuulException {
         System.out.println("DefaultFilter执行");
-      /*  RequestContext currentContext = RequestContext.getCurrentContext();
+        RequestContext currentContext = RequestContext.getCurrentContext();
         HttpServletRequest request = currentContext.getRequest();
-        if(request.getRequestURI().contains("ad") & request.getRequestURI().contains("user")){
-           *//* String value = (String) redisTemplate.boundValueOps("StringKey").get();*//*
-            System.out.println("被DefaultFilter拦截了");
-            currentContext.setSendZuulResponse(true);
-        }else {
-            *//*通过，filter 拦截*//*
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        System.out.println("username="+username+",password="+password);
+
+        boolean isMatch = Pattern.matches(REGEX,password);
+        System.out.println("isMatch="+isMatch);
+        if (isMatch==true){
             System.out.println("没有被DefaultFilter拦截了");
             currentContext.setSendZuulResponse(true);
-        }*/
+        }else {
+            System.out.println("被DefaultFilter拦截了");
+            currentContext.setSendZuulResponse(false);
+        }
         return null;
     }
 }

@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 @EnableEurekaClient //开启Eureka
 @EnableDiscoveryClient
-@EnableCircuitBreaker
+@EnableCircuitBreaker//添加对熔断的支持
 public class AdminApplication_6001
 {
     public static void main( String[] args )

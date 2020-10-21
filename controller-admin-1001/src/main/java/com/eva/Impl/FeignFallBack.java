@@ -23,6 +23,12 @@ public class FeignFallBack implements FeignService {
     }
 
     @Override
+    public String hello4() {
+        return "error";
+    }
+
+
+    @Override
     public User login(String username,String password) {
         return null;
     }
