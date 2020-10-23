@@ -25,6 +25,7 @@ public class LoginController {
 
         if (user != null){
             String token = JwtUtil.sign(username,password);
+            /*redisTemplate.opsForValue().set(user.getId(),token);*/
             System.out.println("token="+token);
             return JSONResult.build(200,"登录成功",token);
         }else{

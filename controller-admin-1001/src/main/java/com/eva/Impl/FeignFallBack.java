@@ -32,4 +32,9 @@ public class FeignFallBack implements FeignService {
     public User login(String username,String password) {
         return null;
     }
+
+    @Override
+    public User getUser(User user) {
+        return null;
+    }
 }

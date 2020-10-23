@@ -49,6 +49,7 @@ public class JwtUtil {
      */
     public static boolean verity(String token){
         try{
+            System.out.println("token="+token);
             Algorithm algorithm = Algorithm.HMAC256(TOKEN_SECRET);
             JWTVerifier verifier = JWT.require(algorithm).build();
             DecodedJWT jwt = verifier.verify(token);

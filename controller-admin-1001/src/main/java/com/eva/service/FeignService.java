@@ -29,4 +29,7 @@ public interface FeignService {
     @PostMapping("/admin/login")
     User login(@RequestParam String username, @RequestParam String password);
 
+    @PostMapping("/admin/getUser")
+    User getUser(User user);
+
 }

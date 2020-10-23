@@ -11,4 +11,6 @@ public interface UserMapper {
     User selectUser();
 
     User findByUsernameAndPassword(Map map);
+
+    User getUser(User user);
 }
