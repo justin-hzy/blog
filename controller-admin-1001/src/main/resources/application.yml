@@ -17,6 +17,15 @@ eureka:
 spring:
   application:
     name: controller-admin
+  redis:
+    database: 0
+    # 延迟
+    timeout: 0
+      # Redis服务器地址
+    host: 95.169.19.152
+      # Redis服务器连接端口
+    port: 6379
+      # 连接池最大连接数（使用负值表示没有限制）
 
 
 ribbon:

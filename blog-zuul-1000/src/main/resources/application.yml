@@ -21,6 +21,9 @@ zuul:
     blog-controller-admin.path : /ad/**
     blog-controller-user.serviceId : controller-user
     blog-controller-user.path : /user/**
+  host:
+    connect-timeout-millis: 15000 #HTTP连接超时要比Hystrix的大
+    socket-timeout-millis: 60000  #socket超时
   #  隐藏controller-admin的服务名，调用controller-admind的接口用/blog/
   #  如果 是"*" 就是隐藏 全部
   ignored-services: "*"
@@ -29,4 +32,7 @@ zuul:
 
 #urlList :
 #  127.0.0.1
+ribbon:
+  ReadTimeout : 10000
+  ConnectTimeout : 10000
 

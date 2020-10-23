@@ -23,4 +23,6 @@ public class LoginController {
         User user  = userService.checkUser(username,password);
         return user;
     }
+
+
 }
