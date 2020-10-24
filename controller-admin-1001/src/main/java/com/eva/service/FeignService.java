@@ -4,6 +4,7 @@ import com.eva.Impl.FeignFallBack;
 import com.eva.dto.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,7 +23,13 @@ public interface FeignService {
     @RequestMapping("/hello3")
     String hello3();
 
-    @RequestMapping("/admin/login")
+    @RequestMapping("/hello4")
+    String hello4();
+
+    @PostMapping("/admin/login")
     User login(@RequestParam String username, @RequestParam String password);
+
+    @PostMapping("/admin/getUser")
+    User getUser(User user);
 
 }

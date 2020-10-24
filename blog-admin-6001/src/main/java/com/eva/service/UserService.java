@@ -9,4 +9,6 @@ public interface UserService {
     User checkUser (String username,String password);
 
     User selectUser();
+
+    User getUser(User user);
 }

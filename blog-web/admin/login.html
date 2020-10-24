@@ -55,14 +55,17 @@
 
   function login(username,password){
     $.ajax({
-      type:"get",
+      type:"post",
       data:{
         username:username,
         password:password
       },
-      url:"",
+      url:loginUrl,
       success:function(result){
-        console.log(result)
+        if(result.status==200){
+          localStorage.setItem("token",result.data)
+        }
+        console.log(localStorage.getItem("token"))
       }
     })
   }
@@ -84,7 +87,8 @@
       var flag = verify(username,password)
       console.log('flag='+flag)
       if(flag == true){
-        test(username,password)
+        // test(username,password)
+        login(username,password)
       }
     })
   }

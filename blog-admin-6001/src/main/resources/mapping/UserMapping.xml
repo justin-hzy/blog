@@ -6,6 +6,10 @@
     </select>
 
     <select id="findByUsernameAndPassword" parameterType="map" resultType="com.eva.dto.User">
-        select nickname,password from user where nickname=#{username} and password=#{password} ;
+        select id,username,password from user where username=#{username} and password=#{password} ;
+    </select>
+
+    <select id="getUser" parameterType="com.eva.dto.User" resultType="com.eva.dto.User">
+        select username from user where username=#{username};
     </select>
 </mapper>
