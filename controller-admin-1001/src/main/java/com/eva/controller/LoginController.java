@@ -32,7 +32,4 @@ public class LoginController {
             return JSONResult.build(404,"登录失败",null);
         }
     }
-
-
-
 }
