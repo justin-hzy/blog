@@ -3,6 +3,7 @@ package com.eva.controller;
 import com.eva.dto.User;
 import com.eva.service.UserService;
 import com.eva.utils.JSONResult;
+import com.eva.utils.MD5Code;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,7 @@ public class LoginController {
     @RequestMapping("/login")
     public User login(@RequestParam String username,@RequestParam String password){
         /*redisTemplate.boundValueOps("username").getKey();*/
-        User user  = userService.checkUser(username,password);
+        User user  = userService.checkUser(username, MD5Code.code(password));
         return user;
     }
 

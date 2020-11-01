@@ -13,3 +13,4 @@ var getUserUrl = domain1+getUserApi;
  */
 var domain2 = "http://"+document.domain+":8000";
 var adminIndex = domain2+"/admin/index.html"
+var loginPage = domain2+"/admin/login.html"
