@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eva.mapper.BlogMapper">
+    <select id="selectBlog" resultType="com.eva.dto.Blog">
+        select * from blog
+    </select>
+    <select id="selectBlogByTag" resultType="com.eva.dto.Blog">
+        select * from blog where
+    </select>
+    <select id="selectBlogByID" resultType="com.eva.dto.Blog">
+
+    </select>
+    <select id="selectBlogByType" resultType="com.eva.dto.Blog">
+
+    </select>
+
+
+</mapper>
