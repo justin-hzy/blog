@@ -31,4 +31,8 @@ public class MD5Code {
             return null;
         }
     }
+
+    public static void main(String[] args) {
+        System.out.println(MD5Code.code("a1234567890123"));
+    }
 }

@@ -64,6 +64,10 @@
       success:function(result){
         if(result.status==200){
           localStorage.setItem("token",result.data)
+          localStorage.setItem("token",JSON.stringify({
+            data:result.data,
+            time:5000
+          }))
         }
         $(location).attr('href',adminIndex);
       }
