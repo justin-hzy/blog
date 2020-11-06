@@ -33,6 +33,6 @@ public class MD5Code {
     }
 
     public static void main(String[] args) {
-        System.out.println(MD5Code.code("a1234567890123"));
+        System.out.println(MD5Code.code("a123456"));
     }
 }

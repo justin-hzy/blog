@@ -27,6 +27,10 @@ public class User {
     public User() {
     }
 
+    public User(String username) {
+        this.username = username;
+    }
+
     public String getId() {
         return id;
     }
@@ -99,10 +103,12 @@ public class User {
         this.updateTime = updateTime;
     }
 
+
     @Override
     public String toString() {
         return "User{" +
                 "id='" + id + '\'' +
+                ", username='" + username + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
@@ -112,5 +118,4 @@ public class User {
                 ", updateTime=" + updateTime +
                 '}';
     }
-
 }

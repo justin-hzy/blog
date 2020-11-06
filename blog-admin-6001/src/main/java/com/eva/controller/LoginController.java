@@ -3,6 +3,7 @@ package com.eva.controller;
 import com.eva.dto.User;
 import com.eva.service.UserService;
 import com.eva.utils.JSONResult;
+import com.eva.utils.JwtUtil;
 import com.eva.utils.MD5Code;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -19,11 +20,15 @@ public class LoginController {
     private UserService userService;
 
     @RequestMapping("/login")
-    public User login(@RequestParam String username,@RequestParam String password){
+    public JSONResult login(@RequestParam String username,@RequestParam String password){
         /*redisTemplate.boundValueOps("username").getKey();*/
         User user  = userService.checkUser(username, MD5Code.code(password));
-        return user;
+        if (user != null){
+            String token = JwtUtil.sign(username,password);
+            System.out.println("token="+token);
+            return JSONResult.build(200,"登录成功",token);
+        }else{
+            return JSONResult.build(404,"登录失败",null);
+        }
     }
-
-
 }

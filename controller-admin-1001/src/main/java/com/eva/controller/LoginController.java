@@ -21,15 +21,8 @@ public class LoginController {
     @PostMapping("/login")
     public JSONResult login(@RequestParam String username,@RequestParam String password){
 
-        User user = feignService.login(username,password);
+        JSONResult jSONResult = feignService.login(username,password);
 
-        if (user != null){
-            String token = JwtUtil.sign(username,password);
-            redisTemplate.opsForValue().set(user.getId(),token);
-            System.out.println("token="+token);
-            return JSONResult.build(200,"登录成功",token);
-        }else{
-            return JSONResult.build(404,"登录失败",null);
-        }
+        return jSONResult;
     }
 }

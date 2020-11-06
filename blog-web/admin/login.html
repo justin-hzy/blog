@@ -63,13 +63,16 @@
       url:loginUrl,
       success:function(result){
         if(result.status==200){
-          localStorage.setItem("token",result.data)
+          /* localStorage.setItem("token",result.data); */
           localStorage.setItem("token",JSON.stringify({
             data:result.data,
             time:5000
           }))
+          $(location).attr('href',adminIndex);
+        }else{
+          console.log(result)
+          alert(result.msg);
         }
-        $(location).attr('href',adminIndex);
       }
     })
   }
@@ -99,7 +102,7 @@
 
   function verify(username,password){
     var flag
-    var patter = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/
+    var patter = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/
     if(username != undefined & username != "" & password != undefined & password != "" ){
      var matchResult =  patter.test(password);
      if(!matchResult){      
