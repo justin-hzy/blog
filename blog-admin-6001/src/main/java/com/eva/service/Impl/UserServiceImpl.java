@@ -17,6 +17,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User checkUser(String username, String password) {
+        System.out.println("password="+password);
         Map map = new HashMap<>();
         map.put("username",username);
         map.put("password",password);

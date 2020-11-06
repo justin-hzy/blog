@@ -2,6 +2,7 @@ package com.eva.service;
 
 import com.eva.Impl.FeignFallBack;
 import com.eva.dto.User;
+import com.eva.utils.JSONResult;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +28,7 @@ public interface FeignService {
     String hello4();
 
     @PostMapping("/admin/login")
-    User login(@RequestParam String username, @RequestParam String password);
+    JSONResult login(@RequestParam String username, @RequestParam String password);
 
     @PostMapping("/admin/getUser")
     User getUser(User user);

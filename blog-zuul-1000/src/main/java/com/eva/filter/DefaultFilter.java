@@ -23,7 +23,7 @@ public class DefaultFilter extends ZuulFilter {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    private static final String REGEX = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$";;
+    private static final String REGEX = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";;
 
     @Override
     public String filterType() {
