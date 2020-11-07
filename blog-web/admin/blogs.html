@@ -178,11 +178,16 @@
             $.ajax({
                 type:"post",
                 data:token,
-                url:"",
+                url:getTokenUrl,
                 success:function(result){
-                    if(result.status==405){
+                    console.log(result)
+                    if(result.status==201){
+                        alert(result.msg)
+                        
+                    }else{
                         $(location).attr('href',loginPage);
                     }
+                    
                 }
             })
         }

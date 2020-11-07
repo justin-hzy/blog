@@ -33,4 +33,10 @@ public interface FeignService {
     @PostMapping("/admin/getUser")
     User getUser(User user);
 
+    @PostMapping("/admin/getRedis")
+    String getRedis();
+
+    @PostMapping("/admin/getToken")
+    public JSONResult getToken();
+
 }

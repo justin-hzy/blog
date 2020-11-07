@@ -103,6 +103,7 @@
 <script>
     $(function(){
         logoutClick();
+        /* checkToken(); */
     })
     $('.menu.toggle').click(function(){
         $('.m-item').toggleClass('m-mobile-hide');
@@ -120,6 +121,23 @@
         $("#logout").click(function(){
             logout();
         })
+    }
+    function checkToken(){
+        var token = localStorage.getItem("token");
+        if(token==undefined){
+            $(location).attr('href',loginPage);
+        }else{
+            $.ajax({
+                type:"post",
+                data:token,
+                url:"",
+                success:function(result){
+                    if(result.status==405){
+                        $(location).attr('href',loginPage);
+                    }
+                }
+            })
+        }
     }
 </script>
 
