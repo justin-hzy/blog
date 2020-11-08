@@ -4,15 +4,19 @@
     <select id="selectBlog" resultType="com.eva.dto.Blog">
         select * from blog
     </select>
-    <select id="selectBlogByTag" resultType="com.eva.dto.Blog">
-        select * from blog where
-    </select>
+
     <select id="selectBlogByID" resultType="com.eva.dto.Blog">
-
+        select * from blog where id=#{id}
     </select>
+
+    <select id="selectBlogByTag" resultType="com.eva.dto.Blog">
+        select * from blog where tag_id =#{tag_id}
+    </select>
+
     <select id="selectBlogByType" resultType="com.eva.dto.Blog">
-
+        select * from blog where type_id =#{type_id}
     </select>
+
 
 
 </mapper>

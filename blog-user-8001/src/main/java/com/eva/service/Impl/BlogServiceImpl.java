@@ -24,4 +24,20 @@ public class BlogServiceImpl implements BlogService {
         List<Blog> result =blogMapper.selectBlog();
         return result;
     };
+
+    @Override
+    public Blog selectBlogByID(int id){
+        Blog result =blogMapper.selectBlogByID(id);
+        return result;
+    };
+    @Override
+    public List<Blog>  selectBlogByType(int type_id){
+        List<Blog> result =blogMapper.selectBlogByType( type_id);
+        return result;
+    };
+    @Override
+    public List<Blog> selectBlogByTag(int tag_id){
+        List<Blog> result =blogMapper.selectBlogByTag(tag_id);
+        return result;
+    };
 }
