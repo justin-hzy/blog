@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("admin")
-public class UserController {
+public class AdminController {
 
     @Autowired
     private FeignService feignService;
@@ -30,5 +30,11 @@ public class UserController {
             System.out.println("通过验证");
             return JSONResult.build(404,"验证失败",null);
         }
+    }
+
+    @PostMapping("getToken")
+    public JSONResult getToken(){
+        JSONResult jsonResult = feignService.getToken();
+        return jsonResult;
     }
 }

@@ -32,11 +32,22 @@ public class FeignFallBack implements FeignService {
     @Override
     public JSONResult login(String username, String password) {
         System.out.println("login服务降级");
-        return JSONResult.build(201,"服务降级",null);
+        return JSONResult.build(201,"首次调用！服务降级",null);
     }
 
     @Override
     public User getUser(User user) {
         return null;
+    }
+
+    @Override
+    public String getRedis() {
+        System.out.println("login服务降级");
+        return new String("login服务降级");
+    }
+
+    @Override
+    public JSONResult getToken() {
+        return JSONResult.build(201,"getToken服务降级",null);
     }
 }
