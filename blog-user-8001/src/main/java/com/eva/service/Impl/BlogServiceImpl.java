@@ -3,6 +3,7 @@ package com.eva.service.Impl;
 import com.eva.dto.Blog;
 import com.eva.mapper.BlogMapper;
 import com.eva.service.BlogService;
+import com.eva.vo.BlogsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +20,9 @@ public class BlogServiceImpl implements BlogService {
 
 
     @Override
-    public List<Blog> selectBlog(){
+    public List<BlogsVo> selectBlogs(){
 
-        List<Blog> result =blogMapper.selectBlog();
+        List<BlogsVo> result =blogMapper.selectBlogs();
         return result;
     };
 
