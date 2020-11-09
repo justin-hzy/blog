@@ -1,16 +1,6 @@
 server:
   port: 1001
 
-ribbon:
-  eureka:
-    enabled: true
-
-feign:
-  hystrix:
-    enabled: true
-
-
-
 eureka:
   client:
     #是否从注册中心抓取服务信息
@@ -37,5 +27,11 @@ spring:
         min-idle: 0
     timeout: 500
     host: 95.169.19.152
-    password: myredis_123
 
+ribbon:
+  eureka:
+    enabled: true
+
+feign:
+  hystrix:
+    enabled: true
