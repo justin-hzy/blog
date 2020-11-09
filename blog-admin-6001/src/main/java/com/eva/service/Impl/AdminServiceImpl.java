@@ -1,8 +1,8 @@
 package com.eva.service.Impl;
 
 import com.eva.dto.User;
-import com.eva.mapper.UserMapper;
-import com.eva.service.UserService;
+import com.eva.mapper.AdminMapper;
+import com.eva.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +10,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class AdminServiceImpl implements AdminService {
 
     @Autowired
-    private UserMapper userMapper;
+    private AdminMapper userMapper;
 
     @Override
     public User checkUser(String username, String password) {

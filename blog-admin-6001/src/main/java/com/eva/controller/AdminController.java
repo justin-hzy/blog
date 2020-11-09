@@ -1,7 +1,7 @@
 package com.eva.controller;
 
 import com.eva.dto.User;
-import com.eva.service.UserService;
+import com.eva.service.AdminService;
 import com.eva.utils.JSONResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController {
 
     @Autowired
-    private UserService userService;
+    private AdminService userService;
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;

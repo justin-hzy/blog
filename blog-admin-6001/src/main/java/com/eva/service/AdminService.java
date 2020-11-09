@@ -4,7 +4,7 @@ import com.eva.dto.User;
 import org.springframework.stereotype.Service;
 
 
-public interface UserService {
+public interface AdminService {
 
     User checkUser (String username,String password);
 

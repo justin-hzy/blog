@@ -6,11 +6,13 @@ import org.springframework.stereotype.Repository;
 import java.util.Map;
 
 @Repository
-public interface UserMapper {
+public interface AdminMapper {
 
     User selectUser();
 
     User findByUsernameAndPassword(Map map);
 
     User getUser(User user);
+
+    int addType();
 }
