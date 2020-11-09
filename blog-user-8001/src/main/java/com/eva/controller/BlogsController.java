@@ -4,6 +4,7 @@ import com.eva.XXX;
 import com.eva.dto.Blog;
 import com.eva.service.BlogService;
 import com.eva.service.Impl.BlogServiceImpl;
+import com.eva.vo.BlogsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,12 +18,12 @@ import java.util.List;
 public class BlogsController {
 
     @Autowired
-    BlogService blogService = new BlogServiceImpl();
+    BlogService blogService;
 
-    @RequestMapping(value = "/selectBlog")
-    public List<Blog> selectBlog(){
-        List<Blog> result = new ArrayList<>();
-        result= blogService.selectBlog();
+    @RequestMapping(value = "/selectBlogs")
+    public List<BlogsVo> selectBlogs(){
+        List<BlogsVo> result = new ArrayList<>();
+        result= blogService.selectBlogs();
         return result;
     }
 

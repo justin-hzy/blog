@@ -7,7 +7,7 @@ import java.util.Date;
  * blog
  * @author 
  */
-public class Tag implements Serializable {
+public class TagBlogRelation implements Serializable {
     private Integer id;
 
     private String title;
@@ -171,7 +171,7 @@ public class Tag implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        Tag other = (Tag) that;
+        TagBlogRelation other = (TagBlogRelation) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
             && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))

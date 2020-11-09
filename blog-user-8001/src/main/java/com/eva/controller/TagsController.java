@@ -18,7 +18,7 @@ public class TagsController {
 
 
     @Autowired
-    TagService tagService = new TagServiceImpl();
+    TagService tagService;
 
     @RequestMapping(value = "/selectTag")
     public List<Tag> selectTag(){

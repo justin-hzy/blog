@@ -17,7 +17,7 @@ import java.util.List;
 public class TypeController {
 
     @Autowired
-    TypeService typeService = new TypeServiceImpl();
+    TypeService typeService;
 
     @RequestMapping(value = "/selectType")
     public List<Type> selectType(){

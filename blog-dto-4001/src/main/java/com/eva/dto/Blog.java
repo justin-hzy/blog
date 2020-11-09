@@ -1,15 +1,24 @@
 package com.eva.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Blog {
-    private String id;
+/**
+ * blog
+ * @author 
+ */
+public class Blog implements Serializable {
+    private Integer id;
 
     private String title;
 
     private String content;
 
-    private String firstPicture;
+    private Integer commentId;
+
+    private Integer typeId;
+
+    private String firstpicture;
 
     private String flag;
 
@@ -17,53 +26,25 @@ public class Blog {
 
     private String appreciation;
 
-    private String shareStatement;
+    private String sharestatement;
 
-    private String commentTabled;
+    private String commenttabled;
 
     private String published;
 
     private String recommend;
 
-    private Date createTime;
+    private Date createtime;
 
-    private Date updateTime;
+    private Date updatetime;
 
-    /*关系对象 begin */
-/*    private Type type;
+    private static final long serialVersionUID = 1L;
 
-    private List<Tag> tags = new ArrayList<>();
-
-    private User user;
-
-    private List<Comment> comments = new ArrayList<>();*/
-
-    /*关系对象 end */
-
-    /*public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }*/
-
-    public Blog() {
-    }
-
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -83,12 +64,28 @@ public class Blog {
         this.content = content;
     }
 
-    public String getFirstPicture() {
-        return firstPicture;
+    public Integer getCommentId() {
+        return commentId;
     }
 
-    public void setFirstPicture(String firstPicture) {
-        this.firstPicture = firstPicture;
+    public void setCommentId(Integer commentId) {
+        this.commentId = commentId;
+    }
+
+    public Integer getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
+    }
+
+    public String getFirstpicture() {
+        return firstpicture;
+    }
+
+    public void setFirstpicture(String firstpicture) {
+        this.firstpicture = firstpicture;
     }
 
     public String getFlag() {
@@ -115,20 +112,20 @@ public class Blog {
         this.appreciation = appreciation;
     }
 
-    public String getShareStatement() {
-        return shareStatement;
+    public String getSharestatement() {
+        return sharestatement;
     }
 
-    public void setShareStatement(String shareStatement) {
-        this.shareStatement = shareStatement;
+    public void setSharestatement(String sharestatement) {
+        this.sharestatement = sharestatement;
     }
 
-    public String getCommentTabled() {
-        return commentTabled;
+    public String getCommenttabled() {
+        return commenttabled;
     }
 
-    public void setCommentTabled(String commentTabled) {
-        this.commentTabled = commentTabled;
+    public void setCommenttabled(String commenttabled) {
+        this.commenttabled = commenttabled;
     }
 
     public String getPublished() {
@@ -147,38 +144,96 @@ public class Blog {
         this.recommend = recommend;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getCreatetime() {
+        return createtime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
+    public Date getUpdatetime() {
+        return updatetime;
     }
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setUpdatetime(Date updatetime) {
+        this.updatetime = updatetime;
+    }
+
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null) {
+            return false;
+        }
+        if (getClass() != that.getClass()) {
+            return false;
+        }
+        Blog other = (Blog) that;
+        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+            && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
+            && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))
+            && (this.getCommentId() == null ? other.getCommentId() == null : this.getCommentId().equals(other.getCommentId()))
+            && (this.getTypeId() == null ? other.getTypeId() == null : this.getTypeId().equals(other.getTypeId()))
+            && (this.getFirstpicture() == null ? other.getFirstpicture() == null : this.getFirstpicture().equals(other.getFirstpicture()))
+            && (this.getFlag() == null ? other.getFlag() == null : this.getFlag().equals(other.getFlag()))
+            && (this.getViews() == null ? other.getViews() == null : this.getViews().equals(other.getViews()))
+            && (this.getAppreciation() == null ? other.getAppreciation() == null : this.getAppreciation().equals(other.getAppreciation()))
+            && (this.getSharestatement() == null ? other.getSharestatement() == null : this.getSharestatement().equals(other.getSharestatement()))
+            && (this.getCommenttabled() == null ? other.getCommenttabled() == null : this.getCommenttabled().equals(other.getCommenttabled()))
+            && (this.getPublished() == null ? other.getPublished() == null : this.getPublished().equals(other.getPublished()))
+            && (this.getRecommend() == null ? other.getRecommend() == null : this.getRecommend().equals(other.getRecommend()))
+            && (this.getCreatetime() == null ? other.getCreatetime() == null : this.getCreatetime().equals(other.getCreatetime()))
+            && (this.getUpdatetime() == null ? other.getUpdatetime() == null : this.getUpdatetime().equals(other.getUpdatetime()));
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
+        result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
+        result = prime * result + ((getCommentId() == null) ? 0 : getCommentId().hashCode());
+        result = prime * result + ((getTypeId() == null) ? 0 : getTypeId().hashCode());
+        result = prime * result + ((getFirstpicture() == null) ? 0 : getFirstpicture().hashCode());
+        result = prime * result + ((getFlag() == null) ? 0 : getFlag().hashCode());
+        result = prime * result + ((getViews() == null) ? 0 : getViews().hashCode());
+        result = prime * result + ((getAppreciation() == null) ? 0 : getAppreciation().hashCode());
+        result = prime * result + ((getSharestatement() == null) ? 0 : getSharestatement().hashCode());
+        result = prime * result + ((getCommenttabled() == null) ? 0 : getCommenttabled().hashCode());
+        result = prime * result + ((getPublished() == null) ? 0 : getPublished().hashCode());
+        result = prime * result + ((getRecommend() == null) ? 0 : getRecommend().hashCode());
+        result = prime * result + ((getCreatetime() == null) ? 0 : getCreatetime().hashCode());
+        result = prime * result + ((getUpdatetime() == null) ? 0 : getUpdatetime().hashCode());
+        return result;
     }
 
     @Override
     public String toString() {
-        return "Blog{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", firstPicture='" + firstPicture + '\'' +
-                ", flag='" + flag + '\'' +
-                ", views='" + views + '\'' +
-                ", appreciation='" + appreciation + '\'' +
-                ", shareStatement='" + shareStatement + '\'' +
-                ", commentTabled='" + commentTabled + '\'' +
-                ", published='" + published + '\'' +
-                ", recommend='" + recommend + '\'' +
-                ", createTime='" + createTime + '\'' +
-                ", updateTime='" + updateTime + '\'' +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", title=").append(title);
+        sb.append(", content=").append(content);
+        sb.append(", commentId=").append(commentId);
+        sb.append(", typeId=").append(typeId);
+        sb.append(", firstpicture=").append(firstpicture);
+        sb.append(", flag=").append(flag);
+        sb.append(", views=").append(views);
+        sb.append(", appreciation=").append(appreciation);
+        sb.append(", sharestatement=").append(sharestatement);
+        sb.append(", commenttabled=").append(commenttabled);
+        sb.append(", published=").append(published);
+        sb.append(", recommend=").append(recommend);
+        sb.append(", createtime=").append(createtime);
+        sb.append(", updatetime=").append(updatetime);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }
