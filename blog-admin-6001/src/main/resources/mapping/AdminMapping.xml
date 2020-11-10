@@ -15,9 +15,6 @@
     </select>
 
     <insert id="addType" parameterType="com.eva.dto.Type">
-        <selectKey keyProperty="id" resultType="int" order="AFTER">
-            select LAST_INSERT_ID()
-        </selectKey>
         insert into type values (#{id},#{type});
     </insert>
 </mapper>
