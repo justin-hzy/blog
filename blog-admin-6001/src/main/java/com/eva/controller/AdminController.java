@@ -30,9 +30,9 @@ public class AdminController {
         String token = stringRedisTemplate.opsForValue().get("token");
         System.out.println("token="+token);
         if ("".equals(token)){
-            return JSONResult.build(200,"拥有权限",null);
-        }else {
             return JSONResult.build(405,"没有权限",null);
+        }else {
+            return JSONResult.build(200,"拥有权限",null);
         }
     }
 }

@@ -12,14 +12,14 @@
     <link rel="stylesheet" href="../static/css/me.css">
 </head>
 
-<body>
+<body style="display: none;">
     <!-- 导航 -->
     <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-samll">
         <div class="ui container">
             <div class="ui inverted secondary menu">
                 <h2 class="ui teal header item">管理后台</h2>
-                <a class="active m-item item m-mobile-hide"><i class="home icon"></i>博客</a>
-                <a href="" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
+                <a href="http://127.0.0.1:8000/admin/blogs.html" class="active m-item item m-mobile-hide"><i class="home icon"></i>博客</a>
+                <a href="http://127.0.0.1:8000/admin/types.html" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
                 <a href="" class=" m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
                 <div class="right m-item m-mobile-hide menu">
                     <div class="ui dropdown item">
@@ -81,7 +81,7 @@
                                 <a href="#" class="icon item">上一页</a>
                                 <a href="#" class="icon item">下一页</a>
                             </div>
-                            <a href="#" class="ui mini right floated  teal basic button">新增</a>
+                            <a href="http://127.0.0.1:8000/admin/type-input.html" class="ui mini right floated  teal basic button">新增</a>
                         </th>
                     </tr>
                 </tfoot>
@@ -136,19 +136,22 @@
         on : 'hover'
     });
     function checkToken(){
-        var token = localStorage.getItem("token");
-        if(token==undefined){
-            $(location).attr('href',loginPage);
-        }else{
+    var token = localStorage.getItem("token");
+    if(token==undefined){
+        $(location).attr('href',loginPage);
+    }else{
             $.ajax({
                 type:"post",
                 data:token,
                 url:getTokenUrl,
+                async:true,
                 success:function(result){
-                    console.log(result)
+                    /* console.log(result) */
                     if(result.status==201){
-                        alert(result.msg)
-                        
+                        alert(result.msg)  
+                    }
+                    if(result.status==200){
+                        $("body").css('display','block');
                     }else{
                         $(location).attr('href',loginPage);
                     }
