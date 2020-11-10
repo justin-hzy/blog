@@ -1,7 +1,9 @@
 package com.eva.controller;
 
+import com.eva.dto.Type;
 import com.eva.dto.User;
 import com.eva.service.AdminService;
+import com.eva.service.TypeService;
 import com.eva.utils.JSONResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -15,6 +17,9 @@ public class AdminController {
 
     @Autowired
     private AdminService userService;
+
+    @Autowired
+    private TypeService typeService;
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
@@ -33,6 +38,16 @@ public class AdminController {
             return JSONResult.build(405,"没有权限",null);
         }else {
             return JSONResult.build(200,"拥有权限",null);
+        }
+    }
+
+    @PostMapping("/data/addType")
+    public JSONResult addType(Type type){
+        int flag = typeService.addType(type);
+        if (flag==0){
+            return JSONResult.build(200,"提交成功",null);
+        }else{
+            return JSONResult.build(500,"提交失败",null);
         }
     }
 }

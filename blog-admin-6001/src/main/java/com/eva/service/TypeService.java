@@ -4,7 +4,7 @@ import com.eva.dto.Type;
 
 public interface TypeService {
 
-    Type addType(Type type);
+    int addType(Type type);
 
     Type getType(Long id);
 

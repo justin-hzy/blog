@@ -15,8 +15,8 @@ public class TypeServiceImpl implements TypeService {
 
     @Transactional
     @Override
-    public Type addType(Type type) {
-        return null;
+    public int addType(Type type) {
+        return 0;
     }
 
     @Transactional
