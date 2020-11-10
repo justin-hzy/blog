@@ -23,6 +23,18 @@ spring:
     password: Hzy_a1234567890123
     url: jdbc:mysql://95.169.19.152:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    host: 95.169.19.152
+    port: 6379
+    password: myredis_123
+    timeout: 3000
+    database: 0
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1
+        min-idle: 0
 
 mybatis:
   mapper-locations: classpath:mapping/*Mapping.xml

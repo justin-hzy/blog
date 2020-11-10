@@ -18,7 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Component
-public class DefaultFilter extends ZuulFilter {
+public class LoginFilter extends ZuulFilter {
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -41,11 +41,14 @@ public class DefaultFilter extends ZuulFilter {
         System.out.println("执行shouldFilter");
         RequestContext currentContext = RequestContext.getCurrentContext();
         HttpServletRequest request = currentContext.getRequest();
-        if(request.getRequestURI().contains("ad")){
-            System.out.println("DefaultFilter生效");
+        if(request.getRequestURI().contains("login")){
+            System.out.println("LoginFilter生效");
             return true;
+        }else{
+            System.out.println("LoginFilter不生效");
+            return false;
         }
-        return true;
+
     }
 
     @Override

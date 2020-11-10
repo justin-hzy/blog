@@ -2,11 +2,14 @@
 var domain1 = "http://"+document.domain+":80";
 var loginApi = "/blog/ad/admin/login"
 var getUserApi = "/blog/ad/admin/getUser"
+var getToken = "/blog/ad/admin/getToken"
 /**
  * 请求url地址
  */
 var loginUrl = domain1+loginApi;
 var getUserUrl = domain1+getUserApi;
+var getTokenUrl = domain1+getToken;
+
 
 /**
  * 前端跳转 地址

@@ -15,14 +15,17 @@ public class LoginController {
     @Autowired
     private FeignService feignService;
 
-    @Autowired
-    private RedisTemplate redisTemplate;
-
     @PostMapping("/login")
     public JSONResult login(@RequestParam String username,@RequestParam String password){
 
         JSONResult jSONResult = feignService.login(username,password);
 
         return jSONResult;
+    }
+
+    @PostMapping("/getRedis")
+    public String getRedis(){
+        String str = feignService.getRedis();
+        return str;
     }
 }

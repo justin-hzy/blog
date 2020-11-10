@@ -27,15 +27,3 @@ eureka:
 spring:
   application:
     name: controller-admin
-  redis:
-    port: 6379
-    lettuce:
-      pool:
-        max-active: 500
-        max-wait: 500
-        max-idle: 500
-        min-idle: 0
-    timeout: 500
-    host: 95.169.19.152
-    password: myredis_123
-
