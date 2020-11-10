@@ -6,7 +6,12 @@
         <id column="tag_id" jdbcType="INTEGER" property="tagId" />
         <result column="tag_name" jdbcType="VARCHAR" property="tagName" />
     </resultMap>
+    <select id="selectTags" resultMap="BaseTagMap">
+       select * from tag where tag_id=#{tag_id}
+    </select>
 
-    <select id="selectTagById" resultMap="BaseTagMap"></select>
-    <select id="selectTag" resultMap="BaseTagMap"></select>
+    <select id="selectTagById" resultMap="BaseTagMap">
+        select * from tag
+    </select>
+
 </mapper>

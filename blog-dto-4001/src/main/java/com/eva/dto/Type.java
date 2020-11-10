@@ -7,17 +7,17 @@ import java.io.Serializable;
  * @author 
  */
 public class Type implements Serializable {
-    private Integer typeId;
+    private String typeId;
 
     private String typeName;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getTypeId() {
+    public String getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(Integer id) {
+    public void setTypeId(String id) {
         this.typeId = id;
     }
 

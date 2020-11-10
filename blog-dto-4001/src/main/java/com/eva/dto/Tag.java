@@ -7,17 +7,17 @@ import java.io.Serializable;
  * @author 
  */
 public class Tag implements Serializable {
-    private Integer tagId;
+    private String tagId;
 
     private String tagName;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getTagId() {
+    public String getTagId() {
         return tagId;
     }
 
-    public void setTagId(Integer id) {
+    public void setTagId(String id) {
         this.tagId = id;
     }
 

@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface TypeService {
 
-    List<Type> selectType();
-    Type selectTypeById(int type_id);
+    List<Type> selectTypes();
+    Type selectTypeById(String typeId);
 }

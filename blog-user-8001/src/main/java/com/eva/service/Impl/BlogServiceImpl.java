@@ -7,7 +7,6 @@ import com.eva.vo.BlogsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,18 +26,18 @@ public class BlogServiceImpl implements BlogService {
     };
 
     @Override
-    public Blog selectBlogByID(int id){
-        Blog result =blogMapper.selectBlogByID(id);
+    public Blog selectBlogByID(String blogId){
+        Blog result =blogMapper.selectBlogByID(blogId);
         return result;
     };
     @Override
-    public List<Blog>  selectBlogByType(int type_id){
-        List<Blog> result =blogMapper.selectBlogByType( type_id);
+    public List<Blog>  selectBlogsByType(String typeId){
+        List<Blog> result =blogMapper.selectBlogsByType( typeId);
         return result;
     };
     @Override
-    public List<Blog> selectBlogByTag(int tag_id){
-        List<Blog> result =blogMapper.selectBlogByTag(tag_id);
+    public List<Blog> selectBlogsByTag(String tagId){
+        List<Blog> result =blogMapper.selectBlogsByTag(tagId);
         return result;
     };
 }

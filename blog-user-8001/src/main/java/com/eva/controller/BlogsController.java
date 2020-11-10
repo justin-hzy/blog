@@ -17,6 +17,7 @@ public class BlogsController {
     @Autowired
     BlogService blogService;
 
+//查询博客列表
     @RequestMapping(value = "/selectBlogs")
     public List<BlogsVo> selectBlogs(){
         List<BlogsVo> result = new ArrayList<>();
@@ -24,23 +25,26 @@ public class BlogsController {
         return result;
     }
 
+//    点击查看博客详情
     @RequestMapping(value = "/selectBlogByID")
-    public Blog selectBlogByID(int id){
-        Blog result= blogService.selectBlogByID(id);
+    public Blog selectBlogByID(String blogId){
+        Blog result= blogService.selectBlogByID(blogId);
         return result;
     }
 
-    @RequestMapping(value = "/selectBlogByType")
-    public List<Blog> selectBlogByType(int type_id){
+//    查看某个分类的博客
+    @RequestMapping(value = "/selectBlogsByType")
+    public List<Blog> selectBlogsByType(String typeId){
         List<Blog> result = new ArrayList<>();
-        result= blogService.selectBlogByType(type_id);
+        result= blogService.selectBlogsByType(typeId);
         return result;
     }
 
+//    查看某个标签的博客
     @RequestMapping(value = "/selectBlogByTag")
-    public List<Blog> selectBlogByTag(int tag_id){
+    public List<Blog> selectBlogsByTag(String tagId){
         List<Blog> result = new ArrayList<>();
-        result= blogService.selectBlogByTag(tag_id);
+        result= blogService.selectBlogsByTag(tagId);
         return result;
     }
 

@@ -8,13 +8,13 @@ import java.util.Date;
  * @author 
  */
 public class Comment implements Serializable {
-    private Integer commentId;
+    private String commentId;
 
-    private Integer blogId;
+    private String blogId;
 
     private String nickname;
 
-    private Integer parentcommentId;
+    private String parentcommentId;
 
     private String email;
 
@@ -26,19 +26,19 @@ public class Comment implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getCommentId() {
+    public String getCommentId() {
         return commentId;
     }
 
-    public void setCommentId(Integer id) {
+    public void setCommentId(String id) {
         this.commentId = id;
     }
 
-    public Integer getBlogId() {
+    public String getBlogId() {
         return blogId;
     }
 
-    public void setBlogId(Integer blogId) {
+    public void setBlogId(String blogId) {
         this.blogId = blogId;
     }
 
@@ -50,11 +50,11 @@ public class Comment implements Serializable {
         this.nickname = nickname;
     }
 
-    public Integer getParentcommentId() {
+    public String getParentcommentId() {
         return parentcommentId;
     }
 
-    public void setParentcommentId(Integer parentcommentId) {
+    public void setParentcommentId(String parentcommentId) {
         this.parentcommentId = parentcommentId;
     }
 

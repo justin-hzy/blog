@@ -17,12 +17,12 @@ public class TypeServiceImpl implements TypeService {
     TypeMapper typeMapper;
 
     @Override
-    public List<Type> selectType() {
-        return typeMapper.selectType();
+    public List<Type> selectTypes() {
+        return typeMapper.selectTypes();
     }
 
     @Override
-    public Type selectTypeById(int type_id) {
-        return typeMapper.selectTypeById(type_id);
+    public Type selectTypeById(String typeId) {
+        return typeMapper.selectTypeById(typeId);
     }
 }
