@@ -7,6 +7,7 @@ import java.io.Serializable;
  * @author 
  */
 public class Type implements Serializable {
+
     private Integer typeId;
 
     private String typeName;
