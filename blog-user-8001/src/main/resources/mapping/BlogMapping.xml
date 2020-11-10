@@ -1,29 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eva.mapper.BlogMapper">
+    <resultMap id="BaseBlogMap" type="com.eva.dto.Blog">
+        <id column="blog_id" jdbcType="INTEGER" property="blogId" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="content" jdbcType="VARCHAR" property="content" />
+        <result column="type_id" jdbcType="INTEGER" property="typeId" />
+        <result column="firstPicture" jdbcType="VARCHAR" property="firstpicture" />
+        <result column="flag" jdbcType="VARCHAR" property="flag" />
+        <result column="views" jdbcType="VARCHAR" property="views" />
+        <result column="appreciation" jdbcType="VARCHAR" property="appreciation" />
+        <result column="shareStatement" jdbcType="VARCHAR" property="sharestatement" />
+        <result column="commentTabled" jdbcType="VARCHAR" property="commenttabled" />
+        <result column="published" jdbcType="VARCHAR" property="published" />
+        <result column="recommend" jdbcType="VARCHAR" property="recommend" />
+        <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+        <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    </resultMap>
 
-    <select id="selectBlogByID" resultType="com.eva.dto.Blog">
-        select * from blog where id=#{id}
+    <resultMap id="BlogsVo" extends="BaseBlogMap" type="com.eva.vo.BlogsVo">
+        <association property="type" resultMap="com.eva.mapper.TypeMapper.BaseTypeMap"/>
+        <collection property="tags" javaType="list" resultMap="com.eva.mapper.TagMapper.BaseTagMap"/>
+    </resultMap>
+    <select id="selectBlogByID" resultMap="BaseBlogMap">
+        select * from blog where blog_id=#{id}
     </select>
 
-    <select id="selectBlogByTag" resultType="com.eva.dto.Blog">
+    <select id="selectBlogByTag" resultMap="BaseBlogMap">
         select * from blog where tag_id =#{tag_id}
     </select>
 
-    <select id="selectBlogByType" resultType="com.eva.dto.Blog">
+    <select id="selectBlogByType" resultMap="BaseBlogMap">
         select * from blog where type_id =#{type_id}
     </select>
-    <select id="selectBlogByTag1" resultType="com.eva.dto.Blog">
 
-    </select>
-    <select id="selectBlogs" resultType="com.eva.vo.BlogsVo">
-        select * from blog  b
+    <select id="selectBlogs" resultMap="BlogsVo">
+        select
+        b.blog_id,b.title,b.content,b.firstpicture,b.flag,b.views,
+         b.appreciation,b.sharestatement,b.commenttabled,b.published,b.recommend,b.createtime,
+         t1.type_id,t1.type_name,t3.tag_id,t3.tag_name
+         from blog  b
         left join type t1
-        on b.type_id=t1.id
+        on b.type_id=t1.type_id
         left join tag_blog_relation t2
-        on b.id=t2.blog_id
+        on b.blog_id=t2.blog_id
         left join tag t3
-        on t2.tag_id=t3.id
+        on t2.tag_id=t3.tag_id
     </select>
 
 

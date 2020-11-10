@@ -8,13 +8,11 @@ import java.util.Date;
  * @author 
  */
 public class Blog implements Serializable {
-    private Integer id;
+    private Integer blogId;
 
     private String title;
 
     private String content;
-
-    private Integer commentId;
 
     private Integer typeId;
 
@@ -40,12 +38,12 @@ public class Blog implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
-        return id;
+    public Integer getBlogId() {
+        return blogId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setBlogId(Integer id) {
+        this.blogId = id;
     }
 
     public String getTitle() {
@@ -62,14 +60,6 @@ public class Blog implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public Integer getCommentId() {
-        return commentId;
-    }
-
-    public void setCommentId(Integer commentId) {
-        this.commentId = commentId;
     }
 
     public Integer getTypeId() {
@@ -172,10 +162,9 @@ public class Blog implements Serializable {
             return false;
         }
         Blog other = (Blog) that;
-        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+        return (this.getBlogId() == null ? other.getBlogId() == null : this.getBlogId().equals(other.getBlogId()))
             && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
             && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))
-            && (this.getCommentId() == null ? other.getCommentId() == null : this.getCommentId().equals(other.getCommentId()))
             && (this.getTypeId() == null ? other.getTypeId() == null : this.getTypeId().equals(other.getTypeId()))
             && (this.getFirstpicture() == null ? other.getFirstpicture() == null : this.getFirstpicture().equals(other.getFirstpicture()))
             && (this.getFlag() == null ? other.getFlag() == null : this.getFlag().equals(other.getFlag()))
@@ -193,10 +182,9 @@ public class Blog implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getBlogId() == null) ? 0 : getBlogId().hashCode());
         result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
         result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
-        result = prime * result + ((getCommentId() == null) ? 0 : getCommentId().hashCode());
         result = prime * result + ((getTypeId() == null) ? 0 : getTypeId().hashCode());
         result = prime * result + ((getFirstpicture() == null) ? 0 : getFirstpicture().hashCode());
         result = prime * result + ((getFlag() == null) ? 0 : getFlag().hashCode());
@@ -217,10 +205,9 @@ public class Blog implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
+        sb.append(", blogId=").append(blogId);
         sb.append(", title=").append(title);
         sb.append(", content=").append(content);
-        sb.append(", commentId=").append(commentId);
         sb.append(", typeId=").append(typeId);
         sb.append(", firstpicture=").append(firstpicture);
         sb.append(", flag=").append(flag);

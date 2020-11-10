@@ -16,6 +16,5 @@ public interface BlogMapper {
     Blog selectBlogByID(@Param("id") int id);
     List<Blog>  selectBlogByType(@Param("type_id") int type_id);
     List<Blog> selectBlogByTag(@Param("tag_id") int tag_id);
-    List<Blog> selectBlogByTag1(@Param("tag_id") int tag_id);
 
 }
