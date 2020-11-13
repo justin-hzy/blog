@@ -9,6 +9,6 @@ import java.util.List;
 
 
 public interface TagService {
-    List<Tag> selectTag();
-    Tag selectTagById(int tag_id);
+    List<Tag> selectTags();
+    Tag selectTagById(String tagId);
 }

@@ -8,28 +8,63 @@ import java.util.Date;
  * @author 
  */
 public class Blog implements Serializable {
-    private Integer blogId;
+    private String blogId;
 
+    /**
+     * 标题
+     */
     private String title;
 
+    /**
+     * 内容
+     */
     private String content;
 
-    private Integer typeId;
+    /**
+     * 用户id
+     */
+    private String userId;
 
+    private String typeId;
+
+    /**
+     * 首图
+     */
     private String firstpicture;
 
+    /**
+     * 标记
+     */
     private String flag;
 
-    private String views;
+    /**
+     * 浏览次数
+     */
+    private Integer views;
 
+    /**
+     * 赞赏开启
+     */
     private String appreciation;
 
+    /**
+     * 版权声明开启
+     */
     private String sharestatement;
 
+    /**
+     * 评论是否开启
+     */
     private String commenttabled;
 
+    /**
+     * 是否发布
+     */
     private String published;
 
+    /**
+     * 是否推荐
+     */
     private String recommend;
 
     private Date createtime;
@@ -38,12 +73,12 @@ public class Blog implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getBlogId() {
+    public String getBlogId() {
         return blogId;
     }
 
-    public void setBlogId(Integer id) {
-        this.blogId = id;
+    public void setBlogId(String blogId) {
+        this.blogId = blogId;
     }
 
     public String getTitle() {
@@ -62,11 +97,19 @@ public class Blog implements Serializable {
         this.content = content;
     }
 
-    public Integer getTypeId() {
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(Integer typeId) {
+    public void setTypeId(String typeId) {
         this.typeId = typeId;
     }
 
@@ -86,11 +129,11 @@ public class Blog implements Serializable {
         this.flag = flag;
     }
 
-    public String getViews() {
+    public Integer getViews() {
         return views;
     }
 
-    public void setViews(String views) {
+    public void setViews(Integer views) {
         this.views = views;
     }
 
@@ -150,6 +193,7 @@ public class Blog implements Serializable {
         this.updatetime = updatetime;
     }
 
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -159,6 +203,7 @@ public class Blog implements Serializable {
         sb.append(", blogId=").append(blogId);
         sb.append(", title=").append(title);
         sb.append(", content=").append(content);
+        sb.append(", userId=").append(userId);
         sb.append(", typeId=").append(typeId);
         sb.append(", firstpicture=").append(firstpicture);
         sb.append(", flag=").append(flag);

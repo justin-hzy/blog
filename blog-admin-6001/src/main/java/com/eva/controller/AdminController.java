@@ -50,7 +50,7 @@ public class AdminController {
     @PostMapping("data/addType")
     public JSONResult addType(Type type){
         String uuId = UUID.randomUUID().toString().replace("-","");
-        /*type.setTypeId(uuId);*/
+        type.setTypeId(uuId);
         int flag = typeService.addType(type);
         if (flag==1){
             return JSONResult.build(500,"提交失败",null);

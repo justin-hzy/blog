@@ -19,15 +19,15 @@ public class TypeController {
     @Autowired
     TypeService typeService;
 
-    @RequestMapping(value = "/selectType")
-    public List<Type> selectType(){
-        List<Type> result = typeService.selectType();
+    @RequestMapping(value = "/selectTypes")
+    public List<Type> selectTypes(){
+        List<Type> result = typeService.selectTypes();
         return result;
     }
 
     @RequestMapping(value = "/selectTypeById")
-    public Type selectTypeById(int type_id){
-        Type result = typeService.selectTypeById(type_id);
+    public Type selectTypeById(String typeId){
+        Type result = typeService.selectTypeById(typeId);
         return result;
     }
 }
