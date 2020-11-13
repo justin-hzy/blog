@@ -11,14 +11,19 @@
     <result column="avatar" jdbcType="VARCHAR" property="avatar" />
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
   </resultMap>
+
   <resultMap id="CommentVo" extends="BaseCommentMap" type="com.eva.vo.CommentVo">
+    <collection property="commentVoList" javaType="list" resultMap="BaseCommentMap"></collection>
+  </resultMap>
+  <resultMap id="CommentsVo" extends="CommentVo" type="com.eva.vo.CommentVo">
     <collection property="commentVoList" javaType="list" resultMap="CommentVo"></collection>
   </resultMap>
   <sql id="Base_Column_List">
     comment_id, blog_id, nickname, parentComment_id, email, content, avatar, createTime
   </sql>
-  <select id="selectCommentVo" resultMap="CommentVo">
-    select comment_id, blog_id, nickname, parentComment_id, email, content, avatar, createTime
+  <select id="selectCommentVo" resultMap="CommentsVo">
+    select c1.comment_id, c1.blog_id, c1.nickname, c1.parentComment_id, c1.email, c1.content, c1.avatar, c1.createTime,
+    c2.comment_id, c2.blog_id, c2.nickname, c2.parentComment_id, c2.email, c2.content, c2.avatar, c2.createTime
     from comment c1
     left join comment c2
     on c1.comment_id=c2.parentComment_id
