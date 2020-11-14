@@ -11,7 +11,33 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
 </head>
-
+<script>
+    $(function(){
+        checkToken();
+    })
+    function checkToken(){
+        var token = localStorage.getItem("token");
+        if(token==undefined){
+            $(location).attr('href',loginPage);
+        }else{
+            $.ajax({
+                type:"post",
+                data:token,
+                url:getTokenUrl,
+                success:function(result){
+                    console.log(result)
+                    if(result.status==201){
+                        alert(result.msg)
+                        
+                    }else{
+                        $(location).attr('href',loginPage);
+                    }
+                    
+                }
+            })
+        }
+    }
+</script>
 <body>
     <!-- 导航 -->
     <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-samll">
@@ -161,37 +187,12 @@
 
 <!--    详情页新增-->
 <script>
-    $(function(){
-        checkToken();
-    })
     $('.menu.toggle').click(function(){
         $('.m-item').toggleClass('m-mobile-hide');
     })
     $('.ui.dropdown').dropdown({
         on : 'hover'
     });
-    function checkToken(){
-        var token = localStorage.getItem("token");
-        if(token==undefined){
-            $(location).attr('href',loginPage);
-        }else{
-            $.ajax({
-                type:"post",
-                data:token,
-                url:getTokenUrl,
-                success:function(result){
-                    console.log(result)
-                    if(result.status==201){
-                        alert(result.msg)
-                        
-                    }else{
-                        $(location).attr('href',loginPage);
-                    }
-                    
-                }
-            })
-        }
-    }
 </script>
 
 </body>
