@@ -1,70 +1,84 @@
 package com.eva.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Blog {
-    private String id;
+/**
+ * blog
+ * @author 
+ */
+public class Blog implements Serializable {
+    private String blogId;
 
+    /**
+     * 标题
+     */
     private String title;
 
+    /**
+     * 内容
+     */
     private String content;
 
-    private String firstPicture;
+    /**
+     * 用户id
+     */
+    private String userId;
 
+    private String typeId;
+
+    /**
+     * 首图
+     */
+    private String firstpicture;
+
+    /**
+     * 标记
+     */
     private String flag;
 
-    private String views;
+    /**
+     * 浏览次数
+     */
+    private Integer views;
 
+    /**
+     * 赞赏开启
+     */
     private String appreciation;
 
-    private String shareStatement;
+    /**
+     * 版权声明开启
+     */
+    private String sharestatement;
 
-    private String commentTabled;
+    /**
+     * 评论是否开启
+     */
+    private String commenttabled;
 
+    /**
+     * 是否发布
+     */
     private String published;
 
+    /**
+     * 是否推荐
+     */
     private String recommend;
 
-    private Date createTime;
+    private Date createtime;
 
-    private Date updateTime;
+    private Date updatetime;
 
-    /*关系对象 begin */
-/*    private Type type;
+    private static final long serialVersionUID = 1L;
 
-    private List<Tag> tags = new ArrayList<>();
-
-    private User user;
-
-    private List<Comment> comments = new ArrayList<>();*/
-
-    /*关系对象 end */
-
-    /*public User getUser() {
-        return user;
+    public String getBlogId() {
+        return blogId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }*/
-
-    public Blog() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public void setBlogId(String blogId) {
+        this.blogId = blogId;
     }
 
     public String getTitle() {
@@ -83,12 +97,28 @@ public class Blog {
         this.content = content;
     }
 
-    public String getFirstPicture() {
-        return firstPicture;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setFirstPicture(String firstPicture) {
-        this.firstPicture = firstPicture;
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(String typeId) {
+        this.typeId = typeId;
+    }
+
+    public String getFirstpicture() {
+        return firstpicture;
+    }
+
+    public void setFirstpicture(String firstpicture) {
+        this.firstpicture = firstpicture;
     }
 
     public String getFlag() {
@@ -99,11 +129,11 @@ public class Blog {
         this.flag = flag;
     }
 
-    public String getViews() {
+    public Integer getViews() {
         return views;
     }
 
-    public void setViews(String views) {
+    public void setViews(Integer views) {
         this.views = views;
     }
 
@@ -115,20 +145,20 @@ public class Blog {
         this.appreciation = appreciation;
     }
 
-    public String getShareStatement() {
-        return shareStatement;
+    public String getSharestatement() {
+        return sharestatement;
     }
 
-    public void setShareStatement(String shareStatement) {
-        this.shareStatement = shareStatement;
+    public void setSharestatement(String sharestatement) {
+        this.sharestatement = sharestatement;
     }
 
-    public String getCommentTabled() {
-        return commentTabled;
+    public String getCommenttabled() {
+        return commenttabled;
     }
 
-    public void setCommentTabled(String commentTabled) {
-        this.commentTabled = commentTabled;
+    public void setCommenttabled(String commenttabled) {
+        this.commenttabled = commenttabled;
     }
 
     public String getPublished() {
@@ -147,38 +177,46 @@ public class Blog {
         this.recommend = recommend;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getCreatetime() {
+        return createtime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
+    public Date getUpdatetime() {
+        return updatetime;
     }
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setUpdatetime(Date updatetime) {
+        this.updatetime = updatetime;
     }
+
 
     @Override
     public String toString() {
-        return "Blog{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", firstPicture='" + firstPicture + '\'' +
-                ", flag='" + flag + '\'' +
-                ", views='" + views + '\'' +
-                ", appreciation='" + appreciation + '\'' +
-                ", shareStatement='" + shareStatement + '\'' +
-                ", commentTabled='" + commentTabled + '\'' +
-                ", published='" + published + '\'' +
-                ", recommend='" + recommend + '\'' +
-                ", createTime='" + createTime + '\'' +
-                ", updateTime='" + updateTime + '\'' +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", blogId=").append(blogId);
+        sb.append(", title=").append(title);
+        sb.append(", content=").append(content);
+        sb.append(", userId=").append(userId);
+        sb.append(", typeId=").append(typeId);
+        sb.append(", firstpicture=").append(firstpicture);
+        sb.append(", flag=").append(flag);
+        sb.append(", views=").append(views);
+        sb.append(", appreciation=").append(appreciation);
+        sb.append(", sharestatement=").append(sharestatement);
+        sb.append(", commenttabled=").append(commenttabled);
+        sb.append(", published=").append(published);
+        sb.append(", recommend=").append(recommend);
+        sb.append(", createtime=").append(createtime);
+        sb.append(", updatetime=").append(updatetime);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

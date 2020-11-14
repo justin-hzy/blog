@@ -1,37 +1,49 @@
 package com.eva.dto;
 
-public class Type {
+import java.io.Serializable;
 
-    private String id;
+/**
+ * type
+ * @author 
+ */
+public class Type implements Serializable {
+<<<<<<< HEAD
 
-    private String name;
+    private Integer typeId;
+=======
+    private String typeId;
+>>>>>>> 506e035ac312effd157281a5968a8972fdcee5be
 
-    /*private List<Blog> blogs = new ArrayList<>();*/
+    private String typeName;
 
-    public Type() {
+    private static final long serialVersionUID = 1L;
+
+    public String getTypeId() {
+        return typeId;
     }
 
-    public String getId() {
-        return id;
+    public void setTypeId(String id) {
+        this.typeId = id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setTypeName(String name) {
+        this.typeName = name;
     }
 
     @Override
     public String toString() {
-        return "Type{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", typeId=").append(typeId);
+        sb.append(", typeName=").append(typeName);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

@@ -4,15 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>管理后台</title>
+    <title>分类新增</title>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="../static/lib/editormd/editormd.min.js"></script>
     <script src="../static/js/const.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
 </head>
 
-<body>
+<body style="display: none;">
     <!-- 导航 -->
     <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-samll">
         <div class="ui container">
@@ -30,7 +31,7 @@
                         </div>
                         <i class="dropdown icon"></i>
                         <div class="menu">
-                            <a id="logout" class="item">注销</a>
+                            <a href="#" class="item">注销</a>
                         </div>
                     </div>
                 </div>
@@ -44,23 +45,36 @@
     </nav>
 
     <!-- 二级导航 -->
-    <!-- <div class="ui attached pointing menu">
+    <div class="ui attached pointing menu">
         <div class="ui container">
             <div class="right menu">
-                <a href="#" class="item">发布</a>
-                <a href="#" class="active teal item">列表</a>
+                <a href="#" class="active teal item">发布</a>
+                <a href="#" class="item">列表</a>
             </div>
         </div>
-    </div> -->
+    </div>
 <!--详情页开始-->
     <!-- 中间内容 -->
     <div class = "m-container-small m-padded-tb-big">
         <div class="ui container">
-            <div class="ui success large message">
-                <h3>Hi,</h3>
-                <p>何子毅,欢迎登录!</p>
-            </div>
-            <img src="https://unsplash.it/1000/400?image=1005" alt="" class="ui rounded bordered fluid image">
+            <form class="ui form">
+                <div class="field">
+                    <div class="ui left labeled input">
+                        <label class="ui teal basic label">名称</label>
+                        <input id="categoryName" type="text" name="name" placeholder="分类名称">
+                    </div>
+                
+                </div>
+
+                
+                <div class="ui error message">
+
+                </div>
+                <div class="ui right aligned container">
+                    <button class="ui button" type="button" onclick="window.history.go(-1)">返回</button>
+                    <div id="sumbitButton" class="ui teal button">提交</div>
+                </div>
+            </form>
         </div>
     </div>
 <!--详情页结束-->
@@ -102,42 +116,73 @@
 <!--    详情页新增-->
 <script>
     $(function(){
-        logoutClick();
-        /* checkToken(); */
+        checkToken();
+        submitType();
     })
     $('.menu.toggle').click(function(){
         $('.m-item').toggleClass('m-mobile-hide');
-        
     })
     $('.ui.dropdown').dropdown({
         on : 'hover'
     });
-    /* 注销登陆 */
-    function logout() {
-        localStorage.removeItem("token");
-        $(location).attr('href',loginPage);
-    }
-    function logoutClick(){
-        $("#logout").click(function(){
-            logout();
-        })
-    }
+    $('.ui.form').form({
+        fields:{
+            title : {
+                identifier : 'title',
+                rules: [{
+                    type: 'empty',
+                    prompt: '标题:请输入博客标题'
+                }]
+            }
+        }
+    })
     function checkToken(){
-        var token = localStorage.getItem("token");
-        if(token==undefined){
-            $(location).attr('href',loginPage);
-        }else{
+    var token = localStorage.getItem("token");
+    if(token==undefined){
+        $(location).attr('href',loginPage);
+    }else{
             $.ajax({
                 type:"post",
                 data:token,
-                url:"",
+                url:getTokenUrl,
+                async:true,
                 success:function(result){
-                    if(result.status==405){
+                    /* console.log(result) */
+                    if(result.status==201){
+                        alert(result.msg)  
+                    }
+                    if(result.status==200){
+                        $("body").css('display','block');
+                    }else{
                         $(location).attr('href',loginPage);
                     }
+                    
                 }
             })
         }
+    }
+
+    function submitType(){
+        submitClick();
+    }
+
+    function submitClick(){
+        $("#sumbitButton").click(function(){
+            var categoryName = $("#categoryName").val();
+            var token = localStorage.getItem("token");
+            $.ajax({
+                type:"post",
+                headers:{'Authorization': token},
+                data:{
+                    typeName:categoryName,
+                },
+                url:addTypeUrl,
+                async:true,
+                success:function(result){
+                    console.log(result)
+                }
+            })
+        })
     }
 </script>
 

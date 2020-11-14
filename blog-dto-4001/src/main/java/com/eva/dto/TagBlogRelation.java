@@ -3,13 +3,13 @@ package com.eva.dto;
 import java.io.Serializable;
 
 /**
- * tag
+ * tag_blog_relation
  * @author 
  */
-public class Tag implements Serializable {
+public class TagBlogRelation implements Serializable {
     private String tagId;
 
-    private String tagName;
+    private String blogId;
 
     private static final long serialVersionUID = 1L;
 
@@ -17,16 +17,16 @@ public class Tag implements Serializable {
         return tagId;
     }
 
-    public void setTagId(String id) {
-        this.tagId = id;
+    public void setTagId(String tagId) {
+        this.tagId = tagId;
     }
 
-    public String getTagName() {
-        return tagName;
+    public String getBlogId() {
+        return blogId;
     }
 
-    public void setTagName(String name) {
-        this.tagName = name;
+    public void setBlogId(String blogId) {
+        this.blogId = blogId;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class Tag implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", tagId=").append(tagId);
-        sb.append(", tagName=").append(tagName);
+        sb.append(", blogId=").append(blogId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

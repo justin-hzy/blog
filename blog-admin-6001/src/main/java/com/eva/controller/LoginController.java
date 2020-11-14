@@ -1,7 +1,7 @@
 package com.eva.controller;
 
 import com.eva.dto.User;
-import com.eva.service.UserService;
+import com.eva.service.AdminService;
 import com.eva.utils.JSONResult;
 import com.eva.utils.JwtUtil;
 import com.eva.utils.MD5Code;
@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +23,7 @@ public class LoginController {
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
-    private UserService userService;
+    private AdminService userService;
 
     @Autowired
     private RedisTemplate redisTemplate;

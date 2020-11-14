@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
 </head>
+<<<<<<< HEAD
 <script>
     $(function(){
         checkToken();
@@ -39,13 +40,16 @@
     }
 </script>
 <body>
+=======
+<body style="display: none;">
+>>>>>>> 40fc11763369212e02fdfd15cecd1d61e958a2c1
     <!-- 导航 -->
     <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-samll">
         <div class="ui container">
             <div class="ui inverted secondary menu">
                 <h2 class="ui teal header item">管理后台</h2>
-                <a class="active m-item item m-mobile-hide"><i class="home icon"></i>博客</a>
-                <a href="" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
+                <a href="http://127.0.0.1:8000/admin/blogs.html" class="active m-item item m-mobile-hide"><i class="home icon"></i>博客</a>
+                <a href="http://127.0.0.1:8000/admin/types.html" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
                 <a href="" class=" m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
                 <div class="right m-item m-mobile-hide menu">
                     <div class="ui dropdown item">
@@ -193,6 +197,34 @@
     $('.ui.dropdown').dropdown({
         on : 'hover'
     });
+<<<<<<< HEAD
+=======
+    function checkToken(){
+    var token = localStorage.getItem("token");
+    if(token==undefined){
+        $(location).attr('href',loginPage);
+    }else{
+            $.ajax({
+                type:"post",
+                data:token,
+                url:getTokenUrl,
+                async:true,
+                success:function(result){
+                    /* console.log(result) */
+                    if(result.status==201){
+                        alert(result.msg)  
+                    }
+                    if(result.status==200){
+                        $("body").css('display','block');
+                    }else{
+                        $(location).attr('href',loginPage);
+                    }
+                    
+                }
+            })
+        }
+    }
+>>>>>>> 40fc11763369212e02fdfd15cecd1d61e958a2c1
 </script>
 
 </body>

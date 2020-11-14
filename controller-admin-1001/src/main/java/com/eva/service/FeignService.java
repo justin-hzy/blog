@@ -1,6 +1,7 @@
 package com.eva.service;
 
 import com.eva.Impl.FeignFallBack;
+import com.eva.dto.Type;
 import com.eva.dto.User;
 import com.eva.utils.JSONResult;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -37,6 +38,9 @@ public interface FeignService {
     String getRedis();
 
     @PostMapping("/admin/getToken")
-    public JSONResult getToken();
+    JSONResult getToken();
+
+    @PostMapping("/admin/data/addType")
+    JSONResult addType(Type type);
 
 }

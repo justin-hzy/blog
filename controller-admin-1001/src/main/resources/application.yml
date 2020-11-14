@@ -27,5 +27,3 @@ eureka:
 spring:
   application:
     name: controller-admin
-
-

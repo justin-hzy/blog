@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eva.mapper.TypeMapper">
+    <resultMap id="BaseTypeMap" type="com.eva.dto.Type">
+        <id column="type_id" jdbcType="INTEGER" property="typeId" />
+        <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    </resultMap>
+
+
+        <select id="selectTypes" resultMap="BaseTypeMap">
+        select * from type
+    </select>
+
+    <select id="selectTypeById" resultMap="BaseTypeMap">
+        select * from type where type_id = #{type_id}
+    </select>
+</mapper>

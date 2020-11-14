@@ -1,9 +1,13 @@
 package com.eva.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
-
+/**
+ * user
+ * @author 
+ */
+public class User implements Serializable {
     private String id;
 
     private String username;
@@ -18,18 +22,11 @@ public class User {
 
     private Integer type;
 
-    private Date createTime;
+    private Date createtime;
 
-    private Date updateTime;
+    private Date updatetime;
 
-    /*private List<Blog> blogs = new ArrayList<>();*/
-
-    public User() {
-    }
-
-    public User(String username) {
-        this.username = username;
-    }
+    private static final long serialVersionUID = 1L;
 
     public String getId() {
         return id;
@@ -87,35 +84,39 @@ public class User {
         this.type = type;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getCreatetime() {
+        return createtime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
+    public Date getUpdatetime() {
+        return updatetime;
     }
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setUpdatetime(Date updatetime) {
+        this.updatetime = updatetime;
     }
-
 
     @Override
     public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", username='" + username + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", avatar='" + avatar + '\'' +
-                ", type=" + type +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", username=").append(username);
+        sb.append(", nickname=").append(nickname);
+        sb.append(", password=").append(password);
+        sb.append(", email=").append(email);
+        sb.append(", avatar=").append(avatar);
+        sb.append(", type=").append(type);
+        sb.append(", createtime=").append(createtime);
+        sb.append(", updatetime=").append(updatetime);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }

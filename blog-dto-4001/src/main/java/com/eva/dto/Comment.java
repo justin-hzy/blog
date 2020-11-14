@@ -1,12 +1,20 @@
 package com.eva.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Comment {
+/**
+ * comment
+ * @author 
+ */
+public class Comment implements Serializable {
+    private String commentId;
 
-    private String id;
+    private String blogId;
 
     private String nickname;
+
+    private String parentcommentId;
 
     private String email;
 
@@ -14,31 +22,24 @@ public class Comment {
 
     private String avatar;
 
-    private Date createTime;
+    private Date createtime;
 
-    /*关系对象 begin */
-/*    private Blog blog;
+    private static final long serialVersionUID = 1L;
 
-    private List<Comment> replyComments = new ArrayList<>();
-
-    private Comment parentComment;*/
-
-    /*关系对象 end */
-
-/*    public Blog getBlog() {
-        return blog;
+    public String getCommentId() {
+        return commentId;
     }
 
-    public void setBlog(Blog blog) {
-        this.blog = blog;
-    }*/
-
-    public String getId() {
-        return id;
+    public void setCommentId(String id) {
+        this.commentId = id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getBlogId() {
+        return blogId;
+    }
+
+    public void setBlogId(String blogId) {
+        this.blogId = blogId;
     }
 
     public String getNickname() {
@@ -47,6 +48,14 @@ public class Comment {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public String getParentcommentId() {
+        return parentcommentId;
+    }
+
+    public void setParentcommentId(String parentcommentId) {
+        this.parentcommentId = parentcommentId;
     }
 
     public String getEmail() {
@@ -73,39 +82,30 @@ public class Comment {
         this.avatar = avatar;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getCreatetime() {
+        return createtime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
     }
-
-    /*public List<Comment> getReplyComments() {
-        return replyComments;
-    }
-
-    public void setReplyComments(List<Comment> replyComments) {
-        this.replyComments = replyComments;
-    }
-
-    public Comment getParentComment() {
-        return parentComment;
-    }
-
-    public void setParentComment(Comment parentComment) {
-        this.parentComment = parentComment;
-    }*/
 
     @Override
     public String toString() {
-        return "Comment{" +
-                "id='" + id + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", email='" + email + '\'' +
-                ", content='" + content + '\'' +
-                ", avatar='" + avatar + '\'' +
-                ", createTime=" + createTime +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", commentId=").append(commentId);
+        sb.append(", blogId=").append(blogId);
+        sb.append(", nickname=").append(nickname);
+        sb.append(", parentcommentId=").append(parentcommentId);
+        sb.append(", email=").append(email);
+        sb.append(", content=").append(content);
+        sb.append(", avatar=").append(avatar);
+        sb.append(", createtime=").append(createtime);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
     }
 }
