@@ -11,38 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
 </head>
-<<<<<<< HEAD
-<script>
-    $(function(){
-        checkToken();
-    })
-    function checkToken(){
-        var token = localStorage.getItem("token");
-        if(token==undefined){
-            $(location).attr('href',loginPage);
-        }else{
-            $.ajax({
-                type:"post",
-                data:token,
-                url:getTokenUrl,
-                success:function(result){
-                    console.log(result)
-                    if(result.status==201){
-                        alert(result.msg)
-                        
-                    }else{
-                        $(location).attr('href',loginPage);
-                    }
-                    
-                }
-            })
-        }
-    }
-</script>
-<body>
-=======
 <body style="display: none;">
->>>>>>> 40fc11763369212e02fdfd15cecd1d61e958a2c1
     <!-- 导航 -->
     <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-samll">
         <div class="ui container">
@@ -197,8 +166,6 @@
     $('.ui.dropdown').dropdown({
         on : 'hover'
     });
-<<<<<<< HEAD
-=======
     function checkToken(){
     var token = localStorage.getItem("token");
     if(token==undefined){
@@ -224,7 +191,6 @@
             })
         }
     }
->>>>>>> 40fc11763369212e02fdfd15cecd1d61e958a2c1
 </script>
 
 </body>
