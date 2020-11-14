@@ -1,5 +1,6 @@
 package com.eva.Impl;
 
+import com.eva.dto.Type;
 import com.eva.dto.User;
 import com.eva.service.FeignService;
 import com.eva.utils.JSONResult;
@@ -48,6 +49,11 @@ public class FeignFallBack implements FeignService {
 
     @Override
     public JSONResult getToken() {
+        return JSONResult.build(201,"getToken服务降级",null);
+    }
+
+    @Override
+    public JSONResult addType(Type type) {
         return JSONResult.build(201,"getToken服务降级",null);
     }
 }

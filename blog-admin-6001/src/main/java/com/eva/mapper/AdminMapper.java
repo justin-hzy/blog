@@ -1,5 +1,6 @@
 package com.eva.mapper;
 
+import com.eva.dto.Type;
 import com.eva.dto.User;
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +15,5 @@ public interface AdminMapper {
 
     User getUser(User user);
 
-    int addType();
+    int addType(Type type);
 }

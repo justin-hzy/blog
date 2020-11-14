@@ -16,7 +16,8 @@ public class TypeServiceImpl implements TypeService {
     @Transactional
     @Override
     public int addType(Type type) {
-        return 0;
+        int flag = adminMapper.addType(type);
+        return flag;
     }
 
     @Transactional

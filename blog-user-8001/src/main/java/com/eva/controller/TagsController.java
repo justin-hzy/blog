@@ -22,13 +22,13 @@ public class TagsController {
 
     @RequestMapping(value = "/selectTag")
     public List<Tag> selectTag(){
-        List<Tag> result = tagService.selectTag();
+        List<Tag> result = tagService.selectTags();
         return result;
     }
 
     @RequestMapping(value = "/selectTagById")
-    public Tag selectTagById(int tag_id){
-        Tag result = tagService.selectTagById(tag_id);
+    public Tag selectTagById(String tagId){
+        Tag result = tagService.selectTagById(tagId);
         return result;
     }
 }

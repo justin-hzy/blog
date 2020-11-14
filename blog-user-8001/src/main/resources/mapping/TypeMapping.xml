@@ -6,7 +6,8 @@
         <result column="type_name" jdbcType="VARCHAR" property="typeName" />
     </resultMap>
 
-    <select id="selectType" resultMap="BaseTypeMap">
+
+        <select id="selectTypes" resultMap="BaseTypeMap">
         select * from type
     </select>
 

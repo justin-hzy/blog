@@ -12,5 +12,6 @@
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
   </resultMap>
+  <select id="selectUser" resultType="com.eva.dto.User"></select>
 
 </mapper>

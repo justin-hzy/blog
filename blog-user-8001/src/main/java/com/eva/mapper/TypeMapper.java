@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface TypeMapper {
 
-    List<Type> selectType();
-    Type selectTypeById(@Param("type_id") int type_id);
+    List<Type> selectTypes();
+    Type selectTypeById(@Param("type_id") String typeId);
 }

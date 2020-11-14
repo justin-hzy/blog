@@ -16,12 +16,12 @@ public class TagServiceImpl implements TagService {
     TagMapper tagMapper;
 
     @Override
-    public List<Tag> selectTag() {
-        return tagMapper.selectTag();
+    public List<Tag> selectTags() {
+        return tagMapper.selectTags();
     }
 
     @Override
-    public Tag selectTagById(int tag_id) {
-        return tagMapper.selectTagById(tag_id);
+    public Tag selectTagById(String tagId) {
+        return tagMapper.selectTagById(tagId);
     }
 }

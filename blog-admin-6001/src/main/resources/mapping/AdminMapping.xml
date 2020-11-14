@@ -15,6 +15,6 @@
     </select>
 
     <insert id="addType" parameterType="com.eva.dto.Type">
-        insert into type values (#{id},#{type});
+        insert into type values (#{typeId},#{typeName});
     </insert>
 </mapper>

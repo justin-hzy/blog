@@ -13,8 +13,8 @@ import java.util.List;
 public interface BlogMapper {
 
     List<BlogsVo> selectBlogs();
-    Blog selectBlogByID(@Param("id") int id);
-    List<Blog>  selectBlogByType(@Param("type_id") int type_id);
-    List<Blog> selectBlogByTag(@Param("tag_id") int tag_id);
+    Blog selectBlogByID(@Param("blog_id") String blogId);
+    List<Blog>  selectBlogsByType(@Param("type_id") String typeId);
+    List<Blog> selectBlogsByTag(@Param("tag_id") String tagId);
 
 }

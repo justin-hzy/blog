@@ -7,25 +7,25 @@ import java.io.Serializable;
  * @author 
  */
 public class TagBlogRelation implements Serializable {
-    private Integer tagId;
+    private String tagId;
 
-    private Integer blogId;
+    private String blogId;
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getTagId() {
+    public String getTagId() {
         return tagId;
     }
 
-    public void setTagId(Integer tagId) {
+    public void setTagId(String tagId) {
         this.tagId = tagId;
     }
 
-    public Integer getBlogId() {
+    public String getBlogId() {
         return blogId;
     }
 
-    public void setBlogId(Integer blogId) {
+    public void setBlogId(String blogId) {
         this.blogId = blogId;
     }
 

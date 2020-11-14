@@ -171,11 +171,15 @@
             var categoryName = $("#categoryName").val();
             var token = localStorage.getItem("token");
             $.ajax({
-                type:post,
-                url:"",
+                type:"post",
+                headers:{'Authorization': token},
+                data:{
+                    typeName:categoryName,
+                },
+                url:addTypeUrl,
                 async:true,
                 success:function(result){
-
+                    console.log(result)
                 }
             })
         })
