@@ -54,6 +54,6 @@ public class FeignFallBack implements FeignService {
 
     @Override
     public JSONResult addType(Type type) {
-        return JSONResult.build(201,"getToken服务降级",null);
+        return JSONResult.build(201,"addType服务降级",null);
     }
 }

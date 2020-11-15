@@ -160,6 +160,9 @@
 
 <!--    详情页新增-->
 <script>
+    $(function(){
+        checkToken();
+    })
     $('.menu.toggle').click(function(){
         $('.m-item').toggleClass('m-mobile-hide');
     })
