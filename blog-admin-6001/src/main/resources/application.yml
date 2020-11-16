@@ -39,3 +39,11 @@ spring:
 mybatis:
   mapper-locations: classpath:mapping/*Mapping.xml
   type-aliases-package: com.eva.dto
+
+# 插件配置 pagehelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+

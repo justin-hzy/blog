@@ -1,6 +1,7 @@
 package com.eva.service;
 
 import com.eva.dto.Type;
+import com.eva.utils.PageRequest;
 
 public interface TypeService {
 
@@ -12,4 +13,5 @@ public interface TypeService {
 
     int deleteType(Type type);
 
+    Type getTypeByPage(PageRequest pageQuery);
 }
