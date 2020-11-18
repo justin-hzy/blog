@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="../static/css/me.css">
 </head>
 
-<body style="display: none;">
+<!-- style="display: none;" -->
+<body>
     <!-- 导航 -->
     <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-samll">
         <div class="ui container">
@@ -55,10 +56,8 @@
 <!--详情页开始-->
     <!-- 中间内容 -->
     <div class = "m-container-small m-padded-tb-big">
-        <div class="ui container">
-            
-
-            <table class="ui celled table">
+        <div class="ui container">          
+            <table id="typesTable" class="ui celled table">
                 <thead>
                     <tr>
                         <th></th>
@@ -78,8 +77,8 @@
                     <tr>
                         <th colspan="6">
                             <div class="ui mini floated pagination menu">
-                                <a href="#" class="icon item">上一页</a>
-                                <a href="#" class="icon item">下一页</a>
+                                <a id="lastPage" href="#" class="icon item">上一页</a>
+                                <a id="nextPage" href="#" class="icon item">下一页</a>
                             </div>
                             <a href="http://127.0.0.1:8000/admin/type-input.html" class="ui mini right floated  teal basic button">新增</a>
                         </th>
@@ -126,8 +125,13 @@
 
 <!--    详情页新增-->
 <script>
+    /* 当前页面默认为1,显示10条 */
+    var pageNum = 1;
+    var pageSize = 10;
     $(function(){
-        checkToken();
+        /* checkToken(); */
+        /* getTypesByPage(pageNum,pageSize); */
+        editClick();
     })
     $('.menu.toggle').click(function(){
         $('.m-item').toggleClass('m-mobile-hide');
@@ -135,7 +139,7 @@
     $('.ui.dropdown').dropdown({
         on : 'hover'
     });
-    function checkToken(){
+    /* function checkToken(){
     var token = localStorage.getItem("token");
     if(token==undefined){
         $(location).attr('href',loginPage);
@@ -146,7 +150,6 @@
                 url:getTokenUrl,
                 async:true,
                 success:function(result){
-                    /* console.log(result) */
                     if(result.status==201){
                         alert(result.msg)  
                     }
@@ -159,6 +162,52 @@
                 }
             })
         }
+    } */
+    function getTypesByPage(pageNum){
+        $.ajax({
+            type:"post",
+            data:{
+                "pageNum":pageNum,
+                "pageSize":pageSize
+            },
+            url:getTypesByPageUrl,
+            success:function(result){
+                if(result.data.content == undefined){
+                    
+                }else{
+                    showTypes(result.data.content);
+                }
+                
+            }
+        })
+    }
+    /* 渲染table数据 */
+    function showTypes(content){
+        console.log(content)
+        //解析json字符串为json对象形式
+        var obj = content;
+        //动态拼接table
+        var trStr = '';
+        //循环遍历出json对象中的每一个数据并显示在对应的td中
+        for (var i = 0; i < obj.length; i++) {
+            trStr += '<tbody>';
+            trStr += '<td>' + obj[i].typeId + '</td>';//数据表的主键值
+            trStr += '<td>' + obj[i].typeName + '</td>';//对应数组表的字段值
+            trStr += '<td><a href="#" class="ui mini teal basic button">编辑</a><a href="#" class="ui mini red basic button">删除</a></td>';  
+            trStr += '</tbody>';                   
+        }
+        console.log(trStr)
+        $("#typesTable").append(trStr);      
+    }
+    /* 编辑按钮点击函数 */
+    function editClick(){
+        $("#typesTable tbody td").each(function(){
+            var currentEle = $(this);
+            currentEle.click(function(){
+                console.log(currentEle)
+            })
+        })
+        
     }
 </script>
 

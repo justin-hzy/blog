@@ -63,10 +63,16 @@
     </dependency>
     <!-- mybatis 分页插件-->
     <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
-    <dependency>
+<!--    <dependency>
       <groupId>com.github.pagehelper</groupId>
       <artifactId>pagehelper</artifactId>
       <version>5.2.0</version>
+    </dependency>-->
+
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper-spring-boot-starter</artifactId>
+      <version>1.2.5</version>
     </dependency>
 
 

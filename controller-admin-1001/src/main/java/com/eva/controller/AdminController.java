@@ -5,6 +5,7 @@ import com.eva.dto.User;
 import com.eva.service.FeignService;
 import com.eva.utils.JSONResult;
 import com.eva.utils.JwtUtil;
+import com.eva.utils.PageRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,13 @@ public class AdminController {
     public JSONResult addType(Type type){
         logger.info("----------------------------------------");
         JSONResult jsonResult = feignService.addType(type);
+        return jsonResult;
+    }
+
+    @PostMapping("/getTypeByPage")
+    public JSONResult getTypeByPage(PageRequest pageRequest ){
+        logger.info("进入getTypeByPage");
+        JSONResult jsonResult = feignService.getTypeByPage(pageRequest);
         return jsonResult;
     }
 }

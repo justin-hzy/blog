@@ -4,6 +4,7 @@ import com.eva.dto.Type;
 import com.eva.dto.User;
 import com.eva.service.FeignService;
 import com.eva.utils.JSONResult;
+import com.eva.utils.PageRequest;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -55,5 +56,10 @@ public class FeignFallBack implements FeignService {
     @Override
     public JSONResult addType(Type type) {
         return JSONResult.build(201,"addType服务降级",null);
+    }
+
+    @Override
+    public JSONResult getTypeByPage(PageRequest pageRequest) {
+        return JSONResult.build(201,"getTypeByPage服务降级",null);
     }
 }

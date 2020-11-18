@@ -5,6 +5,7 @@ var loginApi = "/blog/ad/admin/login"
 var getUserApi = "/blog/ad/admin/getUser"
 var getTokenApi = "/blog/ad/admin/getToken"
 var addTypeApi = "/blog/ad/admin/data/addType"
+var getTypesByPageApi = "/blog/ad/admin/getTypeByPage"
 /**
  * 请求url地址
  */
@@ -12,6 +13,7 @@ var loginUrl = domain1+loginApi;
 var getUserUrl = domain1+getUserApi;
 var getTokenUrl = domain1+getTokenApi;
 var addTypeUrl = domain1+addTypeApi;
+var getTypesByPageUrl = domain1+getTypesByPageApi
 
 
 /**

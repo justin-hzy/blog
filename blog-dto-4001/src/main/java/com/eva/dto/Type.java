@@ -10,7 +10,6 @@ public class Type implements Serializable {
 
     private String typeId;
 
-
     private String typeName;
 
     private static final long serialVersionUID = 1L;
