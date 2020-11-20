@@ -22,3 +22,4 @@ var getTypesByPageUrl = domain1+getTypesByPageApi
 var domain2 = "http://"+document.domain+":8000";
 var adminIndex = domain2+"/admin/index.html"
 var loginPage = domain2+"/admin/login.html"
+var typesPage = domain2+"/admin/types.html"

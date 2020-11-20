@@ -56,7 +56,14 @@
 <!--详情页开始-->
     <!-- 中间内容 -->
     <div class = "m-container-small m-padded-tb-big">
-        <div class="ui container">          
+        <div class="ui container">
+            <!-- 操作成功提示，二期补充开发 -->
+            <!-- <div class="ui success message" style="display: none;">
+                    <i class="close icon">
+                        <div class="header">提示:</div>
+                        <p>恭喜，操作成功</p>
+                    </i>
+            </div> -->          
             <table id="typesTable" class="ui celled table">
                 <thead>
                     <tr>
@@ -65,20 +72,20 @@
                         <th>操作</th>
                     </tr>
                 </thead>
-                <tbody>
+<!--                 <tbody>
                     <td>1</td>
                     <td>刻意练习清单</td>
                     <td>
                         <a href="#" class="ui mini teal basic button">编辑</a>
                         <a href="#" class="ui mini red basic button">删除</a>
                     </td>
-                </tbody>
+                </tbody> -->
                 <tfoot>
                     <tr>
                         <th colspan="6">
                             <div class="ui mini floated pagination menu">
-                                <a id="lastPage" href="#" class="icon item">上一页</a>
-                                <a id="nextPage" href="#" class="icon item">下一页</a>
+                                <a id="lastPage" class="icon item">上一页</a>
+                                <a id="nextPage" class="icon item">下一页</a>
                             </div>
                             <a href="http://127.0.0.1:8000/admin/type-input.html" class="ui mini right floated  teal basic button">新增</a>
                         </th>
@@ -127,11 +134,11 @@
 <script>
     /* 当前页面默认为1,显示10条 */
     var pageNum = 1;
-    var pageSize = 10;
+    var pageSize = 3;
+    var totalPage
     $(function(){
         /* checkToken(); */
-        /* getTypesByPage(pageNum,pageSize); */
-        editClick();
+        init();
     })
     $('.menu.toggle').click(function(){
         $('.m-item').toggleClass('m-mobile-hide');
@@ -163,7 +170,7 @@
             })
         }
     } */
-    function getTypesByPage(pageNum){
+    function getTypesByPage(){
         $.ajax({
             type:"post",
             data:{
@@ -176,6 +183,7 @@
                     
                 }else{
                     showTypes(result.data.content);
+                    totalPage = result.data.totalPages;
                 }
                 
             }
@@ -189,25 +197,72 @@
         //动态拼接table
         var trStr = '';
         //循环遍历出json对象中的每一个数据并显示在对应的td中
+        /* $("#typesTable").empty(); */
+        $("#typesTable tbody").remove();
         for (var i = 0; i < obj.length; i++) {
             trStr += '<tbody>';
             trStr += '<td>' + obj[i].typeId + '</td>';//数据表的主键值
             trStr += '<td>' + obj[i].typeName + '</td>';//对应数组表的字段值
-            trStr += '<td><a href="#" class="ui mini teal basic button">编辑</a><a href="#" class="ui mini red basic button">删除</a></td>';  
+            trStr += '<td><div class="ui mini teal basic button" onclick="editClick('+obj[i].typeId+')">编辑</div>'
+            trStr += '<div class="ui mini red basic button" onclick="editClick('+obj[i].typeId+')">删除</div></td>';  
             trStr += '</tbody>';                   
         }
+        /* trStr += '<tfoot><tr><th colspan="6"><div class="ui mini floated pagination menu">';
+        trStr += '<a id="lastPage" href="#" class="icon item">上一页</a>';    
+        trStr += '<a id="nextPage" href="#" class="icon item">下一页</a>'                        
+        trStr += '</div><a href="http://127.0.0.1:8000/admin/type-input.html" class="ui mini right floated  teal basic button">新增</a>';                        
+        trStr += '</th></tr></tfoot>'; */                    
         console.log(trStr)
         $("#typesTable").append(trStr);      
     }
     /* 编辑按钮点击函数 */
-    function editClick(){
-        $("#typesTable tbody td").each(function(){
-            var currentEle = $(this);
-            currentEle.click(function(){
-                console.log(currentEle)
-            })
+    function editClick(typeId){
+        alert(typeId);
+    }
+    /* 上一页点击按钮 */
+    function lastPage(){
+        $("#lastPage").click(function(){
+            pageNum -= 1;
+            alert(pageNum)
+            showPageButton();
+            hidePageButton();
+            getTypesByPage();
         })
-        
+    }
+    
+    /* 下一页点击按钮 */
+    function nextPage(){
+        $("#nextPage").click(function(){
+            pageNum += 1;
+            alert(pageNum)
+            showPageButton();
+            hidePageButton();
+            getTypesByPage();
+        })
+    }
+
+    function hidePageButton(){
+        if(pageNum==1){
+            $("#lastPage").css('display','none');
+        }
+        if(pageNum==totalPage){
+            $("#nextPage").css('display','none');
+        }
+    }
+    function showPageButton(){
+        if(pageNum>1){
+            $("#lastPage").css('display','block');
+        }
+        if(pageNum<totalPage){
+            $("#nextPage").css('display','block');
+        }
+    }
+    /* 页面初始化 */
+    function init(){
+        hidePageButton();
+        getTypesByPage();
+        lastPage();
+        nextPage();
     }
 </script>
 

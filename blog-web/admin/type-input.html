@@ -61,7 +61,7 @@
                 <div class="field">
                     <div class="ui left labeled input">
                         <label class="ui teal basic label">名称</label>
-                        <input id="categoryName" type="text" name="typeName" placeholder="分类名称">
+                        <input id="typeName" type="text" name="typeName" placeholder="分类名称">
                     </div>
                 
                 </div>
@@ -166,23 +166,37 @@
         submitClick();
     }
 
+    /* 提交标签信息函数 */
     function submitClick(){
         $("#sumbitButton").click(function(){
-            var categoryName = $("#categoryName").val();
+            var typeName = $("#typeName").val();
             var token = localStorage.getItem("token");
-            $.ajax({
-                type:"post",
-                headers:{'Authorization': token},
-                data:{
-                    typeName:categoryName,
-                },
-                url:addTypeUrl,
-                async:true,
-                success:function(result){
-                    console.log(result)
-                }
-            })
+            if(checkType(typeName)){
+                    $.ajax({
+                    type:"post",
+                    headers:{'Authorization': token},
+                    data:{
+                        typeName:typeName,
+                    },
+                    url:addTypeUrl,
+                    async:true,
+                    success:function(result){
+                        $(location).attr('href',typesPage);
+                    }
+                })
+            }else{
+                alert('请填写标签内容')
+            } 
         })
+    }
+
+    /* 检验提交信息 */
+    function checkType(typeName){
+        if(!typeName){
+            return false
+        }else{
+            return true
+        }
     }
 </script>
 

@@ -69,7 +69,7 @@ public class AdminController {
     }
 
     @PostMapping("/getTypeByPage")
-    public JSONResult getTypeByPage(PageRequest pageRequest ){
+    public JSONResult getTypeByPage(@RequestBody PageRequest pageRequest ){
         logger.info("进入getTypeByPage");
         PageResult pageResult = typeService.getTypeByPage(pageRequest);
         if (pageResult!=null){
