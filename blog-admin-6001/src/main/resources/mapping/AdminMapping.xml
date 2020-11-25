@@ -2,6 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eva.mapper.AdminMapper">
 
+    <resultMap id="BaseTypeMap" type="com.eva.dto.Type">
+        <id column="type_id" jdbcType="INTEGER" property="typeId" />
+        <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    </resultMap>
+
     <select id="selectUser" resultType="com.eva.dto.User">
         select * from user
     </select>
@@ -14,7 +19,12 @@
         select username from user where username=#{username};
     </select>
 
+    <select id="getTypesByPage" resultMap="BaseTypeMap">
+        select type_id,type_name from type
+
+    </select>
+
     <insert id="addType" parameterType="com.eva.dto.Type">
-        insert into type values (#{id},#{type});
+        insert into type values (#{typeId},#{typeName});
     </insert>
 </mapper>

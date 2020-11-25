@@ -4,11 +4,16 @@ server:
 ribbon:
   eureka:
     enabled: true
+  ReadTimeout: 12000
+  ConnectTimeout: 12000
+  eager-load:
+    enabled: true
+    clients: blog-admin
 
 feign:
   hystrix:
     enabled: true
-
+ 
 
 
 eureka:
