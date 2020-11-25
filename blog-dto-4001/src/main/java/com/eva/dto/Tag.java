@@ -11,6 +11,8 @@ public class Tag implements Serializable {
 
     private String tagName;
 
+    private String deleteFlag;
+
     private static final long serialVersionUID = 1L;
 
     public String getTagId() {
@@ -27,6 +29,14 @@ public class Tag implements Serializable {
 
     public void setTagName(String name) {
         this.tagName = name;
+    }
+
+    public String getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(String deleteFlag) {
+        this.deleteFlag = deleteFlag;
     }
 
     @Override

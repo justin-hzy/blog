@@ -61,7 +61,7 @@ public class TypeServiceImpl implements TypeService {
         int pageSize = pageRequest.getPageSize();
         PageHelper.startPage(pageNum, pageSize);
         List<Type> typeList = adminMapper.getTypesByPage();
-        System.out.println("typeList.toString()="+typeList.toString());
+        /*System.out.println("typeList.toString()="+typeList.toString());*/
         return new PageInfo<Type>(typeList);
     }
 }
