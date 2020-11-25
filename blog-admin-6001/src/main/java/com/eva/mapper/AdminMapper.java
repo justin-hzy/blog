@@ -19,4 +19,10 @@ public interface AdminMapper {
     int addType(Type type);
 
     List<Type> getTypesByPage();
+
+    int updateType(Type type);
+
+    Type getTypeByTypeId(String typeId);
+
+    int deleteTypeByTypeId(Type type);
 }

@@ -5,7 +5,11 @@
     <resultMap id="BaseTypeMap" type="com.eva.dto.Type">
         <id column="type_id" jdbcType="INTEGER" property="typeId" />
         <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+        <result column="delete_flag" jdbcType="VARCHAR" property="deleteFlag"></result>
     </resultMap>
+    <update id="updateType" parameterType="com.eva.dto.Type">
+        update type set type_name = #{typeName} where type_id = #{typeId}
+    </update>
 
     <select id="selectUser" resultType="com.eva.dto.User">
         select * from user
@@ -20,11 +24,18 @@
     </select>
 
     <select id="getTypesByPage" resultMap="BaseTypeMap">
-        select type_id,type_name from type
+        select type_id,type_name from type where delete_flag = 0
 
+    </select>
+    <select id="getTypeByTypeId" parameterType="com.eva.dto.Type" resultMap="BaseTypeMap">
+        select * from type where type_id = #{typeId} and delete_flag = '0'
     </select>
 
     <insert id="addType" parameterType="com.eva.dto.Type">
-        insert into type values (#{typeId},#{typeName});
+        insert into type values (#{typeId},#{typeName},'0');
     </insert>
+
+    <update id="deleteTypeByTypeId" parameterType="com.eva.dto.Type">
+        update type set delete_flag = '1' where type_id = #{typeId}
+    </update>
 </mapper>

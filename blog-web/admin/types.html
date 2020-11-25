@@ -83,7 +83,7 @@
                 <tfoot>
                     <tr>
                         <th colspan="6">
-                            <div class="ui mini floated pagination menu">
+                            <div id="pageDiv" class="ui mini floated pagination menu">
                                 <a id="lastPage" class="icon item">上一页</a>
                                 <a id="nextPage" class="icon item">下一页</a>
                             </div>
@@ -132,7 +132,7 @@
 
 <!--    详情页新增-->
 <script>
-    /* 当前页面默认为1,显示10条 */
+    /* 当前页面默认为1,显示3条 */
     var pageNum = 1;
     var pageSize = 3;
     var totalPage
@@ -185,7 +185,7 @@
                     showTypes(result.data.content);
                     totalPage = result.data.totalPages;
                 }
-                
+                hidePageButton();
             }
         })
     }
@@ -204,7 +204,7 @@
             trStr += '<td>' + obj[i].typeId + '</td>';//数据表的主键值
             trStr += '<td>' + obj[i].typeName + '</td>';//对应数组表的字段值
             trStr += '<td><div class="ui mini teal basic button" onclick="editClick('+obj[i].typeId+')">编辑</div>'
-            trStr += '<div class="ui mini red basic button" onclick="editClick('+obj[i].typeId+')">删除</div></td>';  
+            trStr += '<div class="ui mini red basic button" onclick="deleteTypeByTypeId('+obj[i].typeId+')">删除</div></td>';  
             trStr += '</tbody>';                   
         }
         /* trStr += '<tfoot><tr><th colspan="6"><div class="ui mini floated pagination menu">';
@@ -217,7 +217,11 @@
     }
     /* 编辑按钮点击函数 */
     function editClick(typeId){
-        alert(typeId);
+        $(location).attr('href',typesEditPage+"?typeId="+typeId);
+    }
+    /* 删除按钮点击函数 */
+    function deleteClick(typeId){
+        deleteTypeByTypeId();
     }
     /* 上一页点击按钮 */
     function lastPage(){
@@ -242,11 +246,17 @@
     }
 
     function hidePageButton(){
-        if(pageNum==1){
+        /* if(pageNum==1){
             $("#lastPage").css('display','none');
         }
         if(pageNum==totalPage){
             $("#nextPage").css('display','none');
+        }    */
+        var flag1 = hideLastPageButton();
+        var flag2 = hideNextPageButton();
+        console.log("flag1="+flag1+",flag2="+flag2)
+        if(flag1 & flag2){
+            $("#pageDiv").css('display','none');
         }
     }
     function showPageButton(){
@@ -259,10 +269,32 @@
     }
     /* 页面初始化 */
     function init(){
-        hidePageButton();
         getTypesByPage();
         lastPage();
         nextPage();
+    }
+    function deleteTypeByTypeId(typeId){
+        $.ajax({
+            type:"post",
+            data:{"typeId":typeId},
+            url:deleteTypeByTypeIdUrl,
+            success:function(result){
+                console.log(result)
+            }
+        })
+    }
+    function hideLastPageButton(){
+        if(pageNum==1){
+            $("#lastPage").css('display','none');
+            return true
+        }
+    }
+
+    function hideNextPageButton(){
+        if(pageNum==1){
+            $("#NextPage").css('display','none');
+            return true
+        }
     }
 </script>
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>分类新增</title>
+    <title>分类修改</title>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     <script src="../static/lib/editormd/editormd.min.js"></script>
@@ -115,7 +115,9 @@
 
 <!--    详情页新增-->
 <script>
+    var typeId;
     $(function(){
+        init();
         checkToken();
         submitType();
     })
@@ -175,17 +177,17 @@
                     $.ajax({
                     type:"post",
                     headers:{'Authorization': token},
-                    data:{
-                        "typeName":typeName,
-                    },
-                    url:addTypeUrl,
+                    contentType:"application/json",
+                    data: JSON.stringify({"typeId":typeId,"typeName":typeName,}),
+                    url:updateTypeUrl,
                     async:true,
                     success:function(result){
-                        $(location).attr('href',typesPage);
+                        /* $(location).attr('href',typesPage); */
+                        console.log(result)
                     }
                 })
             }else{
-                alert('请填写标签内容')
+                alert('请填写分类内容')
             } 
         })
     }
@@ -198,6 +200,34 @@
             return true
         }
     }
+    /* 初始化 */
+    function init(){
+        var url = window.location;
+        if(url.toString().indexOf("?")>=0){
+            typeId = getUrlParam("typeId");
+            getTypeByTypeId(typeId);
+        }
+
+        
+    }
+    function getUrlParam(name){  
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象    
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数      
+            if (r != null) return unescape(r[2]);       
+                    return null; //返回参数值   
+    }
+    function getTypeByTypeId(typeId){
+        $.ajax({
+            type:"post",
+            data:{"typeId":typeId},
+            url:getTypeByTypeIdUrl,
+            success:function(result){
+                if(result.status == 200 ){
+                    $("#typeName").val(result.data.typeName);
+                }
+            }
+        })
+    }   
 </script>
 
 </body>

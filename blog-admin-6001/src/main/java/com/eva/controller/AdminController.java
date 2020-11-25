@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -31,9 +30,6 @@ public class AdminController {
 
     @Autowired
     private TypeService typeService;
-
-    @Autowired
-    private AdminMapper userMapper;
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
@@ -56,15 +52,16 @@ public class AdminController {
     }
 
     @PostMapping("data/addType")
-    public JSONResult addType(Type type){
+    public JSONResult addType(@RequestBody Type type){
         logger.info("进入addType");
         String uuId = UUID.randomUUID().toString().replace("-","");
         type.setTypeId(uuId);
+        logger.info(type.toString());
         int flag = typeService.addType(type);
         if (flag==1){
-            return JSONResult.build(500,"提交成功",null);
+            return JSONResult.build(200,"提交成功",null);
         }else{
-            return JSONResult.build(200,"提交失败",null);
+            return JSONResult.build(500,"提交失败",null);
         }
     }
 
@@ -76,6 +73,39 @@ public class AdminController {
             return JSONResult.build(200,"查询分页成功",pageResult);
         }else{
             return JSONResult.build(500,"查询分页失败",null);
+        }
+    }
+
+    @PostMapping("/getTypeByTypeId")
+    public JSONResult getTypeByTypeId(@RequestBody Type type){
+        logger.info("getTypeByTypeId");
+        Type type1 = typeService.getTypeByTypeId(type);
+        if (type1!=null){
+            return JSONResult.build(200,"查询成功",type1);
+        }else{
+            return JSONResult.build(500,"查询失败",null);
+        }
+    }
+
+    @PostMapping("/updateType")
+    public JSONResult updateType(@RequestBody Type type){
+        logger.info("执行updateType方法");
+        int flag = typeService.updateType(type);
+        if (flag==1){
+            return JSONResult.build(200,"更新成功",null);
+        }else{
+            return JSONResult.build(500,"更新失败",null);
+        }
+    }
+
+    @PostMapping("/deleteTypeByTypeId")
+    public JSONResult deleteTypeByTypeId(@RequestBody Type type){
+        logger.info("执行deleteTypeByTypeId方法");
+        int flag = typeService.deleteTypeByTypeId(type);
+        if (flag==1){
+            return JSONResult.build(200,"删除成功",null);
+        }else{
+            return JSONResult.build(500,"删除失败",null);
         }
     }
 }

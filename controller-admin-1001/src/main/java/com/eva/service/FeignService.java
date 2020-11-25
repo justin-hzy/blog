@@ -47,4 +47,12 @@ public interface FeignService {
     @PostMapping("/admin/getTypeByPage")
     JSONResult getTypeByPage(PageRequest pageRequest );
 
+    @PostMapping("/admin/getTypeByTypeId")
+    JSONResult getTypeByTypeId(Type type);
+
+    @PostMapping("/admin/updateType")
+    JSONResult updateType(Type type);
+
+    @PostMapping("/admin/deleteTypeByTypeId")
+    JSONResult deleteTypeByTypeId(Type type);
 }
