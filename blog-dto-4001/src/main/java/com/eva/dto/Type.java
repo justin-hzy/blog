@@ -7,14 +7,12 @@ import java.io.Serializable;
  * @author 
  */
 public class Type implements Serializable {
-<<<<<<< HEAD
 
-    private Integer typeId;
-=======
     private String typeId;
->>>>>>> 506e035ac312effd157281a5968a8972fdcee5be
 
     private String typeName;
+
+    private String deleteFlag;
 
     private static final long serialVersionUID = 1L;
 
@@ -32,6 +30,18 @@ public class Type implements Serializable {
 
     public void setTypeName(String name) {
         this.typeName = name;
+    }
+
+    public String getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(String deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.eva.Impl.FeignFallBack;
 import com.eva.dto.Type;
 import com.eva.dto.User;
 import com.eva.utils.JSONResult;
+import com.eva.utils.PageRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,4 +44,15 @@ public interface FeignService {
     @PostMapping("/admin/data/addType")
     JSONResult addType(Type type);
 
+    @PostMapping("/admin/getTypeByPage")
+    JSONResult getTypeByPage(PageRequest pageRequest );
+
+    @PostMapping("/admin/getTypeByTypeId")
+    JSONResult getTypeByTypeId(Type type);
+
+    @PostMapping("/admin/updateType")
+    JSONResult updateType(Type type);
+
+    @PostMapping("/admin/deleteTypeByTypeId")
+    JSONResult deleteTypeByTypeId(Type type);
 }

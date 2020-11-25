@@ -7,8 +7,22 @@ spring:
     host:  95.169.19.152
     port: 6379
 ribbon:
-  ReadTimeout : 60000
-  ConnectTimeout : 60000
+  ReadTimeout : 12000 #建立连接后从服务器读取到可用资源所用的时间
+  ConnectTimeout : 5000 #建立连接所用的时间,如果连接用时超过5秒就是抛出 java.net.SocketException: connetct time out 的异常
+  MaxAutoRetries: 0 #对当前实例的重试次数(默认为0)
+  MaxAutoRetriesNextServer: 0 #切换实例的重试次数(默认为0)
+  OkToRetryOnAllOperations: true #对所有操作请求都进行重试
+  eager-load:
+    enabled: true
+    clients: controller-admin
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+              timeoutInMilliseconds: 24000
 
 eureka:
   client:
@@ -25,8 +39,8 @@ zuul:
     blog-controller-user.serviceId : controller-user
     blog-controller-user.path : /user/**
   host:
-    connect-timeout-millis: 15000 #HTTP连接超时要比Hystrix的大
-    socket-timeout-millis: 60000  #socket超时
+    connect-timeout-millis: 12000 #HTTP连接超时要比Hystrix的大
+    socket-timeout-millis: 12000  #socket超时
   #  隐藏controller-admin的服务名，调用controller-admind的接口用/blog/
   #  如果 是"*" 就是隐藏 全部
   ignored-services: "*"

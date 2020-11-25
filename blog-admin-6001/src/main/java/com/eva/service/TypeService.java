@@ -1,15 +1,18 @@
 package com.eva.service;
 
 import com.eva.dto.Type;
+import com.eva.utils.PageRequest;
+import com.eva.utils.PageResult;
 
 public interface TypeService {
 
     int addType(Type type);
 
-    Type getType(Long id);
+    Type getTypeByTypeId(Type type);
 
-    Type updateType(Long id,Type type);
+    int updateType(Type type);
 
-    int deleteType(Type type);
+    int deleteTypeByTypeId(Type type);
 
+    PageResult getTypeByPage(PageRequest pageQuery);
 }
