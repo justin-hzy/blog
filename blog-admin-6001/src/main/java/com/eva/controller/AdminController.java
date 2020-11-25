@@ -1,9 +1,11 @@
 package com.eva.controller;
 
+import com.eva.dto.Tag;
 import com.eva.dto.Type;
 import com.eva.dto.User;
 import com.eva.mapper.AdminMapper;
 import com.eva.service.AdminService;
+import com.eva.service.TagService;
 import com.eva.service.TypeService;
 import com.eva.utils.JSONResult;
 import com.eva.utils.PageRequest;
@@ -30,6 +32,9 @@ public class AdminController {
 
     @Autowired
     private TypeService typeService;
+
+    @Autowired
+    private TagService tagService;
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
@@ -106,6 +111,16 @@ public class AdminController {
             return JSONResult.build(200,"删除成功",null);
         }else{
             return JSONResult.build(500,"删除失败",null);
+        }
+    }
+
+    @PostMapping("/getTagsByPage")
+    public JSONResult getTagsByPage(@RequestBody PageRequest pageRequest){
+        PageResult pageResult = tagService.getTagsByPage(pageRequest);
+        if (pageResult!=null){
+            return JSONResult.build(200,"查询分页成功",pageResult);
+        }else{
+            return JSONResult.build(500,"查询分页失败",null);
         }
     }
 }
