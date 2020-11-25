@@ -11,6 +11,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
 </head>
+<style>
+    .ui.menu .item:before{
+        display: none !important;
+    }
+    .ui.menu:after{
+        display: none !important;
+    }
+</style>
 
 <!-- style="display: none;" -->
 <body>
@@ -84,7 +92,7 @@
                     <tr>
                         <th colspan="6">
                             <div id="pageDiv" class="ui mini floated pagination menu">
-                                <a id="lastPage" class="icon item">上一页</a>
+                                <a id="lastPage" class="icon item" style="display: none;">上一页</a>
                                 <a id="nextPage" class="icon item">下一页</a>
                             </div>
                             <a href="http://127.0.0.1:8000/admin/type-input.html" class="ui mini right floated  teal basic button">新增</a>
@@ -185,7 +193,6 @@
                     showTypes(result.data.content);
                     totalPage = result.data.totalPages;
                 }
-                hidePageButton();
             }
         })
     }
@@ -212,7 +219,7 @@
         trStr += '<a id="nextPage" href="#" class="icon item">下一页</a>'                        
         trStr += '</div><a href="http://127.0.0.1:8000/admin/type-input.html" class="ui mini right floated  teal basic button">新增</a>';                        
         trStr += '</th></tr></tfoot>'; */                    
-        console.log(trStr)
+        /* console.log(trStr) */
         $("#typesTable").append(trStr);      
     }
     /* 编辑按钮点击函数 */
@@ -228,9 +235,9 @@
         $("#lastPage").click(function(){
             pageNum -= 1;
             alert(pageNum)
-            showPageButton();
-            hidePageButton();
             getTypesByPage();
+            showPageButton();
+            hidePageButton();      
         })
     }
     
@@ -239,9 +246,10 @@
         $("#nextPage").click(function(){
             pageNum += 1;
             alert(pageNum)
+            getTypesByPage();
             showPageButton();
             hidePageButton();
-            getTypesByPage();
+            
         })
     }
 
@@ -260,6 +268,8 @@
         }
     }
     function showPageButton(){
+        /* console.log(pageNum)
+        console.log(totalPage) */
         if(pageNum>1){
             $("#lastPage").css('display','block');
         }
@@ -287,13 +297,19 @@
         if(pageNum==1){
             $("#lastPage").css('display','none');
             return true
+        }else{
+            return false
         }
     }
 
     function hideNextPageButton(){
-        if(pageNum==1){
-            $("#NextPage").css('display','none');
+        /* console.log(pageNum)
+        console.log(totalPage) */
+        if(pageNum==totalPage){
+            $("#nextPage").css('display','none');
             return true
+        }else{
+            return false
         }
     }
 </script>
