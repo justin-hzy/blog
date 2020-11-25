@@ -18,7 +18,7 @@ public class CommentController {
     CommentServiceImpl commentService;
 
     @RequestMapping("selectCommentsByBlogId")
-    public List<CommentVo> selectCommentsByBlogId(@RequestParam("blogId") String blogId){
-        return commentService.selectCommentVo(blogId);
+    public List selectCommentsByBlogId(@RequestParam("blogId") String blogId){
+        return commentService.selectComments(blogId);
     }
 }
