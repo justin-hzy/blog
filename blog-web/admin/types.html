@@ -8,6 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     <script src="../static/js/const.js"></script>
+    <script src="../static/js/common.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
 </head>
@@ -20,7 +21,7 @@
     }
 </style>
 
-<!-- style="display: none;" -->
+<!-- 实装上权限之后 body的样式默认为display none style="display: none;" -->
 <body>
     <!-- 导航 -->
     <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-samll">
@@ -66,12 +67,11 @@
     <div class = "m-container-small m-padded-tb-big">
         <div class="ui container">
             <!-- 操作成功提示，二期补充开发 -->
-            <!-- <div class="ui success message" style="display: none;">
-                    <i class="close icon">
-                        <div class="header">提示:</div>
-                        <p>恭喜，操作成功</p>
-                    </i>
-            </div> -->          
+            <div class="ui success message" style="display: none;">
+                <i class="close icon"></i>
+                <div class="header">提示:</div>
+                <p>恭喜，操作成功</p>
+            </div>         
             <table id="typesTable" class="ui celled table">
                 <thead>
                     <tr>
@@ -154,7 +154,12 @@
     $('.ui.dropdown').dropdown({
         on : 'hover'
     });
-    /* function checkToken(){
+    $(".message .close").on('click',function(){
+        $(this).closest('.message')
+               .transition('fade');
+    })
+    /* 权限检测
+    function checkToken(){
     var token = localStorage.getItem("token");
     if(token==undefined){
         $(location).attr('href',loginPage);
@@ -204,7 +209,6 @@
         //动态拼接table
         var trStr = '';
         //循环遍历出json对象中的每一个数据并显示在对应的td中
-        /* $("#typesTable").empty(); */
         $("#typesTable tbody").remove();
         for (var i = 0; i < obj.length; i++) {
             trStr += '<tbody>';
@@ -213,12 +217,7 @@
             trStr += '<td><div class="ui mini teal basic button" onclick="editClick('+obj[i].typeId+')">编辑</div>'
             trStr += '<div class="ui mini red basic button" onclick="deleteTypeByTypeId('+obj[i].typeId+')">删除</div></td>';  
             trStr += '</tbody>';                   
-        }
-        /* trStr += '<tfoot><tr><th colspan="6"><div class="ui mini floated pagination menu">';
-        trStr += '<a id="lastPage" href="#" class="icon item">上一页</a>';    
-        trStr += '<a id="nextPage" href="#" class="icon item">下一页</a>'                        
-        trStr += '</div><a href="http://127.0.0.1:8000/admin/type-input.html" class="ui mini right floated  teal basic button">新增</a>';                        
-        trStr += '</th></tr></tfoot>'; */                    
+        }                   
         /* console.log(trStr) */
         $("#typesTable").append(trStr);      
     }
@@ -254,12 +253,6 @@
     }
 
     function hidePageButton(){
-        /* if(pageNum==1){
-            $("#lastPage").css('display','none');
-        }
-        if(pageNum==totalPage){
-            $("#nextPage").css('display','none');
-        }    */
         var flag1 = hideLastPageButton();
         var flag2 = hideNextPageButton();
         console.log("flag1="+flag1+",flag2="+flag2)
@@ -282,6 +275,11 @@
         getTypesByPage();
         lastPage();
         nextPage();
+        var url = window.location;
+        if(url.toString().indexOf("?")>=0){
+            checkStatus();
+        }
+       
     }
     function deleteTypeByTypeId(typeId){
         $.ajax({
@@ -289,7 +287,11 @@
             data:{"typeId":typeId},
             url:deleteTypeByTypeIdUrl,
             success:function(result){
-                console.log(result)
+                if(result.status == 200){
+                    window.location.reload();
+                    $(".ui.success.message").css('display','block');
+                }
+
             }
         })
     }
@@ -311,6 +313,12 @@
         }else{
             return false
         }
+    }
+    function checkStatus(){
+        var status = getUrlParam("status");
+        if(status == 200){
+            $(".ui.success.message").css('display','block');
+        } 
     }
 </script>
 
