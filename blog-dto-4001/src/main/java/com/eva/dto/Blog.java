@@ -33,6 +33,11 @@ public class Blog implements Serializable {
     private String firstpicture;
 
     /**
+     * 首图
+     */
+    private String description;
+
+    /**
      * 标记
      */
     private String flag;
@@ -194,6 +199,14 @@ public class Blog implements Serializable {
     }
 
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -206,6 +219,7 @@ public class Blog implements Serializable {
         sb.append(", userId=").append(userId);
         sb.append(", typeId=").append(typeId);
         sb.append(", firstpicture=").append(firstpicture);
+        sb.append(", description=").append(description);
         sb.append(", flag=").append(flag);
         sb.append(", views=").append(views);
         sb.append(", appreciation=").append(appreciation);
