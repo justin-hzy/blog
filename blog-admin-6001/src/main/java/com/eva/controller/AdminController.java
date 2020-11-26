@@ -121,6 +121,7 @@ public class AdminController {
             return JSONResult.build(200,"查询分页成功",pageResult);
         }else{
             return JSONResult.build(500,"查询分页失败",null);
+            
         }
     }
 }
