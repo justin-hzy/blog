@@ -62,4 +62,19 @@ public class FeignFallBack implements FeignService {
     public JSONResult getTypeByPage(PageRequest pageRequest) {
         return JSONResult.build(201,"getTypeByPage服务降级",null);
     }
+
+    @Override
+    public JSONResult getTypeByTypeId(Type type) {
+        return JSONResult.build(201,"getTypeByTypeId服务降级",null);
+    }
+
+    @Override
+    public JSONResult updateType(Type type) {
+        return JSONResult.build(201,"updateType服务降级",null);
+    }
+
+    @Override
+    public JSONResult deleteTypeByTypeId(Type type) {
+        return JSONResult.build(201,"deleteTypeByTypeId服务降级",null);
+    }
 }

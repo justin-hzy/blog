@@ -8,11 +8,20 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     <script src="../static/js/const.js"></script>
+    <script src="../static/js/common.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
 </head>
+<style>
+    .ui.menu .item:before{
+        display: none !important;
+    }
+    .ui.menu:after{
+        display: none !important;
+    }
+</style>
 
-<!-- style="display: none;" -->
+<!-- 实装上权限之后 body的样式默认为display none style="display: none;" -->
 <body>
     <!-- 导航 -->
     <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-samll">
@@ -58,12 +67,11 @@
     <div class = "m-container-small m-padded-tb-big">
         <div class="ui container">
             <!-- 操作成功提示，二期补充开发 -->
-            <!-- <div class="ui success message" style="display: none;">
-                    <i class="close icon">
-                        <div class="header">提示:</div>
-                        <p>恭喜，操作成功</p>
-                    </i>
-            </div> -->          
+            <div class="ui success message" style="display: none;">
+                <i class="close icon"></i>
+                <div class="header">提示:</div>
+                <p>恭喜，操作成功</p>
+            </div>         
             <table id="typesTable" class="ui celled table">
                 <thead>
                     <tr>
@@ -83,8 +91,8 @@
                 <tfoot>
                     <tr>
                         <th colspan="6">
-                            <div class="ui mini floated pagination menu">
-                                <a id="lastPage" class="icon item">上一页</a>
+                            <div id="pageDiv" class="ui mini floated pagination menu">
+                                <a id="lastPage" class="icon item" style="display: none;">上一页</a>
                                 <a id="nextPage" class="icon item">下一页</a>
                             </div>
                             <a href="http://127.0.0.1:8000/admin/type-input.html" class="ui mini right floated  teal basic button">新增</a>
@@ -132,7 +140,7 @@
 
 <!--    详情页新增-->
 <script>
-    /* 当前页面默认为1,显示10条 */
+    /* 当前页面默认为1,显示3条 */
     var pageNum = 1;
     var pageSize = 3;
     var totalPage
@@ -146,7 +154,12 @@
     $('.ui.dropdown').dropdown({
         on : 'hover'
     });
-    /* function checkToken(){
+    $(".message .close").on('click',function(){
+        $(this).closest('.message')
+               .transition('fade');
+    })
+    /* 权限检测
+    function checkToken(){
     var token = localStorage.getItem("token");
     if(token==undefined){
         $(location).attr('href',loginPage);
@@ -185,7 +198,6 @@
                     showTypes(result.data.content);
                     totalPage = result.data.totalPages;
                 }
-                
             }
         })
     }
@@ -197,36 +209,34 @@
         //动态拼接table
         var trStr = '';
         //循环遍历出json对象中的每一个数据并显示在对应的td中
-        /* $("#typesTable").empty(); */
         $("#typesTable tbody").remove();
         for (var i = 0; i < obj.length; i++) {
             trStr += '<tbody>';
             trStr += '<td>' + obj[i].typeId + '</td>';//数据表的主键值
             trStr += '<td>' + obj[i].typeName + '</td>';//对应数组表的字段值
             trStr += '<td><div class="ui mini teal basic button" onclick="editClick('+obj[i].typeId+')">编辑</div>'
-            trStr += '<div class="ui mini red basic button" onclick="editClick('+obj[i].typeId+')">删除</div></td>';  
+            trStr += '<div class="ui mini red basic button" onclick="deleteTypeByTypeId('+obj[i].typeId+')">删除</div></td>';  
             trStr += '</tbody>';                   
-        }
-        /* trStr += '<tfoot><tr><th colspan="6"><div class="ui mini floated pagination menu">';
-        trStr += '<a id="lastPage" href="#" class="icon item">上一页</a>';    
-        trStr += '<a id="nextPage" href="#" class="icon item">下一页</a>'                        
-        trStr += '</div><a href="http://127.0.0.1:8000/admin/type-input.html" class="ui mini right floated  teal basic button">新增</a>';                        
-        trStr += '</th></tr></tfoot>'; */                    
-        console.log(trStr)
+        }                   
+        /* console.log(trStr) */
         $("#typesTable").append(trStr);      
     }
     /* 编辑按钮点击函数 */
     function editClick(typeId){
-        alert(typeId);
+        $(location).attr('href',typesEditPage+"?typeId="+typeId);
+    }
+    /* 删除按钮点击函数 */
+    function deleteClick(typeId){
+        deleteTypeByTypeId();
     }
     /* 上一页点击按钮 */
     function lastPage(){
         $("#lastPage").click(function(){
             pageNum -= 1;
             alert(pageNum)
-            showPageButton();
-            hidePageButton();
             getTypesByPage();
+            showPageButton();
+            hidePageButton();      
         })
     }
     
@@ -235,21 +245,24 @@
         $("#nextPage").click(function(){
             pageNum += 1;
             alert(pageNum)
+            getTypesByPage();
             showPageButton();
             hidePageButton();
-            getTypesByPage();
+            
         })
     }
 
     function hidePageButton(){
-        if(pageNum==1){
-            $("#lastPage").css('display','none');
-        }
-        if(pageNum==totalPage){
-            $("#nextPage").css('display','none');
+        var flag1 = hideLastPageButton();
+        var flag2 = hideNextPageButton();
+        console.log("flag1="+flag1+",flag2="+flag2)
+        if(flag1 & flag2){
+            $("#pageDiv").css('display','none');
         }
     }
     function showPageButton(){
+        /* console.log(pageNum)
+        console.log(totalPage) */
         if(pageNum>1){
             $("#lastPage").css('display','block');
         }
@@ -259,10 +272,53 @@
     }
     /* 页面初始化 */
     function init(){
-        hidePageButton();
         getTypesByPage();
         lastPage();
         nextPage();
+        var url = window.location;
+        if(url.toString().indexOf("?")>=0){
+            checkStatus();
+        }
+       
+    }
+    function deleteTypeByTypeId(typeId){
+        $.ajax({
+            type:"post",
+            data:{"typeId":typeId},
+            url:deleteTypeByTypeIdUrl,
+            success:function(result){
+                if(result.status == 200){
+                    window.location.reload();
+                    $(".ui.success.message").css('display','block');
+                }
+
+            }
+        })
+    }
+    function hideLastPageButton(){
+        if(pageNum==1){
+            $("#lastPage").css('display','none');
+            return true
+        }else{
+            return false
+        }
+    }
+
+    function hideNextPageButton(){
+        /* console.log(pageNum)
+        console.log(totalPage) */
+        if(pageNum==totalPage){
+            $("#nextPage").css('display','none');
+            return true
+        }else{
+            return false
+        }
+    }
+    function checkStatus(){
+        var status = getUrlParam("status");
+        if(status == 200){
+            $(".ui.success.message").css('display','block');
+        } 
     }
 </script>
 

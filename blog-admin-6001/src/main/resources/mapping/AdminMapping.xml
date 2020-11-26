@@ -5,7 +5,20 @@
     <resultMap id="BaseTypeMap" type="com.eva.dto.Type">
         <id column="type_id" jdbcType="INTEGER" property="typeId" />
         <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+        <result column="delete_flag" jdbcType="VARCHAR" property="deleteFlag"/>
     </resultMap>
+
+    <resultMap id="BaseTagMap" type="com.eva.dto.Tag">
+        <id column="tag_id" jdbcType="VARCHAR" property="tagId"/>
+        <result column="tag_name" jdbcType="VARCHAR" property="tagName"/>
+        <result column="delete_flag" jdbcType="VARCHAR" property="deleteFlag"/>
+    </resultMap>
+    <update id="updateType" parameterType="com.eva.dto.Type">
+        update type set type_name = #{typeName} where type_id = #{typeId}
+    </update>
+    <delete id="deleteTagByTagId">
+
+    </delete>
 
     <select id="selectUser" resultType="com.eva.dto.User">
         select * from user
@@ -20,11 +33,26 @@
     </select>
 
     <select id="getTypesByPage" resultMap="BaseTypeMap">
-        select type_id,type_name from type
-
+        select type_id,type_name from type where delete_flag = 0
+    </select>
+    <select id="getTypeByTypeId" parameterType="com.eva.dto.Type" resultMap="BaseTypeMap">
+        select * from type where type_id = #{typeId} and delete_flag = '0'
+    </select>
+    <select id="getTagsByPage" resultMap="BaseTagMap">
+        select * from tag
     </select>
 
+    <select id="getTagByTagId" resultType="com.eva.dto.Tag"></select>
+
     <insert id="addType" parameterType="com.eva.dto.Type">
-        insert into type values (#{typeId},#{typeName});
+        insert into type values (#{typeId},#{typeName},'0');
     </insert>
+    <insert id="addTag">
+
+    </insert>
+
+    <update id="deleteTypeByTypeId" parameterType="com.eva.dto.Type">
+        update type set delete_flag = '1' where type_id = #{typeId}
+    </update>
+    <update id="updateTag"></update>
 </mapper>

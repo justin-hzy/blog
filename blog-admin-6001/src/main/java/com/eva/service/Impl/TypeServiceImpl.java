@@ -29,20 +29,20 @@ public class TypeServiceImpl implements TypeService {
 
     @Transactional
     @Override
-    public Type getType(Long id) {
-        return null;
+    public Type getTypeByTypeId(Type type) {
+        return adminMapper.getTypeByTypeId(type.getTypeId());
     }
 
     @Transactional
     @Override
-    public Type updateType(Long id, Type type) {
-        return null;
+    public int updateType(Type type) {
+        return adminMapper.updateType(type);
     }
 
     @Transactional
     @Override
-    public int deleteType(Type type) {
-        return 0;
+    public int deleteTypeByTypeId(Type type) {
+        return adminMapper.deleteTypeByTypeId(type);
     }
 
     @Transactional
@@ -61,7 +61,7 @@ public class TypeServiceImpl implements TypeService {
         int pageSize = pageRequest.getPageSize();
         PageHelper.startPage(pageNum, pageSize);
         List<Type> typeList = adminMapper.getTypesByPage();
-        System.out.println("typeList.toString()="+typeList.toString());
+        /*System.out.println("typeList.toString()="+typeList.toString());*/
         return new PageInfo<Type>(typeList);
     }
 }
