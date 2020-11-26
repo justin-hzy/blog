@@ -1,6 +1,19 @@
 server:
   port: 2001
 
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 20000
+  ConnectTimeout: 20000
+  eager-load:
+    enabled: true
+    clients: blog-user
+
+feign:
+  hystrix:
+    enabled: true
+
 eureka:
   client:
     #是否从注册中心抓取服务信息
@@ -15,6 +28,3 @@ eureka:
 spring:
   application:
     name: controller-user
-ribbon:
-  eureka:
-    enabled: true

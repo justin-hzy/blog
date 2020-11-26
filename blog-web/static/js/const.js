@@ -7,8 +7,10 @@ var getTokenApi = "/blog/ad/admin/getToken"
 var addTypeApi = "/blog/ad/admin/data/addType"
 var getTypesByPageApi = "/blog/ad/admin/getTypeByPage"
 var getTypeByTypeIdApi = "/blog/ad/admin/getTypeByTypeId"
-var updateTypeApi = "/blog/ad/admin/data/updateType"
-var deleteTypeByTypeIdApi = "/blog/ad/admin/data/deleteTypeByTypeId"
+var updateTypeApi = "/blog/ad/admin/updateType"
+var deleteTypeByTypeIdApi = "/blog/ad/admin/deleteTypeByTypeId"
+
+var getBlogsApi="/blog/user/blogs/selectBlogs"
 /**
  * 请求url地址
  */
@@ -20,6 +22,8 @@ var getTypesByPageUrl = domain1+getTypesByPageApi
 var getTypeByTypeIdUrl = domain1+getTypeByTypeIdApi
 var updateTypeUrl = domain1+updateTypeApi
 var deleteTypeByTypeIdUrl = domain1+deleteTypeByTypeIdApi
+
+var getBlogsUrl = domain1+getBlogsApi
 
 
 /**
