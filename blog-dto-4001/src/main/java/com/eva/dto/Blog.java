@@ -33,7 +33,7 @@ public class Blog implements Serializable {
     private String firstpicture;
 
     /**
-     * 首图
+     * 描述
      */
     private String description;
 
