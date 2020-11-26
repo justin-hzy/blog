@@ -430,11 +430,15 @@
         for(var i = 0; i < obj.length; i++){
           trStr +='<div class="ui padded vertical segment m-padded-tb-big m-mobile-lr-clear" >\n' +
                   '\t<div class="ui mobile reversed stackable grid">\n' +
-                  '\t  <div class="eleven wide column">\n' +
-                  '\t\t<h3 class="ui header">';
-          trStr += obj[i].title+'</h3>\n' +
-                  '\t\t<p class="m-text">'
-          trStr += obj[i].description;
+                  '\t  <div class="eleven wide column">\n';
+          trStr += '\t\t<h3 class="ui header">'+
+                  obj[i].title+'</h3>\n' ;
+          trStr += '\t\t<p class="m-text">'+
+                  obj[i].description+'</p>\n' ;
+          trStr += '\t\t<div class=\"ui stackable grid\">\n' +
+                  '\t\t  <div class=\"eleven wide column\">\n' +
+                  '\t\t\t<div class=\"ui mini horizontal link list\">\n' +
+                  '\t\t\t  <div class=\"item\">';
         }
 
 
