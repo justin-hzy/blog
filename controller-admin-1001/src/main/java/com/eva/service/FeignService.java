@@ -1,6 +1,7 @@
 package com.eva.service;
 
 import com.eva.Impl.FeignFallBack;
+import com.eva.dto.Tag;
 import com.eva.dto.Type;
 import com.eva.dto.User;
 import com.eva.utils.JSONResult;
@@ -45,14 +46,29 @@ public interface FeignService {
     JSONResult addType(Type type);
 
     @PostMapping("/admin/getTypeByPage")
-    JSONResult getTypeByPage(PageRequest pageRequest );
+    JSONResult getTypeByPage(PageRequest pageRequest);
 
     @PostMapping("/admin/getTypeByTypeId")
     JSONResult getTypeByTypeId(Type type);
 
-    @PostMapping("/admin/updateType")
+    @PostMapping("/admin/data/updateType")
     JSONResult updateType(Type type);
 
-    @PostMapping("/admin/deleteTypeByTypeId")
+    @PostMapping("/admin/data/deleteTypeByTypeId")
     JSONResult deleteTypeByTypeId(Type type);
+
+    @PostMapping("/admin/getTagsByPage")
+    JSONResult getTagsByPage(PageRequest pageRequest);
+
+    @PostMapping("/admin/getTagByTagId")
+    JSONResult getTagByTagId(Tag tag);
+
+    @PostMapping("/admin/data/updateTag")
+    JSONResult updateTag(Tag tag);
+
+    @PostMapping("/admin/data/addTag")
+    JSONResult addTag(Tag tag);
+
+    @PostMapping("/admin/data/deleteTagByTagId")
+    JSONResult deleteTagByTagId(Tag tag);
 }

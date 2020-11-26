@@ -92,7 +92,7 @@ public class AdminController {
         }
     }
 
-    @PostMapping("/updateType")
+    @PostMapping("data/updateType")
     public JSONResult updateType(@RequestBody Type type){
         logger.info("执行updateType方法");
         int flag = typeService.updateType(type);
@@ -103,7 +103,7 @@ public class AdminController {
         }
     }
 
-    @PostMapping("/deleteTypeByTypeId")
+    @PostMapping("data/deleteTypeByTypeId")
     public JSONResult deleteTypeByTypeId(@RequestBody Type type){
         logger.info("执行deleteTypeByTypeId方法");
         int flag = typeService.deleteTypeByTypeId(type);
@@ -121,7 +121,46 @@ public class AdminController {
             return JSONResult.build(200,"查询分页成功",pageResult);
         }else{
             return JSONResult.build(500,"查询分页失败",null);
-            
+        }
+    }
+
+    @PostMapping("/getTagByTagId")
+    public JSONResult getTagByTagId(@RequestBody Tag tag){
+        Tag tag1 = tagService.getTagByTagId(tag);
+        if (tag1!=null){
+            return JSONResult.build(200,"查询成功",tag1);
+        }else{
+            return JSONResult.build(500,"查询失败",null);
+        }
+    }
+
+    @PostMapping("data/updateTag")
+    public JSONResult updateTag(@RequestBody Tag tag){
+        int flag = tagService.updateTag(tag);
+        if (flag == 1){
+            return JSONResult.build(200,"更新成功",null);
+        }else{
+            return JSONResult.build(500,"更新失败",null);
+        }
+    }
+
+    @PostMapping("data/addTag")
+    public JSONResult addTag(@RequestBody Tag tag){
+        int flag = tagService.addTag(tag);
+        if (flag == 1){
+            return JSONResult.build(200,"插入成功",null);
+        }else{
+            return JSONResult.build(500,"插入失败",null);
+        }
+    }
+
+    @PostMapping("data/deleteTagByTagId")
+    public JSONResult deleteTagByTagId(@RequestBody Tag tag){
+        int flag = tagService.updateTag(tag);
+        if (flag == 1){
+            return JSONResult.build(200,"插入成功",null);
+        }else{
+            return JSONResult.build(500,"插入失败",null);
         }
     }
 }

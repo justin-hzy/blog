@@ -1,19 +1,18 @@
 package com.eva.controller;
 
+import com.eva.dto.Tag;
 import com.eva.dto.Type;
 import com.eva.dto.User;
 import com.eva.service.FeignService;
 import com.eva.utils.JSONResult;
 import com.eva.utils.JwtUtil;
 import com.eva.utils.PageRequest;
+import com.eva.utils.PageResult;
 import feign.Body;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -68,17 +67,52 @@ public class AdminController {
         return jsonResult;
     }
 
-    @PostMapping("/updateType")
+    @PostMapping("data/updateType")
     public JSONResult updateType(@RequestBody Type type){
         logger.info("进入updateType");
         JSONResult jsonResult  = feignService.updateType(type);
         return jsonResult;
     }
 
-    @PostMapping("/deleteTypeByTypeId")
+    @PostMapping("data/deleteTypeByTypeId")
     public JSONResult deleteTypeByTypeId(Type type){
         logger.info("进入deleteTypeByTypeId");
         JSONResult jsonResult  = feignService.deleteTypeByTypeId(type);
+        return jsonResult;
+    }
+
+    @PostMapping("/getTagsByPage")
+    public JSONResult getTagsByPage(PageRequest pageRequest){
+        logger.info("进入getTagsByPage");
+        JSONResult jsonResult = feignService.getTagsByPage(pageRequest);
+        return jsonResult;
+    }
+
+    @PostMapping("/getTagByTagId")
+    public JSONResult getTagByTagId(Tag tag){
+        logger.info("进入getTagByTagId");
+        JSONResult jsonResult = feignService.getTagByTagId(tag);
+        return jsonResult;
+    }
+
+    @PostMapping("data/updateTag")
+    public JSONResult updateTag(Tag tag){
+        logger.info("进入updateTag");
+        JSONResult jsonResult = feignService.updateTag(tag);
+        return jsonResult;
+    }
+
+    @PostMapping("data/addTag")
+    public JSONResult addTag(Tag tag){
+        logger.info("进入addTag");
+        JSONResult jsonResult = feignService.addTag(tag);
+        return jsonResult;
+    }
+
+    @PostMapping("data/deleteTagByTagId")
+    public JSONResult deleteTagByTagId(Tag tag){
+        logger.info("进入deleteTagByTagId");
+        JSONResult jsonResult = feignService.addTag(tag);
         return jsonResult;
     }
 }

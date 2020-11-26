@@ -7,8 +7,8 @@ var getTokenApi = "/blog/ad/admin/getToken"
 var addTypeApi = "/blog/ad/admin/data/addType"
 var getTypesByPageApi = "/blog/ad/admin/getTypeByPage"
 var getTypeByTypeIdApi = "/blog/ad/admin/getTypeByTypeId"
-var updateTypeApi = "/blog/ad/admin/updateType"
-var deleteTypeByTypeIdApi = "/blog/ad/admin/deleteTypeByTypeId"
+var updateTypeApi = "/blog/ad/admin/data/updateType"
+var deleteTypeByTypeIdApi = "/blog/ad/admin/data/deleteTypeByTypeId"
 /**
  * 请求url地址
  */
