@@ -6,6 +6,7 @@ import com.eva.service.Impl.TagServiceImpl;
 
 import com.eva.service.TagService;
 
+import com.eva.utils.JSONResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,15 +21,23 @@ public class TagsController {
     @Autowired
     TagService tagService;
 
-    @RequestMapping(value = "/selectTag")
-    public List<Tag> selectTag(){
+    @RequestMapping(value = "/selectTags")
+    public JSONResult selectTag(){
         List<Tag> result = tagService.selectTags();
-        return result;
+        if(result!=null){
+            return JSONResult.build(200,"",result);
+        }else{
+            return JSONResult.build(500,"",null);
+        }
     }
 
     @RequestMapping(value = "/selectTagById")
-    public Tag selectTagById(String tagId){
+    public JSONResult selectTagById(String tagId){
         Tag result = tagService.selectTagById(tagId);
-        return result;
+        if(result!=null){
+            return JSONResult.build(200,"",result);
+        }else{
+            return JSONResult.build(500,"",null);
+        }
     }
 }

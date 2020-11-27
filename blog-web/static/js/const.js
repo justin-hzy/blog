@@ -11,6 +11,8 @@ var updateTypeApi = "/blog/ad/admin/updateType"
 var deleteTypeByTypeIdApi = "/blog/ad/admin/deleteTypeByTypeId"
 
 var getBlogsApi="/blog/user/blogs/selectBlogs"
+var getTypesApi="/blog/user/types/selectTypes"
+var getTagsApi="/blog/user/tags/selectTags"
 /**
  * 请求url地址
  */
@@ -24,7 +26,8 @@ var updateTypeUrl = domain1+updateTypeApi
 var deleteTypeByTypeIdUrl = domain1+deleteTypeByTypeIdApi
 
 var getBlogsUrl = domain1+getBlogsApi
-
+var getTypesUrl = domain1+getTypesApi
+var getTagsUrl = domain1+getTagsApi
 
 /**
  * 前端跳转 地址

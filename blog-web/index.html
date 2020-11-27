@@ -58,8 +58,8 @@
                 </div>
               </div>
             </div>
-            <!-- content -->
-            <div id="bloglist" class="ui attached segment">
+            <!-- content 博客列表-->
+            <div id="blogList" class="ui attached segment">
 
             </div>
             <!-- footer -->
@@ -90,7 +90,7 @@
                 </div>
               </div>
               <div class="ui teal segment">
-                <div class="ui fluid vertical menu">
+                <div id="typeList" class="ui fluid vertical menu">
                   <a href="#" class="item">
                     学习日志
                     <div class="ui teal basic left pointing label">13</div>
@@ -138,7 +138,7 @@
                   </div>
                 </div>
               </div>
-              <div class="ui segment">
+              <div id="tagList" class="ui segment">
                 <a
                   href="#"
                   target="blank"
@@ -278,11 +278,10 @@
           },
           url:getBlogsUrl,
           success:function(result){
-            console.log(result);
-            if(result.data.content == undefined){
+            if(result.data == undefined){
 
             }else{
-              showBlogs(result.data.content);
+              showBlogs(result.data);
               // totalPage = result.data.totalPages;
             }
 
@@ -290,9 +289,27 @@
         })
       }
 
+      function getType() {
+        $.ajax({
+          type:"post",
+          data:{
+            // "pageNum":pageNum,
+            // "pageSize":pageSize
+          },
+          url:getTypesUrl,
+          success:function(result){
+            if(result.data == undefined){
+
+            }else{
+              showBlogs(result.data);
+              // totalPage = result.data.totalPages;
+            }
+
+          }
+        })
+      }
       /* 渲染blog数据 */
       function showBlogs(content){
-        console.log(content)
         //解析json字符串为json对象形式
         var obj = content;
         //动态拼接table
@@ -301,46 +318,41 @@
         for(var i = 0; i < obj.length; i++){
           trStr +='<div class="ui padded vertical segment m-padded-tb-big m-mobile-lr-clear" >\n' +
                   '\t<div class="ui mobile reversed stackable grid">\n' +
-                  '\t  <div class="eleven wide column">\n';
-          trStr +='\t\t<h3 class="ui header">'+
-                  obj[i].title+'</h3>\n' ;
-          trStr +='\t\t<p class="m-text">'+
-                  obj[i].description+'</p>\n' ;
-          trStr +='\t\t<div class=\"ui stackable grid\">\n' +
-                  '\t\t  <div class=\"eleven wide column\">\n' +
-                  '\t\t\t<div class=\"ui mini horizontal link list\">\n' +
-                  '\t\t\t  <div class=\"item\">';
-          trStr +='<img src="'+obj[i].user.avatar+'" alt="" class="ui avatar image" />';
-          trStr +='<div class="content">\n' +
-                  '\t\t\t\t  <a href="#" class="header">'+obj[i].user.name
-                  '</a>\n' +
+                  '\t  <div class="eleven wide column">\n' +
+                  '\t\t<h3 class="ui header">'+obj[i].title+'</h3>\n' +
+                  '\t\t<p class="m-text">\n' +obj[i].description+
+                  '\n\t\t</p>\n' +
+                  '\t\t<div class="ui stackable grid">\n' +
+                  '\t\t  <div class="eleven wide column">\n' +
+                  '\t\t\t<div class="ui mini horizontal link list">\n' +
+                  '\t\t\t  <div class="item">\n' +
+                  '\t\t\t\t<img src="'+obj[i].user.avatar+'" alt="" class="ui avatar image" />\n' +
+                  '\t\t\t\t<div class="content">\n' +
+                  '\t\t\t\t  <a href="#" class="header">'+obj[i].user.nickname+'</a>\n' +
                   '\t\t\t\t</div>\n' +
-                  '\t\t\t  </div>';
-          trStr +='<div class="item">\n' +
-                  '\t\t\t\t<i class="calendar icon"></i>' +obj[i].createtime+
-                  '\t\t\t  </div>';
-          trStr +='<div class="item"><i class="eye icon"></i>'+obj[i].views+'</div>\n' +
+                  '\t\t\t  </div>\n' +
+                  '\t\t\t  <div class="item">\n' +
+                  '\t\t\t\t<i class="calendar icon"></i>'+obj[i].createtime+'</div>\n' +
+                  '\t\t\t  <div class="item"><i class="eye icon"></i>'+ obj[i].views+'</div>\n' +
                   '\t\t\t</div>\n' +
-                  '\t\t  </div>';
-          trStr +='<div class="right aligned five wide column">\n' +
-                  '\t\t\t<a href="#" target="_blank" class="ui teal basic label m-padded-tiny m-text-thin" >'+
-                  obj[i].type.typeName+
-                  '</a >\n' +
+                  '\t\t  </div>\n' +
+                  '\t\t  <div class="right aligned five wide column">\n' +
+                  '\t\t\t<a href="#" target="_blank" class="ui teal basic label m-padded-tiny m-text-thin" >'+obj[i].type.typeName+'</a>\n' +
                   '\t\t  </div>\n' +
                   '\t\t</div>\n' +
-                  '\t  </div>';
-          trStr +='<div class="five wide column">\n' +
+                  '\t  </div>\n' +
+                  '\t  <div class="five wide column">\n' +
                   '\t\t<a href="#" target="_blank">\n' +
-                  '\t\t  <img src="'+obj[i].firstpicture+'" alt="" class="ui rounded image" />\n' +
+                  '\t\t  <img src="'+obj[i].firstpicture+'" alt="" class="ui rounded image"/>\n' +
                   '\t\t</a>\n' +
                   '\t  </div>\n' +
                   '\t</div>\n' +
-                  '</div>';
+                  '</div>'
 
         }
-        console.log(trStr)
-        $("#bloglist").append(trStr);
+        $("#blogList").append(trStr);
       }
+
 
       function init(){
         getBlogs();
