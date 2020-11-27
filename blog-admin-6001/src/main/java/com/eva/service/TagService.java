@@ -1,18 +1,19 @@
 package com.eva.service;
 
+import com.eva.dto.Tag;
 import com.eva.dto.Type;
 import com.eva.utils.PageRequest;
 import com.eva.utils.PageResult;
 
 public interface TagService {
 
-    int addTag(Type type);
+    int addTag(Tag tag);
 
-    Type getTagByTagId(Type type);
+    Tag getTagByTagId(Tag tag);
 
-    int updateTag(Type type);
+    int updateTag(Tag tag);
 
-    int deleteTagByTagId(Type type);
+    int deleteTagByTagId(Tag tag);
 
     PageResult getTagsByPage(PageRequest pageRequest);
 }

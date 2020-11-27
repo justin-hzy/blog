@@ -33,7 +33,7 @@ public interface AdminMapper {
 
     int updateTag(Tag tag);
 
-    Tag getTagByTagId(String typeId);
+    Tag getTagByTagId(Tag tag);
 
-    int deleteTagByTagId(Type type);
+    int deleteTagByTagId(Tag tag);
 }

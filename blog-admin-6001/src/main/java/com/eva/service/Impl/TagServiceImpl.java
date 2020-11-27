@@ -11,8 +11,10 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class TagServiceImpl implements TagService {
@@ -20,26 +22,33 @@ public class TagServiceImpl implements TagService {
     @Autowired
     private AdminMapper adminMapper;
 
+    @Transactional
     @Override
-    public int addTag(Type type) {
-        return 0;
+    public int addTag(Tag tag) {
+
+        tag.setTagId(UUID.randomUUID().toString().replace("-",""));
+        return adminMapper.addTag(tag);
     }
 
+    @Transactional
     @Override
-    public Type getTagByTagId(Type type) {
-        return null;
+    public Tag getTagByTagId(Tag tag) {
+        return adminMapper.getTagByTagId(tag);
     }
 
+    @Transactional
     @Override
-    public int updateTag(Type type) {
-        return 0;
+    public int updateTag(Tag tag) {
+        return adminMapper.updateTag(tag);
     }
 
+    @Transactional
     @Override
-    public int deleteTagByTagId(Type type) {
-        return 0;
+    public int deleteTagByTagId(Tag tag) {
+        return adminMapper.deleteTagByTagId(tag);
     }
 
+    @Transactional
     @Override
     public PageResult getTagsByPage(PageRequest pageRequest) {
         return PageUtils.getPageResult(pageRequest,getPageInfo(pageRequest));

@@ -16,12 +16,11 @@ eureka:
 
 spring:
   application:
-    name: blog-admin
+    name: blog-user
   datasource:
     username: root
-    #    123456 root jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
-    password: Hzy_a1234567890123
-    url: jdbc:mysql://95.169.19.152:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    password: 123456
+    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 
@@ -29,3 +28,9 @@ spring:
 mybatis:
   mapper-locations: classpath:mapping/*Mapping.xml
   type-aliases-package: com.eva.dto
+
+second:
+  username: root
+  password: 123456
+  url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+  driver-class-name: com.mysql.cj.jdbc.Driver

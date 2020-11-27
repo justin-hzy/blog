@@ -6,5 +6,5 @@ import com.eva.vo.CommentVo;
 import java.util.List;
 
 public interface CommentService {
-    List<CommentVo> selectCommentVo(String blogId);
+    List selectComments(String blogId);
 }

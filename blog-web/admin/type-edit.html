@@ -9,10 +9,10 @@
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     <script src="../static/lib/editormd/editormd.min.js"></script>
     <script src="../static/js/const.js"></script>
+    <script src="../static/js/common.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
 </head>
-
 <body style="display: none;">
     <!-- 导航 -->
     <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-samll">
@@ -182,8 +182,9 @@
                     url:updateTypeUrl,
                     async:true,
                     success:function(result){
-                        /* $(location).attr('href',typesPage); */
-                        console.log(result)
+                        /* console.log(result) */
+                        $(location).attr('href',typesPage+"?status="+result.status); 
+                        
                     }
                 })
             }else{
@@ -206,16 +207,9 @@
         if(url.toString().indexOf("?")>=0){
             typeId = getUrlParam("typeId");
             getTypeByTypeId(typeId);
-        }
-
-        
+        }  
     }
-    function getUrlParam(name){  
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象    
-        var r = window.location.search.substr(1).match(reg);  //匹配目标参数      
-            if (r != null) return unescape(r[2]);       
-                    return null; //返回参数值   
-    }
+    
     function getTypeByTypeId(typeId){
         $.ajax({
             type:"post",

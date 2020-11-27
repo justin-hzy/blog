@@ -14,7 +14,7 @@ ribbon:
   OkToRetryOnAllOperations: true #对所有操作请求都进行重试
   eager-load:
     enabled: true
-    clients: controller-admin
+    clients: controller-admin,controller-user
 
 hystrix:
   command:
