@@ -96,7 +96,7 @@ public class AdminController {
     }
 
     @PostMapping("data/updateTag")
-    public JSONResult updateTag(Tag tag){
+    public JSONResult updateTag(@RequestBody Tag tag){
         logger.info("进入updateTag");
         JSONResult jsonResult = feignService.updateTag(tag);
         return jsonResult;
@@ -112,7 +112,7 @@ public class AdminController {
     @PostMapping("data/deleteTagByTagId")
     public JSONResult deleteTagByTagId(Tag tag){
         logger.info("进入deleteTagByTagId");
-        JSONResult jsonResult = feignService.addTag(tag);
+        JSONResult jsonResult = feignService.deleteTagByTagId(tag);
         return jsonResult;
     }
 }

@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>管理后台</title>
+    <title>标签新增</title>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="../static/lib/editormd/editormd.min.js"></script>
     <script src="../static/js/const.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css">
 </head>
+
 <body style="display: none;">
     <!-- 导航 -->
     <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-samll">
@@ -19,7 +21,7 @@
                 <h2 class="ui teal header item">管理后台</h2>
                 <a href="http://127.0.0.1:8000/admin/blogs.html" class="active m-item item m-mobile-hide"><i class="home icon"></i>博客</a>
                 <a href="http://127.0.0.1:8000/admin/types.html" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
-                <a href="http://127.0.0.1:8000/admin/tags.html" class=" m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
+                <a href="" class=" m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
                 <div class="right m-item m-mobile-hide menu">
                     <div class="ui dropdown item">
                         <div class="text">
@@ -46,8 +48,8 @@
     <div class="ui attached pointing menu">
         <div class="ui container">
             <div class="right menu">
-                <a href="#" class="item">发布</a>
-                <a href="#" class="active teal item">列表</a>
+                <a href="#" class="active teal item">发布</a>
+                <a href="#" class="item">列表</a>
             </div>
         </div>
     </div>
@@ -55,71 +57,24 @@
     <!-- 中间内容 -->
     <div class = "m-container-small m-padded-tb-big">
         <div class="ui container">
-            <form action="#" method="POST" class="ui segment form">
-                <div class="inline fields">
-                    <div class="field">
-                        <input type="text" name="title" placeholder="标题">
+            <form class="ui form">
+                <div class="field">
+                    <div class="ui left labeled input">
+                        <label class="ui teal basic label">标签名称</label>
+                        <input id="tagName" type="text" name="tagName" placeholder="标签名称">
                     </div>
-                    <div class="field">
-                        <div class="ui selection dropdown">
-                            <input type="hiden" name="type">
-                            <i class="dropdown icon"></i>
-                            <div class="default text">分类</div>
-                            <div class="menu">
-                                <div class="item" data-value="1">错误日志</div>
-                                <div class="item" data-value="2">开发者手册</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui checkbox">
-                            <input type="checkbox" id="recommend" name="recommend">
-                            <label for="recommend">推荐</label>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <button class="ui mini teal basic button">
-                            <i class="search icon"></i>
-                            搜索
-                        </button>
-                    </div>
+                
+                </div>
+
+                
+                <div class="ui error message">
+
+                </div>
+                <div class="ui right aligned container">
+                    <button class="ui button" type="button" onclick="window.history.go(-1)">返回</button>
+                    <div id="sumbitButton" class="ui teal button">提交</div>
                 </div>
             </form>
-
-            <table class="ui celled table">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>标题</th>
-                        <th>类型</th>
-                        <th>推荐</th>
-                        <th>更新时间</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <td>1</td>
-                    <td>刻意联系清单</td>
-                    <td>认知升级</td>
-                    <td>是</td>
-                    <td>2017-10-02 09:45</td>
-                    <td>
-                        <a href="#" class="ui mini teal basic button">编辑</a>
-                        <a href="#" class="ui mini red basic button">删除</a>
-                    </td>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th colspan="6">
-                            <div class="ui mini floated pagination menu">
-                                <a href="#" class="icon item">上一页</a>
-                                <a href="#" class="icon item">下一页</a>
-                            </div>
-                            <a href="#" class="ui mini right floated  teal basic button">新增</a>
-                        </th>
-                    </tr>
-                </tfoot>
-            </table>
         </div>
     </div>
 <!--详情页结束-->
@@ -162,6 +117,7 @@
 <script>
     $(function(){
         checkToken();
+        submitType();
     })
     $('.menu.toggle').click(function(){
         $('.m-item').toggleClass('m-mobile-hide');
@@ -169,6 +125,17 @@
     $('.ui.dropdown').dropdown({
         on : 'hover'
     });
+    $('.ui.form').form({
+        fields:{
+            title : {
+                identifier : 'title',
+                rules: [{
+                    type: 'empty',
+                    prompt: '标题:请输入博客标题'
+                }]
+            }
+        }
+    })
     function checkToken(){
     var token = localStorage.getItem("token");
     if(token==undefined){
@@ -192,6 +159,44 @@
                     
                 }
             })
+        }
+    }
+
+    function submitType(){
+        submitClick();
+    }
+
+    /* 提交标签信息函数 */
+    function submitClick(){
+        $("#sumbitButton").click(function(){
+            var tagName = $("#tagName").val();
+            var token = localStorage.getItem("token");
+            if(checkType(tagName)){
+                    $.ajax({
+                    type:"post",
+                    headers:{'Authorization': token},
+                    data:{
+                        "tagName":tagName,
+                    },
+                    url:addTagUrl,
+                    async:true,
+                    success:function(result){
+                        console.log(result)
+                        $(location).attr('href',tagsPage);
+                    }
+                })
+            }else{
+                alert('请填写标签内容')
+            } 
+        })
+    }
+
+    /* 检验提交信息 */
+    function checkType(typeName){
+        if(!typeName){
+            return false
+        }else{
+            return true
         }
     }
 </script>

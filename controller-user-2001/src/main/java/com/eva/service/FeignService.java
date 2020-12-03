@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
-@FeignClient(value = "blog-user",fallback = FeignFallBack.class )
+/*,fallback = FeignFallBack.class*/
+@FeignClient(value = "blog-user")
 @Service
 public interface FeignService {
 

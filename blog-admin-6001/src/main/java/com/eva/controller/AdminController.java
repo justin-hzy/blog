@@ -156,7 +156,7 @@ public class AdminController {
 
     @PostMapping("data/deleteTagByTagId")
     public JSONResult deleteTagByTagId(@RequestBody Tag tag){
-        int flag = tagService.updateTag(tag);
+        int flag = tagService.deleteTagByTagId(tag);
         if (flag == 1){
             return JSONResult.build(200,"插入成功",null);
         }else{

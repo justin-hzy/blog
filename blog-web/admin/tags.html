@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>分类管理</title>
+    <title>标签管理</title>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     <script src="../static/js/const.js"></script>
@@ -28,9 +28,9 @@
         <div class="ui container">
             <div class="ui inverted secondary menu">
                 <h2 class="ui teal header item">管理后台</h2>
-                <a href="http://127.0.0.1:8000/admin/blogs.html" class=" m-item item m-mobile-hide"><i class="home icon"></i>博客</a>
-                <a href="http://127.0.0.1:8000/admin/types.html" class="active m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
-                <a href="http://127.0.0.1:8000/admin/tags.html" class=" m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
+                <a href="http://127.0.0.1:8000/admin/blogs.html" class="m-item item m-mobile-hide"><i class="home icon"></i>博客</a>
+                <a href="http://127.0.0.1:8000/admin/types.html" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
+                <a href="" class="active m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
                 <div class="right m-item m-mobile-hide menu">
                     <div class="ui dropdown item">
                         <div class="text">
@@ -72,11 +72,11 @@
                 <div class="header">提示:</div>
                 <p>恭喜，操作成功</p>
             </div>         
-            <table id="typesTable" class="ui celled table">
+            <table id="tagsTable" class="ui celled table">
                 <thead>
                     <tr>
                         <th></th>
-                        <th>名称</th>
+                        <th>标签名称</th>
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -95,7 +95,7 @@
                                 <a id="lastPage" class="icon item" style="display: none;">上一页</a>
                                 <a id="nextPage" class="icon item">下一页</a>
                             </div>
-                            <a href="http://127.0.0.1:8000/admin/type-input.html" class="ui mini right floated  teal basic button">新增</a>
+                            <a href="http://127.0.0.1:8000/admin/tag-input.html" class="ui mini right floated  teal basic button">新增</a>
                         </th>
                     </tr>
                 </tfoot>
@@ -183,47 +183,47 @@
             })
         }
     } */
-    function getTypesByPage(){
+    function getTagsByPage(){
         $.ajax({
             type:"post",
             data:{
                 "pageNum":pageNum,
                 "pageSize":pageSize
             },
-            url:getTypesByPageUrl,
+            url:getTagsByPageUrl,
             success:function(result){
                 if(result.data.content == undefined){
                     
                 }else{
-                    showTypes(result.data.content);
+                    showTags(result.data.content);
                     totalPage = result.data.totalPages;
                 }
             }
         })
     }
     /* 渲染table数据 */
-    function showTypes(content){
+    function showTags(content){
         console.log(content)
         //解析json字符串为json对象形式
         var obj = content;
         //动态拼接table
         var trStr = '';
         //循环遍历出json对象中的每一个数据并显示在对应的td中
-        $("#typesTable tbody").remove();
+        $("#tagsTable tbody").remove();
         for (var i = 0; i < obj.length; i++) {
             trStr += '<tbody>';
-            trStr += '<td>' + obj[i].typeId + '</td>';//数据表的主键值
-            trStr += '<td>' + obj[i].typeName + '</td>';//对应数组表的字段值
-            trStr += '<td><div class="ui mini teal basic button" onclick="editClick('+obj[i].typeId+')">编辑</div>'
-            trStr += '<div class="ui mini red basic button" onclick="deleteTypeByTypeId('+obj[i].typeId+')">删除</div></td>';  
+            trStr += '<td>' + obj[i].tagId + '</td>';//数据表的主键值
+            trStr += '<td>' + obj[i].tagName + '</td>';//对应数组表的字段值
+            trStr += '<td><div class="ui mini teal basic button" onclick="editClick('+obj[i].tagId+')">编辑</div>'
+            trStr += '<div class="ui mini red basic button" onclick="deleteTagByTagId('+obj[i].tagId+')">删除</div></td>';  
             trStr += '</tbody>';                   
         }                   
         /* console.log(trStr) */
-        $("#typesTable").append(trStr);      
+        $("#tagsTable").append(trStr);      
     }
     /* 编辑按钮点击函数 */
-    function editClick(typeId){
-        $(location).attr('href',typesEditPage+"?typeId="+typeId);
+    function editClick(tagId){
+        $(location).attr('href',tagEditPage+"?tagId="+tagId);
     }
     /* 删除按钮点击函数 */
     function deleteClick(typeId){
@@ -234,7 +234,7 @@
         $("#lastPage").click(function(){
             pageNum -= 1;
             alert(pageNum)
-            getTypesByPage();
+            getTagsByPage();
             showPageButton();
             hidePageButton();      
         })
@@ -245,10 +245,9 @@
         $("#nextPage").click(function(){
             pageNum += 1;
             alert(pageNum)
-            getTypesByPage();
+            getTagsByPage();
             showPageButton();
             hidePageButton();
-            
         })
     }
 
@@ -272,7 +271,7 @@
     }
     /* 页面初始化 */
     function init(){
-        getTypesByPage();
+        getTagsByPage();
         lastPage();
         nextPage();
         var url = window.location;
@@ -281,17 +280,16 @@
         }
        
     }
-    function deleteTypeByTypeId(typeId){
+    function deleteTagByTagId(tagId){
         $.ajax({
             type:"post",
-            data:{"typeId":typeId},
-            url:deleteTypeByTypeIdUrl,
+            data:{"tagId":tagId},
+            url:deleteTagByTagIdUrl,
             success:function(result){
                 if(result.status == 200){
                     window.location.reload();
                     $(".ui.success.message").css('display','block');
                 }
-
             }
         })
     }
