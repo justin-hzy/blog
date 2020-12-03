@@ -4,6 +4,7 @@ package com.eva.service.Impl;
 import com.eva.dto.Type;
 import com.eva.mapper.TypeMapper;
 import com.eva.service.TypeService;
+import com.eva.vo.TypesVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class TypeServiceImpl implements TypeService {
     TypeMapper typeMapper;
 
     @Override
-    public List<Type> selectTypes() {
+    public List<TypesVo> selectTypes() {
         return typeMapper.selectTypes();
     }
 

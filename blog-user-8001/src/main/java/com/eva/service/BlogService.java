@@ -8,8 +8,9 @@ import java.util.List;
 
 public interface BlogService {
 
-    List<BlogsVo> selectBlogs();
+    List<BlogsVo> selectBlogs(Integer pageNum);
     Blog selectBlogByID(String blogId);
     List<Blog>  selectBlogsByType(String typeId);
     List<Blog> selectBlogsByTag(String tagId);
+    List<Blog> selectBlogsByRecommend();
 }

@@ -7,9 +7,7 @@ import com.eva.vo.BlogsVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +23,10 @@ public class BlogsController {
 
 //查询博客列表
     @PostMapping(value = "/selectBlogs")
-    public JSONResult selectBlogs(){
+    public JSONResult selectBlogs(@RequestBody Integer pageNum){
         logger.info("进入selectBlogs");
         List<BlogsVo> result = new ArrayList<>();
-        result= blogService.selectBlogs();
+        result= blogService.selectBlogs(pageNum);
         logger.info(result.toString());
         if(result!=null){
             return JSONResult.build(200,"",result);
@@ -65,6 +63,18 @@ public class BlogsController {
     public JSONResult selectBlogsByTag(String tagId){
         List<Blog> result = new ArrayList<>();
         result= blogService.selectBlogsByTag(tagId);
+        if(result!=null){
+            return JSONResult.build(200,"",result);
+        }else{
+            return JSONResult.build(500,"",null);
+        }
+    }
+
+//  最新推荐博客
+    @RequestMapping(value = "/selectBlogsByRecommend")
+    public JSONResult selectBlogsByRecommend(){
+        List<Blog> result = new ArrayList<>();
+        result= blogService.selectBlogsByRecommend();
         if(result!=null){
             return JSONResult.build(200,"",result);
         }else{

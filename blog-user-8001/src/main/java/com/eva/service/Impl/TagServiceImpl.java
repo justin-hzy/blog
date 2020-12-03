@@ -4,6 +4,7 @@ package com.eva.service.Impl;
 import com.eva.dto.Tag;
 import com.eva.mapper.TagMapper;
 import com.eva.service.TagService;
+import com.eva.vo.TagsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class TagServiceImpl implements TagService {
     TagMapper tagMapper;
 
     @Override
-    public List<Tag> selectTags() {
+    public List<TagsVo> selectTags() {
         return tagMapper.selectTags();
     }
 

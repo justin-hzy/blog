@@ -7,6 +7,7 @@ import com.eva.service.Impl.TagServiceImpl;
 import com.eva.service.TagService;
 
 import com.eva.utils.JSONResult;
+import com.eva.vo.TagsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,8 +23,8 @@ public class TagsController {
     TagService tagService;
 
     @RequestMapping(value = "/selectTags")
-    public JSONResult selectTag(){
-        List<Tag> result = tagService.selectTags();
+    public JSONResult selectTags(){
+        List<TagsVo> result = tagService.selectTags();
         if(result!=null){
             return JSONResult.build(200,"",result);
         }else{

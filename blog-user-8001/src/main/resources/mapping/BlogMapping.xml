@@ -91,6 +91,10 @@
         on b.blog_id=t2.blog_id
         left join tag t3
         on t2.tag_id=t3.tag_id
+        limit #{pageNum},#{pageNum2}
+    </select>
+    <select id="selectBlogsByRecommend" resultMap="BaseBlogMap">
+        select * from blog where recommend ='1' order by updateTime
     </select>
 
 

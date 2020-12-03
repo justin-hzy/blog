@@ -19,9 +19,10 @@ public class BlogServiceImpl implements BlogService {
 
 
     @Override
-    public List<BlogsVo> selectBlogs(){
-
-        List<BlogsVo> result =blogMapper.selectBlogs();
+    public List<BlogsVo> selectBlogs(Integer pageNum){
+        Integer pageNum2 = pageNum*10+10;
+        pageNum=pageNum*10;
+        List<BlogsVo> result =blogMapper.selectBlogs(pageNum,pageNum2);
         return result;
     };
 
@@ -38,6 +39,12 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public List<Blog> selectBlogsByTag(String tagId){
         List<Blog> result =blogMapper.selectBlogsByTag(tagId);
+        return result;
+    };
+
+    @Override
+    public List<Blog> selectBlogsByRecommend() {
+        List<Blog> result =blogMapper.selectBlogsByRecommend();
         return result;
     };
 }
