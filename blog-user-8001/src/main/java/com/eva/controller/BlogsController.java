@@ -2,6 +2,7 @@ package com.eva.controller;
 
 import com.eva.dto.Blog;
 import com.eva.service.BlogService;
+import com.eva.utils.JSONResult;
 import com.eva.vo.BlogsVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,12 +25,12 @@ public class BlogsController {
 
 //查询博客列表
     @PostMapping(value = "/selectBlogs")
-    public List<BlogsVo> selectBlogs(){
+    public JSONResult selectBlogs(){
         logger.info("进入selectBlogs");
         List<BlogsVo> result = new ArrayList<>();
         result= blogService.selectBlogs();
         logger.info(result.toString());
-        return result;
+        return JSONResult.build(200,"",result);
     }
 
 //    点击查看博客详情
