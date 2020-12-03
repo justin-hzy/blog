@@ -1,8 +1,8 @@
 package com.eva.service.Impl;
 
 import com.eva.dto.Tag;
-import com.eva.dto.Type;
 import com.eva.mapper.AdminMapper;
+import com.eva.mapper.TagMapper;
 import com.eva.service.TagService;
 import com.eva.utils.PageRequest;
 import com.eva.utils.PageResult;
@@ -20,32 +20,32 @@ import java.util.UUID;
 public class TagServiceImpl implements TagService {
 
     @Autowired
-    private AdminMapper adminMapper;
+    private TagMapper tagMapper;
 
     @Transactional
     @Override
     public int addTag(Tag tag) {
 
         tag.setTagId(UUID.randomUUID().toString().replace("-",""));
-        return adminMapper.addTag(tag);
+        return tagMapper.addTag(tag);
     }
 
     @Transactional
     @Override
     public Tag getTagByTagId(Tag tag) {
-        return adminMapper.getTagByTagId(tag);
+        return tagMapper.getTagByTagId(tag);
     }
 
     @Transactional
     @Override
     public int updateTag(Tag tag) {
-        return adminMapper.updateTag(tag);
+        return tagMapper.updateTag(tag);
     }
 
     @Transactional
     @Override
     public int deleteTagByTagId(Tag tag) {
-        return adminMapper.deleteTagByTagId(tag);
+        return tagMapper.deleteTagByTagId(tag);
     }
 
     @Transactional
@@ -63,7 +63,7 @@ public class TagServiceImpl implements TagService {
         int pageNum = pageRequest.getPageNum();
         int pageSize = pageRequest.getPageSize();
         PageHelper.startPage(pageNum, pageSize);
-        List<Tag> tagList = adminMapper.getTagsByPage();
+        List<Tag> tagList = tagMapper.getTagsByPage();
         System.out.println("typeList.toString()="+tagList.toString());
         return new PageInfo<Tag>(tagList);
     }
