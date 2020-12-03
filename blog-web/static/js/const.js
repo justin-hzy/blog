@@ -1,7 +1,10 @@
 /*域名+端口 */ 
 var domain1 = "http://"+document.domain+":80";
 
+/* 管理员登录模块 */
 var loginApi = "/blog/ad/admin/login"
+
+
 var getUserApi = "/blog/ad/admin/getUser"
 
 var getTokenApi = "/blog/ad/admin/getToken"

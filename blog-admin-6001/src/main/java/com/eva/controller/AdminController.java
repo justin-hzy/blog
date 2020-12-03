@@ -3,7 +3,6 @@ package com.eva.controller;
 import com.eva.dto.Tag;
 import com.eva.dto.Type;
 import com.eva.dto.User;
-import com.eva.mapper.AdminMapper;
 import com.eva.service.AdminService;
 import com.eva.service.TagService;
 import com.eva.service.TypeService;
@@ -31,12 +30,6 @@ public class AdminController {
     private AdminService userService;
 
     @Autowired
-    private TypeService typeService;
-
-    @Autowired
-    private TagService tagService;
-
-    @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
     @PostMapping("getUser")
@@ -56,111 +49,4 @@ public class AdminController {
         }
     }
 
-    @PostMapping("data/addType")
-    public JSONResult addType(@RequestBody Type type){
-        logger.info("进入addType");
-        String uuId = UUID.randomUUID().toString().replace("-","");
-        type.setTypeId(uuId);
-        logger.info(type.toString());
-        int flag = typeService.addType(type);
-        if (flag==1){
-            return JSONResult.build(200,"提交成功",null);
-        }else{
-            return JSONResult.build(500,"提交失败",null);
-        }
-    }
-
-    @PostMapping("/getTypeByPage")
-    public JSONResult getTypeByPage(@RequestBody PageRequest pageRequest ){
-        logger.info("进入getTypeByPage");
-        PageResult pageResult = typeService.getTypeByPage(pageRequest);
-        if (pageResult!=null){
-            return JSONResult.build(200,"查询分页成功",pageResult);
-        }else{
-            return JSONResult.build(500,"查询分页失败",null);
-        }
-    }
-
-    @PostMapping("/getTypeByTypeId")
-    public JSONResult getTypeByTypeId(@RequestBody Type type){
-        logger.info("getTypeByTypeId");
-        Type type1 = typeService.getTypeByTypeId(type);
-        if (type1!=null){
-            return JSONResult.build(200,"查询成功",type1);
-        }else{
-            return JSONResult.build(500,"查询失败",null);
-        }
-    }
-
-    @PostMapping("data/updateType")
-    public JSONResult updateType(@RequestBody Type type){
-        logger.info("执行updateType方法");
-        int flag = typeService.updateType(type);
-        if (flag==1){
-            return JSONResult.build(200,"更新成功",null);
-        }else{
-            return JSONResult.build(500,"更新失败",null);
-        }
-    }
-
-    @PostMapping("data/deleteTypeByTypeId")
-    public JSONResult deleteTypeByTypeId(@RequestBody Type type){
-        logger.info("执行deleteTypeByTypeId方法");
-        int flag = typeService.deleteTypeByTypeId(type);
-        if (flag==1){
-            return JSONResult.build(200,"删除成功",null);
-        }else{
-            return JSONResult.build(500,"删除失败",null);
-        }
-    }
-
-    @PostMapping("/getTagsByPage")
-    public JSONResult getTagsByPage(@RequestBody PageRequest pageRequest){
-        PageResult pageResult = tagService.getTagsByPage(pageRequest);
-        if (pageResult!=null){
-            return JSONResult.build(200,"查询分页成功",pageResult);
-        }else{
-            return JSONResult.build(500,"查询分页失败",null);
-        }
-    }
-
-    @PostMapping("/getTagByTagId")
-    public JSONResult getTagByTagId(@RequestBody Tag tag){
-        Tag tag1 = tagService.getTagByTagId(tag);
-        if (tag1!=null){
-            return JSONResult.build(200,"查询成功",tag1);
-        }else{
-            return JSONResult.build(500,"查询失败",null);
-        }
-    }
-
-    @PostMapping("data/updateTag")
-    public JSONResult updateTag(@RequestBody Tag tag){
-        int flag = tagService.updateTag(tag);
-        if (flag == 1){
-            return JSONResult.build(200,"更新成功",null);
-        }else{
-            return JSONResult.build(500,"更新失败",null);
-        }
-    }
-
-    @PostMapping("data/addTag")
-    public JSONResult addTag(@RequestBody Tag tag){
-        int flag = tagService.addTag(tag);
-        if (flag == 1){
-            return JSONResult.build(200,"插入成功",null);
-        }else{
-            return JSONResult.build(500,"插入失败",null);
-        }
-    }
-
-    @PostMapping("data/deleteTagByTagId")
-    public JSONResult deleteTagByTagId(@RequestBody Tag tag){
-        int flag = tagService.deleteTagByTagId(tag);
-        if (flag == 1){
-            return JSONResult.build(200,"插入成功",null);
-        }else{
-            return JSONResult.build(500,"插入失败",null);
-        }
-    }
 }

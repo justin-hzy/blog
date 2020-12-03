@@ -2,6 +2,7 @@ package com.eva.service.Impl;
 
 import com.eva.dto.Type;
 import com.eva.mapper.AdminMapper;
+import com.eva.mapper.TypeMapper;
 import com.eva.service.TypeService;
 import com.eva.utils.PageRequest;
 import com.eva.utils.PageResult;
@@ -18,31 +19,31 @@ import java.util.List;
 public class TypeServiceImpl implements TypeService {
 
     @Autowired
-    private AdminMapper adminMapper;
+    private TypeMapper typeMapper;
 
     @Transactional
     @Override
     public int addType(Type type) {
-        int flag = adminMapper.addType(type);
+        int flag = typeMapper.addType(type);
         return flag;
     }
 
     @Transactional
     @Override
     public Type getTypeByTypeId(Type type) {
-        return adminMapper.getTypeByTypeId(type.getTypeId());
+        return typeMapper.getTypeByTypeId(type.getTypeId());
     }
 
     @Transactional
     @Override
     public int updateType(Type type) {
-        return adminMapper.updateType(type);
+        return typeMapper.updateType(type);
     }
 
     @Transactional
     @Override
     public int deleteTypeByTypeId(Type type) {
-        return adminMapper.deleteTypeByTypeId(type);
+        return typeMapper.deleteTypeByTypeId(type);
     }
 
     @Transactional
@@ -60,7 +61,7 @@ public class TypeServiceImpl implements TypeService {
         int pageNum = pageRequest.getPageNum();
         int pageSize = pageRequest.getPageSize();
         PageHelper.startPage(pageNum, pageSize);
-        List<Type> typeList = adminMapper.getTypesByPage();
+        List<Type> typeList = typeMapper.getTypesByPage();
         /*System.out.println("typeList.toString()="+typeList.toString());*/
         return new PageInfo<Type>(typeList);
     }
