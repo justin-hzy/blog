@@ -39,8 +39,13 @@ public class BlogController {
     }
 
     @PostMapping("data/addBlog")
-    public JSONResult addBlog(@RequestBody PageRequest pageRequest){
-        return null;
+    public JSONResult addBlog(@RequestBody Blog blog){
+        int result = blogService.addBlog(blog);
+        if (result!=0){
+            return JSONResult.build(200,"博客插入成功",result);
+        }else {
+            return JSONResult.build(500,"博客插入失败",result);
+        }
     }
 
     @PostMapping("data/updateBlog")
