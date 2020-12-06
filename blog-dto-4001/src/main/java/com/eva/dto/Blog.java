@@ -76,6 +76,8 @@ public class Blog implements Serializable {
 
     private Date updatetime;
 
+    private String delete_flag;
+
     private static final long serialVersionUID = 1L;
 
     public String getBlogId() {
@@ -207,30 +209,34 @@ public class Blog implements Serializable {
         this.description = description;
     }
 
+    public String getDelete_flag() {
+        return delete_flag;
+    }
+
+    public void setDelete_flag(String delete_flag) {
+        this.delete_flag = delete_flag;
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", blogId=").append(blogId);
-        sb.append(", title=").append(title);
-        sb.append(", content=").append(content);
-        sb.append(", userId=").append(userId);
-        sb.append(", typeId=").append(typeId);
-        sb.append(", firstpicture=").append(firstpicture);
-        sb.append(", description=").append(description);
-        sb.append(", flag=").append(flag);
-        sb.append(", views=").append(views);
-        sb.append(", appreciation=").append(appreciation);
-        sb.append(", sharestatement=").append(sharestatement);
-        sb.append(", commenttabled=").append(commenttabled);
-        sb.append(", published=").append(published);
-        sb.append(", recommend=").append(recommend);
-        sb.append(", createtime=").append(createtime);
-        sb.append(", updatetime=").append(updatetime);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+        return "Blog{" +
+                "blogId='" + blogId + '\'' +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", userId='" + userId + '\'' +
+                ", typeId='" + typeId + '\'' +
+                ", firstpicture='" + firstpicture + '\'' +
+                ", description='" + description + '\'' +
+                ", flag='" + flag + '\'' +
+                ", views=" + views +
+                ", appreciation='" + appreciation + '\'' +
+                ", sharestatement='" + sharestatement + '\'' +
+                ", commenttabled='" + commenttabled + '\'' +
+                ", published='" + published + '\'' +
+                ", recommend='" + recommend + '\'' +
+                ", createtime=" + createtime +
+                ", updatetime=" + updatetime +
+                ", delete_flag='" + delete_flag + '\'' +
+                '}';
     }
 }

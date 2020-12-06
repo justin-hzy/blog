@@ -1,5 +1,6 @@
 package com.eva.Impl;
 
+import com.eva.dto.Blog;
 import com.eva.dto.Tag;
 import com.eva.dto.Type;
 import com.eva.dto.User;
@@ -102,6 +103,16 @@ public class FeignFallBack implements FeignService {
     @Override
     public JSONResult deleteTagByTagId(Tag tag) {
         return JSONResult.build(201,"deleteTagByTagId服务降级",null);
+    }
+
+    @Override
+    public JSONResult getBlogsByPage(PageRequest pageRequest) {
+        return JSONResult.build(201,"getBlogsByPage服务降级",null);
+    }
+
+    @Override
+    public JSONResult getBlogsByBlogId(Blog blog) {
+        return JSONResult.build(201,"getBlogsByBlogId服务降级",null);
     }
 
 
