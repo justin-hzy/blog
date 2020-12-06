@@ -2,8 +2,12 @@ package com.eva.controller;
 
 import com.eva.dto.Blog;
 import com.eva.service.BlogService;
+import com.eva.utils.JSONResult;
 import com.eva.vo.BlogsVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,15 +18,19 @@ import java.util.List;
 @RequestMapping("/blogs")
 public class BlogsController {
 
+    private static final Logger logger = LoggerFactory.getLogger(BlogsController.class);
+
     @Autowired
     BlogService blogService;
 
 //查询博客列表
-    @RequestMapping(value = "/selectBlogs")
-    public List<BlogsVo> selectBlogs(){
+    @PostMapping(value = "/selectBlogs")
+    public JSONResult selectBlogs(){
+        logger.info("进入selectBlogs");
         List<BlogsVo> result = new ArrayList<>();
         result= blogService.selectBlogs();
-        return result;
+        logger.info(result.toString());
+        return JSONResult.build(200,"",result);
     }
 
 //    点击查看博客详情

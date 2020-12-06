@@ -12,6 +12,8 @@ public class Type implements Serializable {
 
     private String typeName;
 
+    private String deleteFlag;
+
     private static final long serialVersionUID = 1L;
 
     public String getTypeId() {
@@ -28,6 +30,18 @@ public class Type implements Serializable {
 
     public void setTypeName(String name) {
         this.typeName = name;
+    }
+
+    public String getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(String deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     @Override

@@ -1,9 +1,9 @@
 package com.eva.service.Impl;
 
-import com.eva.dto.Type;
+import com.eva.dto.Tag;
 import com.eva.mapper.AdminMapper;
-import com.eva.mapper.TypeMapper;
-import com.eva.service.TypeService;
+import com.eva.mapper.TagMapper;
+import com.eva.service.TagService;
 import com.eva.utils.PageRequest;
 import com.eva.utils.PageResult;
 import com.eva.utils.PageUtils;
@@ -14,41 +14,43 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
-public class TypeServiceImpl implements TypeService {
+public class TagServiceImpl implements TagService {
 
     @Autowired
-    private TypeMapper typeMapper;
+    private TagMapper tagMapper;
 
     @Transactional
     @Override
-    public int addType(Type type) {
-        int flag = typeMapper.addType(type);
-        return flag;
+    public int addTag(Tag tag) {
+
+        tag.setTagId(UUID.randomUUID().toString().replace("-",""));
+        return tagMapper.addTag(tag);
     }
 
     @Transactional
     @Override
-    public Type getTypeByTypeId(Type type) {
-        return typeMapper.getTypeByTypeId(type.getTypeId());
+    public Tag getTagByTagId(Tag tag) {
+        return tagMapper.getTagByTagId(tag);
     }
 
     @Transactional
     @Override
-    public int updateType(Type type) {
-        return typeMapper.updateType(type);
+    public int updateTag(Tag tag) {
+        return tagMapper.updateTag(tag);
     }
 
     @Transactional
     @Override
-    public int deleteTypeByTypeId(Type type) {
-        return typeMapper.deleteTypeByTypeId(type);
+    public int deleteTagByTagId(Tag tag) {
+        return tagMapper.deleteTagByTagId(tag);
     }
 
     @Transactional
     @Override
-    public PageResult getTypeByPage(PageRequest pageRequest) {
+    public PageResult getTagsByPage(PageRequest pageRequest) {
         return PageUtils.getPageResult(pageRequest,getPageInfo(pageRequest));
     }
 
@@ -57,12 +59,12 @@ public class TypeServiceImpl implements TypeService {
      * @param pageRequest
      * @return
      */
-    private PageInfo<Type> getPageInfo(PageRequest pageRequest) {
+    private PageInfo<Tag> getPageInfo(PageRequest pageRequest) {
         int pageNum = pageRequest.getPageNum();
         int pageSize = pageRequest.getPageSize();
         PageHelper.startPage(pageNum, pageSize);
-        List<Type> typeList = typeMapper.getTypesByPage();
-        /*System.out.println("typeList.toString()="+typeList.toString());*/
-        return new PageInfo<Type>(typeList);
+        List<Tag> tagList = tagMapper.getTagsByPage();
+        System.out.println("typeList.toString()="+tagList.toString());
+        return new PageInfo<Tag>(tagList);
     }
 }

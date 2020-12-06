@@ -12,6 +12,9 @@ ribbon:
   MaxAutoRetries: 0 #对当前实例的重试次数(默认为0)
   MaxAutoRetriesNextServer: 0 #切换实例的重试次数(默认为0)
   OkToRetryOnAllOperations: true #对所有操作请求都进行重试
+  eager-load:
+    enabled: true
+    clients: controller-admin,controller-user
 
 hystrix:
   command:

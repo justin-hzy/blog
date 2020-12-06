@@ -1,9 +1,10 @@
 package com.eva.controller;
 
+import com.eva.dto.Tag;
 import com.eva.dto.Type;
 import com.eva.dto.User;
-import com.eva.mapper.AdminMapper;
 import com.eva.service.AdminService;
+import com.eva.service.TagService;
 import com.eva.service.TypeService;
 import com.eva.utils.JSONResult;
 import com.eva.utils.PageRequest;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -28,12 +28,6 @@ public class AdminController {
 
     @Autowired
     private AdminService userService;
-
-    @Autowired
-    private TypeService typeService;
-
-    @Autowired
-    private AdminMapper userMapper;
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
@@ -55,27 +49,4 @@ public class AdminController {
         }
     }
 
-    @PostMapping("data/addType")
-    public JSONResult addType(Type type){
-        logger.info("进入addType");
-        String uuId = UUID.randomUUID().toString().replace("-","");
-        type.setTypeId(uuId);
-        int flag = typeService.addType(type);
-        if (flag==1){
-            return JSONResult.build(500,"提交成功",null);
-        }else{
-            return JSONResult.build(200,"提交失败",null);
-        }
-    }
-
-    @PostMapping("/getTypeByPage")
-    public JSONResult getTypeByPage(@RequestBody PageRequest pageRequest ){
-        logger.info("进入getTypeByPage");
-        PageResult pageResult = typeService.getTypeByPage(pageRequest);
-        if (pageResult!=null){
-            return JSONResult.build(200,"查询分页成功",pageResult);
-        }else{
-            return JSONResult.build(500,"查询分页失败",null);
-        }
-    }
 }

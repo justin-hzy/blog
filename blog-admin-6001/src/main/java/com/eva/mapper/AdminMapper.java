@@ -1,6 +1,6 @@
 package com.eva.mapper;
 
-import com.eva.dto.Type;
+import com.eva.dto.Tag;
 import com.eva.dto.User;
 import org.springframework.stereotype.Repository;
 
@@ -15,8 +15,4 @@ public interface AdminMapper {
     User findByUsernameAndPassword(Map map);
 
     User getUser(User user);
-
-    int addType(Type type);
-
-    List<Type> getTypesByPage();
 }

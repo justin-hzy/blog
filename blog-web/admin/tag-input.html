@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>分类新增</title>
+    <title>标签新增</title>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     <script src="../static/lib/editormd/editormd.min.js"></script>
@@ -60,8 +60,8 @@
             <form class="ui form">
                 <div class="field">
                     <div class="ui left labeled input">
-                        <label class="ui teal basic label">名称</label>
-                        <input id="typeName" type="text" name="typeName" placeholder="分类名称">
+                        <label class="ui teal basic label">标签名称</label>
+                        <input id="tagName" type="text" name="tagName" placeholder="标签名称">
                     </div>
                 
                 </div>
@@ -169,19 +169,20 @@
     /* 提交标签信息函数 */
     function submitClick(){
         $("#sumbitButton").click(function(){
-            var typeName = $("#typeName").val();
+            var tagName = $("#tagName").val();
             var token = localStorage.getItem("token");
-            if(checkType(typeName)){
+            if(checkType(tagName)){
                     $.ajax({
                     type:"post",
                     headers:{'Authorization': token},
                     data:{
-                        "typeName":typeName,
+                        "tagName":tagName,
                     },
-                    url:addTypeUrl,
+                    url:addTagUrl,
                     async:true,
                     success:function(result){
-                        $(location).attr('href',typesPage);
+                        console.log(result)
+                        $(location).attr('href',tagsPage);
                     }
                 })
             }else{

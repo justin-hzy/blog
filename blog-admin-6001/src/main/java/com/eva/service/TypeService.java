@@ -8,11 +8,11 @@ public interface TypeService {
 
     int addType(Type type);
 
-    Type getType(Long id);
+    Type getTypeByTypeId(Type type);
 
-    Type updateType(Long id,Type type);
+    int updateType(Type type);
 
-    int deleteType(Type type);
+    int deleteTypeByTypeId(Type type);
 
     PageResult getTypeByPage(PageRequest pageQuery);
 }

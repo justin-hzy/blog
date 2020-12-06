@@ -1,5 +1,6 @@
 package com.eva.Impl;
 
+import com.eva.dto.Tag;
 import com.eva.dto.Type;
 import com.eva.dto.User;
 import com.eva.service.FeignService;
@@ -62,4 +63,46 @@ public class FeignFallBack implements FeignService {
     public JSONResult getTypeByPage(PageRequest pageRequest) {
         return JSONResult.build(201,"getTypeByPage服务降级",null);
     }
+
+    @Override
+    public JSONResult getTypeByTypeId(Type type) {
+        return JSONResult.build(201,"getTypeByTypeId服务降级",null);
+    }
+
+    @Override
+    public JSONResult updateType(Type type) {
+        return JSONResult.build(201,"updateType服务降级",null);
+    }
+
+    @Override
+    public JSONResult deleteTypeByTypeId(Type type) {
+        return JSONResult.build(201,"deleteTypeByTypeId服务降级",null);
+    }
+
+    @Override
+    public JSONResult getTagsByPage(PageRequest pageRequest) {
+        return JSONResult.build(201,"getTagsByPage服务降级",null);
+    }
+
+    @Override
+    public JSONResult getTagByTagId(Tag tag) {
+        return JSONResult.build(201,"getTagByTagId服务降级",null);
+    }
+
+    @Override
+    public JSONResult updateTag(Tag tag) {
+        return JSONResult.build(201,"updateTag服务降级",null);
+    }
+
+    @Override
+    public JSONResult addTag(Tag tag) {
+        return JSONResult.build(201,"addTag服务降级",null);
+    }
+
+    @Override
+    public JSONResult deleteTagByTagId(Tag tag) {
+        return JSONResult.build(201,"deleteTagByTagId服务降级",null);
+    }
+
+
 }
