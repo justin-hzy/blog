@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eva.mapper.BlogMapper">
+
+    <resultMap id="BaseBlogMap" type="com.eva.dto.Blog">
+        <id column="blog_id" jdbcType="INTEGER" property="blogId" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="content" jdbcType="VARCHAR" property="content" />
+        <result column="type_id" jdbcType="INTEGER" property="typeId" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="firstPicture" jdbcType="VARCHAR" property="firstpicture" />
+        <result column="flag" jdbcType="VARCHAR" property="flag" />
+        <result column="views" jdbcType="VARCHAR" property="views" />
+        <result column="appreciation" jdbcType="VARCHAR" property="appreciation" />
+        <result column="shareStatement" jdbcType="VARCHAR" property="sharestatement" />
+        <result column="commentTabled" jdbcType="VARCHAR" property="commenttabled" />
+        <result column="published" jdbcType="VARCHAR" property="published" />
+        <result column="recommend" jdbcType="VARCHAR" property="recommend" />
+        <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+        <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    </resultMap>
+
+<!--    <resultMap id="BlogsVo" extends="BaseBlogMap" type="com.eva.vo.BlogsVo">
+        <association property="user" resultMap="com.eva.mapper.UserMapper.BaseUserMap"/>
+        <association property="type" resultMap="com.eva.mapper.TypeMapper.BaseTypeMap"/>
+        <collection property="tags" javaType="list" resultMap="com.eva.mapper.TagMapper.BaseTagMap"/>
+    </resultMap>-->
+    
+    <select id="getBlogsByPage" resultMap="BaseBlogMap">
+        select * from blog where delete_flag = 0
+    </select>
+
+    <select id="getBlogByBlogId" parameterType="com.eva.dto.Blog" resultMap="BaseBlogMap">
+        select * from blog where blog_id = #{blogId} and delete_flag = '0'
+    </select>
+
+
+
+    <insert id="addBlog" parameterType="com.eva.dto.Blog">
+        insert into blog values
+        (#{blogId},#{title},#{content},{#userId},#{typeId},#{firstpicture},#{description},#{flag},#{views},#{appreciation},#{sharestatement},#{commenttabled},#{published},#{recommend},#{createtime},#{updatetime},'0');
+    </insert>
+
+
+
+    <update id="updateBlog" parameterType="com.eva.dto.Blog">
+        update blog set blog_name = #{BlogName} where Blog_id = #{BlogId}
+    </update>
+
+    <delete id="deleteBlogByBlogId" parameterType="com.eva.dto.Blog">
+        update blog set delete_flag = '1' where Blog_id = #{BlogId}
+    </delete>
+</mapper>

@@ -1,6 +1,7 @@
 package com.eva.service;
 
 import com.eva.Impl.FeignFallBack;
+import com.eva.dto.Blog;
 import com.eva.dto.Tag;
 import com.eva.dto.Type;
 import com.eva.dto.User;
@@ -9,6 +10,7 @@ import com.eva.utils.PageRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -71,4 +73,11 @@ public interface FeignService {
 
     @PostMapping("/admin/data/deleteTagByTagId")
     JSONResult deleteTagByTagId(Tag tag);
+
+    @PostMapping("/admin/getBlogsByPage")
+    JSONResult getBlogsByPage(@RequestBody PageRequest pageRequest);
+
+    @PostMapping("/admin/getBlogsByBlogId")
+    JSONResult getBlogsByBlogId(@RequestBody Blog blog);
+
 }

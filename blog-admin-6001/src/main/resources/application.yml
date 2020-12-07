@@ -19,8 +19,8 @@ spring:
     name: blog-admin
   datasource:
     username: root
-    password: 123456
-    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    password: Hzy_1234
+    url: jdbc:mysql://47.115.36.38:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
   redis:
     host: 95.169.19.152
@@ -58,6 +58,13 @@ second:
   password: 123456
   url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
   driver-class-name: com.mysql.cj.jdbc.Driver
+
+third:
+  username: root
+  password: Hzy_1234
+  url: jdbc:mysql://47.115.36.38:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+  driver-class-name: com.mysql.cj.jdbc.Driver
+
 logging:
   level:
     com.eva.mapper : debug
