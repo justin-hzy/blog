@@ -20,6 +20,7 @@
         <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
     </resultMap>
 
+<<<<<<< HEAD
     <select id="getBlogsByPage" resultMap="BaseBlogMap">
         select * from tag where delete_flag = 0
     </select>
@@ -38,5 +39,36 @@
 
     <delete id="deleteBlogByBlogId" parameterType="com.eva.dto.Tag">
         update tag set delete_flag = '1' where tag_id = #{tagId}
+=======
+<!--    <resultMap id="BlogsVo" extends="BaseBlogMap" type="com.eva.vo.BlogsVo">
+        <association property="user" resultMap="com.eva.mapper.UserMapper.BaseUserMap"/>
+        <association property="type" resultMap="com.eva.mapper.TypeMapper.BaseTypeMap"/>
+        <collection property="tags" javaType="list" resultMap="com.eva.mapper.TagMapper.BaseTagMap"/>
+    </resultMap>-->
+    
+    <select id="getBlogsByPage" resultMap="BaseBlogMap">
+        select * from blog where delete_flag = 0
+    </select>
+
+    <select id="getBlogByBlogId" parameterType="com.eva.dto.Blog" resultMap="BaseBlogMap">
+        select * from blog where blog_id = #{blogId} and delete_flag = '0'
+    </select>
+
+
+
+    <insert id="addBlog" parameterType="com.eva.dto.Blog">
+        insert into blog values
+        (#{blogId},#{title},#{content},{#userId},#{typeId},#{firstpicture},#{description},#{flag},#{views},#{appreciation},#{sharestatement},#{commenttabled},#{published},#{recommend},#{createtime},#{updatetime},'0');
+    </insert>
+
+
+
+    <update id="updateBlog" parameterType="com.eva.dto.Blog">
+        update blog set blog_name = #{BlogName} where Blog_id = #{BlogId}
+    </update>
+
+    <delete id="deleteBlogByBlogId" parameterType="com.eva.dto.Blog">
+        update blog set delete_flag = '1' where Blog_id = #{BlogId}
+>>>>>>> a507214e36606081bf939299c734955cc28349be
     </delete>
 </mapper>
