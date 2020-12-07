@@ -1,6 +1,10 @@
 package com.eva.mapper;
 
+
+
+
 import com.eva.dto.Blog;
+
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,4 +21,5 @@ public interface BlogMapper {
     Blog getBlogByBlogId(Blog Blog);
 
     int deleteBlogByBlogId(Blog Blog);
+
 }

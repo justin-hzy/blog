@@ -1,5 +1,13 @@
 package com.eva.controller;
 
+<<<<<<< HEAD
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@RequestMapping
+public class BlogController {
+
+
+=======
 import com.eva.dto.Blog;
 import com.eva.service.BlogService;
 import com.eva.utils.JSONResult;
@@ -57,4 +65,5 @@ public class BlogController {
     public JSONResult deleteBlogByBlogId(@RequestBody PageRequest pageRequest){
         return null;
     }
+>>>>>>> a507214e36606081bf939299c734955cc28349be
 }
