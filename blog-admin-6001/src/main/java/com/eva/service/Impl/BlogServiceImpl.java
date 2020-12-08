@@ -15,7 +15,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+import java.util.logging.SimpleFormatter;
 
 @Service
 public class BlogServiceImpl implements BlogService {
@@ -31,6 +36,12 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public int addBlog(Blog blog) {
+        blog.setBlogId(UUID.randomUUID().toString().replace("-",""));
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new  SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        blog.setCreatetime(new Date());
+        blog.setUpdatetime(new Date());
         return blogMapper.addBlog(blog);
     }
 
@@ -41,12 +52,12 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public int updateBlog(Blog blog) {
-        return 0;
+        return blogMapper.updateBlog(blog);
     }
 
     @Override
     public int deleteBlogByBlogId(Blog blog) {
-        return 0;
+        return blogMapper.deleteBlogByBlogId(blog);
     }
 
     /**

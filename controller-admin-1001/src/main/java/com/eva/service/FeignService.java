@@ -80,4 +80,12 @@ public interface FeignService {
     @PostMapping("/admin/getBlogsByBlogId")
     JSONResult getBlogsByBlogId(@RequestBody Blog blog);
 
+    @PostMapping("/admin/data/addBlog")
+    JSONResult addBlog(Blog blog);
+
+    @PostMapping("/admin/data/updateBlog")
+    JSONResult updateBlog(Blog blog);
+
+    @PostMapping("/admin/data/deleteBlogByBlogId")
+    JSONResult deleteBlogByBlogId(Blog blog);
 }

@@ -115,5 +115,20 @@ public class FeignFallBack implements FeignService {
         return JSONResult.build(201,"getBlogsByBlogId服务降级",null);
     }
 
+    @Override
+    public JSONResult addBlog(Blog blog) {
+        return JSONResult.build(201,"addBlog服务降级",null);
+    }
+
+    @Override
+    public JSONResult updateBlog(Blog blog) {
+        return JSONResult.build(201,"updateBlog服务降级",null);
+    }
+
+    @Override
+    public JSONResult deleteBlogByBlogId(Blog blog) {
+        return JSONResult.build(201,"deleteBlogByBlogId服务降级",null);
+    }
+
 
 }
