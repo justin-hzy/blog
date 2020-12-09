@@ -23,7 +23,7 @@ spring:
     url: jdbc:mysql://47.115.36.38:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
   redis:
-    host: 95.169.19.152
+    host: 47.115.36.38
     port: 6379
     password: myredis_123
     timeout: 3000
@@ -47,23 +47,30 @@ pagehelper:
   params: count=countSql
 
 
-primary:
+mysql-primary:
   username: root
   password: Hzy_a1234567890123
   url: jdbc:mysql://95.169.19.152:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
   driver-class-name: com.mysql.cj.jdbc.Driver
 
-second:
+mysql-second:
   username: root
   password: 123456
   url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
   driver-class-name: com.mysql.cj.jdbc.Driver
 
-third:
+mysql-third:
   username: root
   password: Hzy_1234
   url: jdbc:mysql://47.115.36.38:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
   driver-class-name: com.mysql.cj.jdbc.Driver
+
+reids-primary:
+  host: 95.169.19.152
+
+redis-second:
+  host: 47.115.36.38
+
 
 logging:
   level:

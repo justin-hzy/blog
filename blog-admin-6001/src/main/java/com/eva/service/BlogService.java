@@ -6,6 +6,8 @@ import com.eva.utils.JSONResult;
 import com.eva.utils.PageRequest;
 import com.eva.utils.PageResult;
 
+import java.util.List;
+
 public interface BlogService {
 
     public PageResult getBlogsByPage(PageRequest pageRequest);
@@ -17,4 +19,6 @@ public interface BlogService {
     int updateBlog(Blog blog);
 
     int deleteBlogByBlogId(Blog blog);
+
+    boolean getBlogByAll();
 }

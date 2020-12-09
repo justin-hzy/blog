@@ -178,4 +178,8 @@
     <delete id="deleteBlogByBlogId" parameterType="com.eva.dto.Blog">
         update blog set delete_flag = '1' where blog_id = #{blogId}
     </delete>
+
+    <select id="getBlogByAll" resultMap="BaseBlogMap">
+        select * from blog;
+    </select>
 </mapper>
