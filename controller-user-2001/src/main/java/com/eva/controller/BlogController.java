@@ -6,10 +6,7 @@ import com.eva.utils.JSONResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,12 +20,21 @@ public class BlogController {
     private FeignService feignService;
 
     @PostMapping(value = "/selectBlogs")
-    public JSONResult selectBlogs(){
+    public JSONResult selectBlogs(@RequestParam(value = "pageNum") Integer pageNum){
         logger.info("进入selectBlogs");
-        JSONResult jsonResult = feignService.selectBlogs();
+        JSONResult jsonResult = feignService.selectBlogs(pageNum);
 
         return jsonResult;
     }
+
+    @PostMapping(value = "/selectBlogsByRecommend")
+    public JSONResult selectBlogsByRecommend(){
+        logger.info("进入selectBlogsByRecommend");
+        JSONResult jsonResult = feignService.selectBlogsByRecommend();
+
+        return jsonResult;
+    }
+
 }
 
 

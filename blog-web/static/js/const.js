@@ -22,6 +22,9 @@ var updateTagApi = "/blog/ad/admin/data/updateTag"
 var deleteTagByTagIdApi = "/blog/ad/admin/data/deleteTagByTagId"
 
 var getBlogsApi="/blog/user/blogs/selectBlogs"
+var getTypesApi="/blog/user/types/selectTypes"
+var getTagsApi="/blog/user/tags/selectTags"
+var getRecommendApi="/blog/user/blogs/selectBlogsByRecommend"
 /**
  * 请求url地址
  */
@@ -45,8 +48,9 @@ var deleteTagByTagIdUrl = domain1+deleteTagByTagIdApi;
 
 
 var getBlogsUrl = domain1+getBlogsApi
-
-
+var getTypesUrl = domain1+getTypesApi
+var getTagsUrl = domain1+getTagsApi
+var getRecommendUrl = domain1+getRecommendApi
 /**
  * 前端跳转 地址
  */

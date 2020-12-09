@@ -3,12 +3,13 @@
 <mapper namespace="com.eva.mapper.BlogMapper">
 
     <resultMap id="BaseBlogMap" type="com.eva.dto.Blog">
-        <id column="blog_id" jdbcType="INTEGER" property="blogId" />
+        <id column="blog_id" jdbcType="VARCHAR" property="blogId" />
         <result column="title" jdbcType="VARCHAR" property="title" />
         <result column="content" jdbcType="VARCHAR" property="content" />
         <result column="type_id" jdbcType="INTEGER" property="typeId" />
         <result column="user_id" jdbcType="INTEGER" property="userId" />
         <result column="firstPicture" jdbcType="VARCHAR" property="firstpicture" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
         <result column="flag" jdbcType="VARCHAR" property="flag" />
         <result column="views" jdbcType="VARCHAR" property="views" />
         <result column="appreciation" jdbcType="VARCHAR" property="appreciation" />
@@ -28,7 +29,7 @@
 
     <select id="selectBlogByID" resultMap="BaseBlogMap">
         select
-        b.blog_id,b.title,b.content,b.firstpicture,b.flag,b.views,
+        b.blog_id,b.title,b.content,b.firstpicture,b.description,b.flag,b.views,
         b.appreciation,b.sharestatement,b.commenttabled,b.published,b.recommend,b.createtime,
         t1.type_id,t1.type_name,t3.tag_id,t3.tag_name,
         u.id,u.username,u.nickname,u.email,u.avatar
@@ -45,7 +46,7 @@
 
     <select id="selectBlogsByTag" resultMap="BaseBlogMap">
         select
-        b.blog_id,b.title,b.content,b.firstpicture,b.flag,b.views,
+        b.blog_id,b.title,b.content,b.firstpicture,b.description,b.flag,b.views,
         b.appreciation,b.sharestatement,b.commenttabled,b.published,b.recommend,b.createtime,
         t1.type_id,t1.type_name,t3.tag_id,t3.tag_name,
         u.id,u.username,u.nickname,u.email,u.avatar
@@ -62,7 +63,7 @@
 
     <select id="selectBlogsByType" resultMap="BaseBlogMap">
         select
-        b.blog_id,b.title,b.content,b.firstpicture,b.flag,b.views,
+        b.blog_id,b.title,b.content,b.firstpicture,b.description,b.flag,b.views,
         b.appreciation,b.sharestatement,b.commenttabled,b.published,b.recommend,b.createtime,
         t1.type_id,t1.type_name,t3.tag_id,t3.tag_name,
         u.id,u.username,u.nickname,u.email,u.avatar
@@ -79,7 +80,7 @@
 
     <select id="selectBlogs" resultMap="BlogsVo">
         select
-        b.blog_id,b.title,b.content,b.firstpicture,b.flag,b.views,
+        b.blog_id,b.title,b.content,b.firstpicture,b.description,b.flag,b.views,
         b.appreciation,b.sharestatement,b.commenttabled,b.published,b.recommend,b.createtime,
         t1.type_id,t1.type_name,t3.tag_id,t3.tag_name,
         u.id,u.username,u.nickname,u.email,u.avatar
@@ -92,6 +93,10 @@
         on b.blog_id=t2.blog_id
         left join tag t3
         on t2.tag_id=t3.tag_id
+        limit #{pageNum},#{pageNum2}
+    </select>
+    <select id="selectBlogsByRecommend" resultMap="BaseBlogMap">
+        select * from blog where recommend ='1' order by updateTime
     </select>
 
 
