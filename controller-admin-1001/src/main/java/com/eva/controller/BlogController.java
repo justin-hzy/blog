@@ -37,7 +37,24 @@ public class BlogController {
         return  jsonResult;
     }
 
+    @PostMapping("/data/addBlog")
+    public JSONResult addBlog(Blog blog){
+        logger.info("进入addBlog");
+        JSONResult jsonResult = feignService.addBlog(blog);
+        return  jsonResult;
+    }
 
+    @PostMapping("/data/updateBlog")
+    public JSONResult updateBlog(Blog blog){
+        logger.info("进入updateBlog");
+        JSONResult jsonResult = feignService.updateBlog(blog);
+        return  jsonResult;
+    }
 
-
+    @PostMapping("/data/deleteBlogByBlogId")
+    public JSONResult deleteBlogByBlogId(Blog blog){
+        logger.info("进入deleteBlogByBlogId");
+        JSONResult jsonResult = feignService.deleteBlogByBlogId(blog);
+        return  jsonResult;
+    }
 }

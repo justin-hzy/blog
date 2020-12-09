@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eva.mapper.BlogMapper">
-
     <resultMap id="BaseBlogMap" type="com.eva.dto.Blog">
         <id column="blog_id" jdbcType="INTEGER" property="blogId" />
         <result column="title" jdbcType="VARCHAR" property="title" />
@@ -19,27 +18,23 @@
         <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
         <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
     </resultMap>
-
-<<<<<<< HEAD
-    <select id="getBlogsByPage" resultMap="BaseBlogMap">
-        select * from tag where delete_flag = 0
-    </select>
-
-    <select id="getBlogByBlogId" parameterType="com.eva.dto.Tag" resultMap="BaseBlogMap">
-        select * from tag where tag_id = #{tagId} and delete_flag = '0'
-    </select>
-
-    <insert id="addBlog" parameterType="com.eva.dto.Tag">
-        insert into tag values (#{tagId},#{tagName},'0');
-    </insert>
-
-    <update id="updateBlog" parameterType="com.eva.dto.Tag">
-        update tag set tag_name = #{tagName} where tag_id = #{tagId}
-    </update>
-
-    <delete id="deleteBlogByBlogId" parameterType="com.eva.dto.Tag">
-        update tag set delete_flag = '1' where tag_id = #{tagId}
-=======
+    <parameterMap id="BaseBlogMap" type="com.eva.dto.Blog">
+        <parameter property="blogId" resultMap="BaseBlogMap"/>
+        <parameter   property="title" />
+        <parameter   property="content" />
+        <parameter   property="typeId" />
+        <parameter   property="userId" />
+        <parameter   property="firstpicture" />
+        <parameter   property="flag" />
+        <parameter   property="views" />
+        <parameter   property="appreciation" />
+        <parameter   property="sharestatement" />
+        <parameter   property="commenttabled" />
+        <parameter   property="published" />
+        <parameter   property="recommend" />
+        <parameter   property="createtime" />
+        <parameter   property="updatetime" />
+    </parameterMap>
 <!--    <resultMap id="BlogsVo" extends="BaseBlogMap" type="com.eva.vo.BlogsVo">
         <association property="user" resultMap="com.eva.mapper.UserMapper.BaseUserMap"/>
         <association property="type" resultMap="com.eva.mapper.TypeMapper.BaseTypeMap"/>
@@ -54,21 +49,137 @@
         select * from blog where blog_id = #{blogId} and delete_flag = '0'
     </select>
 
+    <sql id="addBlogKey">
+        <trim suffixOverrides=",">
+            <if test="blogId!=null and blogId!='' ">
+                blog_id,
+            </if>
+            <if test="title!=null and title!='' ">
+                title,
+            </if>
+            <if test="content!=null and content!='' ">
+                content,
+            </if>
+            <if test="userId!=null and userId!='' ">
+                user_id,
+            </if>
+            <if test="typeId!=null and typeId!='' ">
+                type_id,
+            </if>
+            <if test="firstpicture!=null and firstpicture!='' ">
+                firstpicture,
+            </if>
+            <if test="description!=null and description!='' ">
+                description,
+            </if>
+            <if test="flag!=null and flag!='' ">
+                flag,
+            </if>
+            <if test="views!=null and views!='' ">
+                views,
+            </if>
+            <if test="appreciation!=null and appreciation!='' ">
+                appreciation,
+            </if>
+            <if test="sharestatement!=null and sharestatement!='' ">
+                sharestatement,
+            </if>
+            <if test="commenttabled!=null and sharestatement!='' ">
+                commenttabled,
+            </if>
+            <if test="published!=null and published!='' " >
+                published,
+            </if>
+            <if test="recommend!=null and recommend!='' ">
+                recommend,
+            </if>
+            <if test="createtime!=null ">
+                createtime,
+            </if>
+            <if test="updatetime!=null">
+                updatetime,
+            </if>
+            <if test="deleteFlag!=null and deleteFlag!='' ">
+                delete_flag,
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="addBlogValue">
+        <trim suffixOverrides=",">
+            <if test="blogId!=null and blogId!='' ">
+                #{blogId},
+            </if>
+            <if test="title!=null and title!='' ">
+                #{title},
+            </if>
+            <if test="content!=null and content!='' ">
+                #{content},
+            </if>
+            <if test="userId!=null and userId!='' ">
+                #{userId},
+            </if>
+            <if test="typeId!=null and typeId!='' ">
+                #{typeId},
+            </if>
+            <if test="firstpicture!=null and firstpicture!='' ">
+                #{firstpicture},
+            </if>
+            <if test="description!=null and description!='' ">
+                #{description},
+            </if>
+            <if test="flag!=null and flag!='' ">
+                #{flag},
+            </if>
+            <if test="views!=null and views!='' ">
+                #{views},
+            </if>
+            <if test="appreciation!=null and appreciation!='' ">
+                #{appreciation},
+            </if>
+            <if test="sharestatement!=null and sharestatement!='' ">
+                #{sharestatement},
+            </if>
+            <if test="commenttabled!=null and commenttabled!='' ">
+                #{commenttabled},
+            </if>
+            <if test="published!=null and published!='' ">
+                #{published},
+            </if>
+            <if test="recommend!=null and recommend!='' ">
+                #{recommend},
+            </if>
+            <if test="createtime!=null">
+                #{createtime},
+            </if>
+            <if test="updatetime!=null">
+                #{updatetime},
+            </if>
+            <if test="deleteFlag!=null and deleteFlag!='' ">
+                #{deleteFlag},
+            </if>
+        </trim>
+    </sql>
 
 
-    <insert id="addBlog" parameterType="com.eva.dto.Blog">
+<!--    <insert id="addBlog" parameterType="com.eva.dto.Blog">
         insert into blog values
         (#{blogId},#{title},#{content},{#userId},#{typeId},#{firstpicture},#{description},#{flag},#{views},#{appreciation},#{sharestatement},#{commenttabled},#{published},#{recommend},#{createtime},#{updatetime},'0');
+    </insert>-->
+
+    <insert id="addBlog" parameterMap="BaseBlogMap">
+        insert into blog(<include refid="addBlogKey"/>) values(<include refid="addBlogValue"/>)
     </insert>
 
-
-
     <update id="updateBlog" parameterType="com.eva.dto.Blog">
-        update blog set blog_name = #{BlogName} where Blog_id = #{BlogId}
+        update blog set title = #{title},content=#{content} where blog_id = #{blogId}
     </update>
 
     <delete id="deleteBlogByBlogId" parameterType="com.eva.dto.Blog">
-        update blog set delete_flag = '1' where Blog_id = #{BlogId}
->>>>>>> a507214e36606081bf939299c734955cc28349be
+        update blog set delete_flag = '1' where blog_id = #{blogId}
     </delete>
+
+    <select id="getBlogByAll" resultMap="BaseBlogMap">
+        select * from blog;
+    </select>
 </mapper>

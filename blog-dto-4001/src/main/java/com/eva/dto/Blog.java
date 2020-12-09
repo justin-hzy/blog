@@ -76,7 +76,7 @@ public class Blog implements Serializable {
 
     private Date updatetime;
 
-    private String delete_flag;
+    private String deleteFlag;
 
     private static final long serialVersionUID = 1L;
 
@@ -210,11 +210,11 @@ public class Blog implements Serializable {
     }
 
     public String getDelete_flag() {
-        return delete_flag;
+        return deleteFlag;
     }
 
     public void setDelete_flag(String delete_flag) {
-        this.delete_flag = delete_flag;
+        this.deleteFlag = delete_flag;
     }
 
     @Override
@@ -236,7 +236,7 @@ public class Blog implements Serializable {
                 ", recommend='" + recommend + '\'' +
                 ", createtime=" + createtime +
                 ", updatetime=" + updatetime +
-                ", delete_flag='" + delete_flag + '\'' +
+                ", delete_flag='" + deleteFlag + '\'' +
                 '}';
     }
 }
