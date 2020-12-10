@@ -61,14 +61,14 @@
                     <div class="field">
                         <input type="text" name="title" placeholder="标题">
                     </div>
-                    <div class="field">
+                    <div id="typeField" class="field">
                         <div class="ui selection dropdown">
                             <input type="hiden" name="type">
                             <i class="dropdown icon"></i>
                             <div class="default text">分类</div>
-                            <div class="menu">
-                                <div class="item" data-value="1">错误日志</div>
-                                <div class="item" data-value="2">开发者手册</div>
+                            <div id="typeMenu" class="menu">
+                               <!--  <div class="item" data-value="1">错误日志</div>
+                                <div class="item" data-value="2">开发者手册</div> -->
                             </div>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                 </div>
             </form>
 
-            <table class="ui compact celled teal table">
+            <table id="blogsTable" class="ui compact celled teal table">
                 <thead>
                     <tr>
                         <th></th>
@@ -98,7 +98,7 @@
                         <th>操作</th>
                     </tr>
                 </thead>
-                <tbody>
+                <!-- <tbody>
                     <td>1</td>
                     <td>刻意联系清单</td>
                     <td>认知升级</td>
@@ -108,13 +108,13 @@
                         <a href="#" class="ui mini teal basic button">编辑</a>
                         <a href="#" class="ui mini red basic button">删除</a>
                     </td>
-                </tbody>
+                </tbody> -->
                 <tfoot>
                     <tr>
                         <th colspan="6">
                             <div class="ui mini floated pagination menu">
-                                <a href="#" class="icon item">上一页</a>
-                                <a href="#" class="icon item">下一页</a>
+                                <a id="lastPage"  class="icon item" style="display: none;">上一页</a>
+                                <a id="nextPage"  class="icon item">下一页</a>
                             </div>
                             <a href="#" class="ui mini right floated  teal basic button">新增</a>
                         </th>
@@ -161,8 +161,12 @@
 
 <!--    详情页新增-->
 <script>
+    var pageNum = 1;
+    var pageSize = 3;
+    var totalPage
     $(function(){
-        checkToken();
+        /* checkToken(); */
+        init();
     })
     $('.menu.toggle').click(function(){
         $('.m-item').toggleClass('m-mobile-hide');
@@ -170,7 +174,7 @@
     $('.ui.dropdown').dropdown({
         on : 'hover'
     });
-/*     function checkToken(){
+    function checkToken(){
     var token = localStorage.getItem("token");
     if(token==undefined){
         $(location).attr('href',loginPage);
@@ -194,7 +198,81 @@
                 }
             })
         }
-    } */
+    }
+    function init(){
+        getBlogsByPage();
+        /* lastPage();
+        nextPage(); */
+        getTypeMenu();
+        /* var url = window.location;
+        if(url.toString().indexOf("?")>=0){
+            checkStatus();
+        } */
+    }
+    function getBlogsByPage(){
+        $.ajax({
+            type:"post",
+            data:{
+                "pageNum":pageNum,
+                "pageSize":pageSize
+            },
+            url:getBlogsByPageUrl,
+            success:function(result){
+                if(result.data.content == undefined){
+                    
+                }else{
+                    showBlogs(result.data.content);
+                    totalPage = result.data.totalPages;
+                }
+            }
+        })
+    }
+    /* 渲染table数据 */
+    function showBlogs(content){
+        console.log(content)
+        //解析json字符串为json对象形式
+        var obj = content;
+        //动态拼接table
+        var trStr = '';
+        //循环遍历出json对象中的每一个数据并显示在对应的td中
+        $("#blogsTable tbody").remove();
+        for (var i = 0; i < obj.length; i++) {
+            trStr += '<tbody>';
+            trStr += '<td>' + obj[i].blogId + '</td>';//数据表的主键值
+            trStr += '<td>' + obj[i].title + '</td>';// 博客标题
+            trStr += '<td>' + obj[i].typeName + '</td>';// 博客类型
+            trStr += '<td>' + obj[i].recommend + '</td>';// 博客是否推荐
+            trStr += '<td>' + obj[i].updatetime + '</td>'; //博客更新时间
+            trStr += '<td><div class="ui mini teal basic button" onclick="editClick('+obj[i].tagId+')">编辑</div>'
+            trStr += '<div class="ui mini red basic button" onclick="deleteTagByTagId('+obj[i].tagId+')">删除</div></td>';  
+            trStr += '</tbody>';                   
+        }                   
+        /* console.log(trStr) */
+        $("#blogsTable").append(trStr);      
+    }
+    function getTypeMenu(){
+        $.ajax({
+            type:"post",
+            url:getTypeByAllUrl,
+            success:function(result){
+                if(result.data == undefined){
+                    
+                }else{
+                    showTypeMenu(result.data);
+                }
+            }
+        });
+    }
+    /* 渲染下拉框 */
+    function showTypeMenu(data){
+        console.log(data)
+        var divStr = ''
+        $("#typeMenu").remove();
+        for(var i = 0; i < data.length; i++){
+            divStr += '<div class="item" data-value="'+i+'">'+ data[i].typeName+'</div>';   
+        }
+        $("#typeMenu").append(divStr);
+    }
 </script>
 
 </body>

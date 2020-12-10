@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -81,4 +82,16 @@ public class TypeController {
             return JSONResult.build(500,"删除失败",null);
         }
     }
+
+    @PostMapping("/getTypeByAll")
+    public JSONResult getTypeByAll(){
+        logger.info("执行getTypeByAll");
+        List<Type> typeList = typeService.getTypeByAll();
+        if (typeList!=null){
+            return JSONResult.build(200,"查询所有标签成功",typeList);
+        }else{
+            return JSONResult.build(500,"查询所有标签失败",null);
+        }
+    }
+
 }

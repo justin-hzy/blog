@@ -5,6 +5,7 @@ package com.eva.mapper;
 
 import com.eva.dto.Blog;
 
+import com.eva.vo.BlogVo;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface BlogMapper {
 
     int addBlog(Blog Blog);
 
-    List<Blog> getBlogsByPage();
+    List<BlogVo> getBlogsByPage();
 
     int updateBlog(Blog Blog);
 

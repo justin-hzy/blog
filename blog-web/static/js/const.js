@@ -3,25 +3,27 @@ var domain1 = "http://"+document.domain+":80";
 
 /* 管理员登录模块 */
 var loginApi = "/blog/ad/admin/login"
-
-
 var getUserApi = "/blog/ad/admin/getUser"
 
 var getTokenApi = "/blog/ad/admin/getToken"
-/* 分类 */
+/* 管理员部分 */
+/* API地址 */
+/* 分类管理模块 */
 var addTypeApi = "/blog/ad/admin/data/addType"
 var getTypesByPageApi = "/blog/ad/admin/getTypeByPage"
 var getTypeByTypeIdApi = "/blog/ad/admin/getTypeByTypeId"
 var updateTypeApi = "/blog/ad/admin/data/updateType"
 var deleteTypeByTypeIdApi = "/blog/ad/admin/data/deleteTypeByTypeId"
-/* 标签 */
+/* 标签管理模块 */
 var addTagApi = "/blog/ad/admin/data/addTag"
 var getTagsByPageApi = "/blog/ad/admin/getTagsByPage"
 var getTagByTagIdApi = "/blog/ad/admin/getTagByTagId"
 var updateTagApi = "/blog/ad/admin/data/updateTag"
 var deleteTagByTagIdApi = "/blog/ad/admin/data/deleteTagByTagId"
+/* 博客管理模块 */
+var getBlogsByPageApi = "/blog/ad/admin/getBlogsByPage"
+var getTypeByAllApi = "/blog/ad/admin/getTypeByAll"
 
-var getBlogsApi="/blog/user/blogs/selectBlogs"
 /**
  * 请求url地址
  */
@@ -29,22 +31,25 @@ var loginUrl = domain1+loginApi;
 var getUserUrl = domain1+getUserApi;
 
 var getTokenUrl = domain1+getTokenApi;
-/* 分类 */
+/* 分类管理模块 */
 var addTypeUrl = domain1+addTypeApi;
 var getTypesByPageUrl = domain1+getTypesByPageApi
 var getTypeByTypeIdUrl = domain1+getTypeByTypeIdApi
 var updateTypeUrl = domain1+updateTypeApi
 var deleteTypeByTypeIdUrl = domain1+deleteTypeByTypeIdApi
 
-/* 标签 */
+/* 标签管理模块 */
 var addTagUrl = domain1+addTagApi
 var getTagsByPageUrl = domain1+getTagsByPageApi
 var getTagByTagIdUrl = domain1+getTagByTagIdApi
 var updateTagUrl = domain1+updateTagApi
 var deleteTagByTagIdUrl = domain1+deleteTagByTagIdApi;
+/* 博客管理模块 */
+var getBlogsByPageUrl = domain1+getBlogsByPageApi;
+var getTypeByAllUrl = domain1+getTypeByAllApi;
 
 
-var getBlogsUrl = domain1+getBlogsApi
+
 
 
 /**
@@ -65,3 +70,8 @@ var typesEditPage = domain2+"/admin/type-edit.html"
 var tagsPage = domain2+"/admin/tags.html"
 /* 标签修改页面 */
 var tagEditPage = domain2+"/admin/tag-edit.html"
+
+
+/* 用户部分 */
+var getBlogsApi="/blog/user/blogs/selectBlogs"
+var getBlogsUrl = domain1+getBlogsApi

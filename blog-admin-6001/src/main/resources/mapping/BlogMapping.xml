@@ -18,6 +18,11 @@
         <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
         <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
     </resultMap>
+
+    <resultMap id="BlogVo"  type="com.eva.vo.BlogVo" extends="BaseBlogMap">
+        <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    </resultMap>
+
     <parameterMap id="BaseBlogMap" type="com.eva.dto.Blog">
         <parameter property="blogId" resultMap="BaseBlogMap"/>
         <parameter   property="title" />
@@ -41,8 +46,16 @@
         <collection property="tags" javaType="list" resultMap="com.eva.mapper.TagMapper.BaseTagMap"/>
     </resultMap>-->
     
-    <select id="getBlogsByPage" resultMap="BaseBlogMap">
-        select * from blog where delete_flag = 0
+    <select id="getBlogsByPage" resultMap="BlogVo">
+        select b.blog_id,b.title,t.type_name,
+        (CASE b.recommend
+            WHEN '1' THEN
+                '是'
+            ELSE
+                '否'
+        END) as recommend,
+        b.updateTime from blog as b
+                inner JOIN type as t on b.type_id = t.type_id where b.delete_flag = '0'
     </select>
 
     <select id="getBlogByBlogId" parameterType="com.eva.dto.Blog" resultMap="BaseBlogMap">
@@ -172,6 +185,9 @@
     </insert>
 
     <update id="updateBlog" parameterType="com.eva.dto.Blog">
+        <!--<selectKey keyProperty="blogId" resultType="int" order="AFTER">
+            select blog_id from blog where blog_id = #{blogId}
+        </selectKey>-->
         update blog set title = #{title},content=#{content} where blog_id = #{blogId}
     </update>
 

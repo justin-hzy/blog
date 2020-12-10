@@ -22,7 +22,7 @@ public class BlogController {
     private FeignService feignService;
 
     @PostMapping("/getBlogsByPage")
-    public JSONResult getBlogsByPage(@RequestBody PageRequest pageRequest){
+    public JSONResult getBlogsByPage(PageRequest pageRequest){
 
         logger.info("进入getBlogsByPage");
         JSONResult jsonResult = feignService.getBlogsByPage(pageRequest);

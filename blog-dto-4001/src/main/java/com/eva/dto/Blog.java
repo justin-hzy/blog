@@ -1,5 +1,7 @@
 package com.eva.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,6 +10,7 @@ import java.util.Date;
  * @author 
  */
 public class Blog implements Serializable {
+
     private String blogId;
 
     /**
@@ -71,6 +74,7 @@ public class Blog implements Serializable {
      * 是否推荐
      */
     private String recommend;
+
 
     private Date createtime;
 
