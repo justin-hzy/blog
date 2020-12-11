@@ -1,16 +1,19 @@
 package com.eva.service;
 
 import com.eva.dto.Blog;
+import com.eva.utils.PageRequest;
+import com.eva.utils.PageResult;
 import com.eva.vo.BlogsVo;
+import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 
 public interface BlogService {
 
-    List<BlogsVo> selectBlogs(Integer pageNum);
+    PageResult selectBlogs(PageRequest pageRequest);
     Blog selectBlogByID(String blogId);
-    List<Blog>  selectBlogsByType(String typeId);
-    List<Blog> selectBlogsByTag(String tagId);
-    List<Blog> selectBlogsByRecommend();
+    PageResult  selectBlogsByType(String typeId,PageRequest pageRequest);
+    PageResult selectBlogsByTag(String tagId,PageRequest pageRequest);
+    PageResult selectBlogsByRecommend(PageRequest pageRequest);
 }

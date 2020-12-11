@@ -188,20 +188,20 @@
       });
 
       //获取blog数据
-      function getBlogs(pageNum){
+      function getBlogs(){
         $.ajax({
           type:"post",
           dataType:'json',
           data:{
-             "pageNum":pageNum
-            // "pageSize":pageSize
+             "pageNum":1,
+             "pageSize":10
           },
           url:getBlogsUrl,
           success:function(result){
-            if(result.data == undefined){
+            if(result.data.content == undefined){
 
             }else{
-              showBlogs(result.data);
+              showBlogs(result.data.content);
               // totalPage = result.data.totalPages;
             }
 

@@ -20,7 +20,7 @@ public interface FeignService {
 
 
     @PostMapping("/blogs/selectBlogs")
-    JSONResult selectBlogs(Integer pageNum );
+    JSONResult selectBlogs(PageRequest pageRequest );
 
     @PostMapping("/blogs/selectBlogsByRecommend")
     JSONResult selectBlogsByRecommend();

@@ -3,7 +3,10 @@ package com.eva.controller;
 import com.eva.dto.Blog;
 import com.eva.service.BlogService;
 import com.eva.utils.JSONResult;
+import com.eva.utils.PageRequest;
+import com.eva.utils.PageResult;
 import com.eva.vo.BlogsVo;
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +25,12 @@ public class BlogsController {
     BlogService blogService;
 
 //查询博客列表
-    @PostMapping(value = "/selectBlogs")
-    public JSONResult selectBlogs(@RequestBody Integer pageNum){
-        logger.info("进入selectBlogs");
-        List<BlogsVo> result = new ArrayList<>();
-        result= blogService.selectBlogs(pageNum);
-        logger.info(result.toString());
-        if(result!=null){
-            return JSONResult.build(200,"",result);
+    @RequestMapping(value = "/selectBlogs")
+    public JSONResult selectBlogs(@RequestBody PageRequest pageRequest ){
+
+        PageResult pageResult = blogService.selectBlogs(pageRequest);
+        if(pageResult!=null){
+            return JSONResult.build(200,"",pageResult);
         }else{
             return JSONResult.build(500,"",null);
         }
@@ -46,25 +47,23 @@ public class BlogsController {
         }
     }
 
-//    查看某个分类的博客
+//    查看某个分类的博客列表
     @RequestMapping(value = "/selectBlogsByType")
-    public JSONResult selectBlogsByType(String typeId){
-        List<Blog> result = new ArrayList<>();
-        result= blogService.selectBlogsByType(typeId);
-        if(result!=null){
-            return JSONResult.build(200,"",result);
+    public JSONResult selectBlogsByType(@Param("typeId") String typeId, @RequestBody PageRequest pageRequest ){
+        PageResult pageResult = blogService.selectBlogsByType(typeId,pageRequest);
+        if(pageResult!=null){
+            return JSONResult.build(200,"",pageResult);
         }else{
             return JSONResult.build(500,"",null);
         }
     }
 
-//    查看某个标签的博客
-    @RequestMapping(value = "/selectBlogByTag")
-    public JSONResult selectBlogsByTag(String tagId){
-        List<Blog> result = new ArrayList<>();
-        result= blogService.selectBlogsByTag(tagId);
-        if(result!=null){
-            return JSONResult.build(200,"",result);
+//    查看某个标签的博客列表
+    @RequestMapping(value = "/selectBlogsByTag")
+    public JSONResult selectBlogsByTag(@Param("tagId") String tagId,@RequestBody PageRequest pageRequest ){
+        PageResult pageResult = blogService.selectBlogsByTag(tagId,pageRequest);
+        if(pageResult!=null){
+            return JSONResult.build(200,"",pageResult);
         }else{
             return JSONResult.build(500,"",null);
         }
@@ -72,11 +71,10 @@ public class BlogsController {
 
 //  最新推荐博客
     @RequestMapping(value = "/selectBlogsByRecommend")
-    public JSONResult selectBlogsByRecommend(){
-        List<Blog> result = new ArrayList<>();
-        result= blogService.selectBlogsByRecommend();
-        if(result!=null){
-            return JSONResult.build(200,"",result);
+    public JSONResult selectBlogsByRecommend(@RequestBody PageRequest pageRequest ){
+        PageResult pageResult = blogService.selectBlogsByRecommend(pageRequest);
+        if(pageResult!=null){
+            return JSONResult.build(200,"",pageResult);
         }else{
             return JSONResult.build(500,"",null);
         }

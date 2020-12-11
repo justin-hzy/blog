@@ -12,10 +12,10 @@ import java.util.List;
 @Repository
 public interface BlogMapper {
 
-    List<BlogsVo> selectBlogs(@Param("pageNum") Integer pageNum,@Param("pageNum2") Integer pageNum2);
+    List<BlogsVo> selectBlogs();
     Blog selectBlogByID(@Param("blog_id") String blogId);
-    List<Blog>  selectBlogsByType(@Param("type_id") String typeId);
-    List<Blog> selectBlogsByTag(@Param("tag_id") String tagId);
+    List<BlogsVo>  selectBlogsByType(@Param("type_id") String typeId);
+    List<BlogsVo> selectBlogsByTag(@Param("tag_id") String tagId);
 
-    List<Blog> selectBlogsByRecommend();
+    List<BlogsVo> selectBlogsByRecommend();
 }
