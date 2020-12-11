@@ -135,5 +135,10 @@ public class FeignFallBack implements FeignService {
         return JSONResult.build(201,"getTypeByAll服务降级",null);
     }
 
+    @Override
+    public JSONResult search(String typeId, String title, String recommend, PageRequest pageRequest) {
+        return JSONResult.build(201,"search服务降级",null);
+    }
+
 
 }

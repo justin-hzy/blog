@@ -81,4 +81,15 @@ public class BlogController {
             return JSONResult.build(500,"博客删除失败",result);
         }
     }
+
+    @PostMapping("/search")
+    public JSONResult search(@RequestParam("title") String title,@RequestParam("typeId") String typeId,@RequestParam("recommend") String recommend,@RequestBody PageRequest pageRequest){
+        logger.info("进入search");
+        PageResult pageResult =  blogService.search(title,typeId,recommend,pageRequest);
+        if (pageResult != null){
+            return JSONResult.build(200,"博客分页条件查询成功",pageResult);
+        }else {
+            return JSONResult.build(500,"博客分页条件查询失败",null);
+        }
+    }
 }

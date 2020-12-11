@@ -25,4 +25,6 @@ public interface BlogMapper {
 
     List<Blog> getBlogByAll();
 
+    List<BlogVo> search(String title,String typeId,String recommend);
+
 }

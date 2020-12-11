@@ -91,4 +91,7 @@ public interface FeignService {
 
     @PostMapping("/admin/getTypeByAll")
     JSONResult getTypeByAll();
+
+    @PostMapping("/admin/search")
+    JSONResult search(@RequestParam("typeId")String typeId,@RequestParam("title") String title,@RequestParam("recommend")String recommend,@RequestBody PageRequest pageRequest);
 }

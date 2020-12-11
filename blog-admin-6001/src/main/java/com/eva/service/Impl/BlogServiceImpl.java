@@ -125,6 +125,25 @@ public class BlogServiceImpl implements BlogService {
         }
     }
 
+    @Override
+    public PageResult search(String title, String typeId, String recommend, PageRequest pageRequest) {
+        return PageUtils.getPageResult(pageRequest,getPageInfo(title,typeId,recommend,pageRequest));
+    }
+
+    /**
+     * 调用分页插件完成分页
+     * @param pageRequest
+     * @return
+     */
+    private PageInfo<BlogVo> getPageInfo(String title,String typeId,String recommend,PageRequest pageRequest) {
+        int pageNum = pageRequest.getPageNum();
+        int pageSize = pageRequest.getPageSize();
+        PageHelper.startPage(pageNum, pageSize);
+        List<BlogVo> blogVoList = blogMapper.search(title,typeId,recommend);
+        System.out.println("blogVoList.toString()="+blogVoList.toString());
+        return new PageInfo<BlogVo>(blogVoList);
+    }
+
     /**
      * 调用分页插件完成分页
      * @param pageRequest
