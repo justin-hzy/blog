@@ -49,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <div class="ui attached segment m-padded-tb-large">
+            <div id="tags" class="ui attached segment m-padded-tb-large">
                 <a href="#" target="blank" class="ui teal basic left pointing label m-margin-tb-large">
                     方法论<div class="detail">23</div>
                 </a>
@@ -288,6 +288,25 @@
     $('.menu.toggle').click(function(){
         $('.m-item').toggleClass('m-mobile-hide');
     })
+    function getTags() {
+        $.ajax({
+            type:"post",
+            data:{
+                // "pageNum":pageNum,
+                // "pageSize":pageSize
+            },
+            url:getRecommendUrl,
+            success:function(result){
+                if(result.data == undefined){
+
+                }else{
+                    showRecommends(result.data);
+                    // totalPage = result.data.totalPages;
+                }
+
+            }
+        })
+    }
 </script>
 
 </body>
