@@ -7,10 +7,7 @@ import com.eva.utils.PageRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("admin")
@@ -22,7 +19,7 @@ public class BlogController {
     private FeignService feignService;
 
     @PostMapping("/getBlogsByPage")
-    public JSONResult getBlogsByPage(@RequestBody PageRequest pageRequest){
+    public JSONResult getBlogsByPage(PageRequest pageRequest){
 
         logger.info("进入getBlogsByPage");
         JSONResult jsonResult = feignService.getBlogsByPage(pageRequest);
@@ -55,6 +52,13 @@ public class BlogController {
     public JSONResult deleteBlogByBlogId(Blog blog){
         logger.info("进入deleteBlogByBlogId");
         JSONResult jsonResult = feignService.deleteBlogByBlogId(blog);
+        return  jsonResult;
+    }
+
+    @PostMapping("/search")
+    public JSONResult search(@RequestParam("typeId") String typeId, @RequestParam("title") String title,@RequestParam("recommend") String recommend, @RequestBody PageRequest pageRequest) {
+        logger.info("进入search");
+        JSONResult jsonResult = feignService.search(typeId,title,recommend,pageRequest);
         return  jsonResult;
     }
 }

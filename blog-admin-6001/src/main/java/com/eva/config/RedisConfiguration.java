@@ -14,7 +14,7 @@ public class RedisConfiguration {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    @Bean(name = "redisTemplate")
+    @Bean(name = "myRedisTemplate")
     public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
         RedisTemplate<String, String> template = new RedisTemplate<>();
         template.setConnectionFactory(factory);
@@ -23,6 +23,7 @@ public class RedisConfiguration {
         template.setHashKeySerializer(new GenericJackson2JsonRedisSerializer());
         template.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
         template.afterPropertiesSet();
+        template.setEnableTransactionSupport(true);
         return template;
     }
 }

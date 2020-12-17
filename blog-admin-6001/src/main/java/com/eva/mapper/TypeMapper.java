@@ -17,4 +17,6 @@ public interface TypeMapper {
     Type getTypeByTypeId(String typeId);
 
     int deleteTypeByTypeId(Type type);
+
+    List<Type> getTypeByAll();
 }

@@ -10,10 +10,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.lang.reflect.Method;
 
 
 @RestController
@@ -80,6 +79,17 @@ public class BlogController {
             return JSONResult.build(200,"博客删除成功",result);
         }else {
             return JSONResult.build(500,"博客删除失败",result);
+        }
+    }
+
+    @PostMapping("/search")
+    public JSONResult search(@RequestParam("title") String title,@RequestParam("typeId") String typeId,@RequestParam("recommend") String recommend,@RequestBody PageRequest pageRequest){
+        logger.info("进入search");
+        PageResult pageResult =  blogService.search(title,typeId,recommend,pageRequest);
+        if (pageResult != null){
+            return JSONResult.build(200,"博客分页条件查询成功",pageResult);
+        }else {
+            return JSONResult.build(500,"博客分页条件查询失败",null);
         }
     }
 }

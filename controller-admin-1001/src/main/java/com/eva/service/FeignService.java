@@ -88,4 +88,10 @@ public interface FeignService {
 
     @PostMapping("/admin/data/deleteBlogByBlogId")
     JSONResult deleteBlogByBlogId(Blog blog);
+
+    @PostMapping("/admin/getTypeByAll")
+    JSONResult getTypeByAll();
+
+    @PostMapping("/admin/search")
+    JSONResult search(@RequestParam("typeId")String typeId,@RequestParam("title") String title,@RequestParam("recommend")String recommend,@RequestBody PageRequest pageRequest);
 }
