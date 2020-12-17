@@ -20,18 +20,18 @@ public class BlogController {
     @Autowired
     private FeignService feignService;
 
-    @PostMapping(value = "/selectBlogs")
-    public JSONResult selectBlogs(@RequestBody PageRequest pageRequest ){
+    @RequestMapping(value = "/selectBlogs")
+    public JSONResult selectBlogs( PageRequest pageRequest ){
         logger.info("进入selectBlogs");
         JSONResult jsonResult = feignService.selectBlogs(pageRequest);
 
         return jsonResult;
     }
 
-    @PostMapping(value = "/selectBlogsByRecommend")
-    public JSONResult selectBlogsByRecommend(){
+    @RequestMapping(value = "/selectBlogsByRecommend")
+    public JSONResult selectBlogsByRecommend(PageRequest pageRequest){
         logger.info("进入selectBlogsByRecommend");
-        JSONResult jsonResult = feignService.selectBlogsByRecommend();
+        JSONResult jsonResult = feignService.selectBlogsByRecommend(pageRequest);
 
         return jsonResult;
     }

@@ -49,7 +49,7 @@ public class BlogsController {
 
 //    查看某个分类的博客列表
     @RequestMapping(value = "/selectBlogsByType")
-    public JSONResult selectBlogsByType(@Param("typeId") String typeId, @RequestBody PageRequest pageRequest ){
+    public JSONResult selectBlogsByType(@Param("tagId") String typeId, @RequestBody PageRequest pageRequest ){
         PageResult pageResult = blogService.selectBlogsByType(typeId,pageRequest);
         if(pageResult!=null){
             return JSONResult.build(200,"",pageResult);

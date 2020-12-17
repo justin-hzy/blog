@@ -7,8 +7,11 @@ import com.eva.service.Impl.TagServiceImpl;
 import com.eva.service.TagService;
 
 import com.eva.utils.JSONResult;
+import com.eva.utils.PageRequest;
+import com.eva.utils.PageResult;
 import com.eva.vo.TagsVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,8 +26,8 @@ public class TagsController {
     TagService tagService;
 
     @RequestMapping(value = "/selectTags")
-    public JSONResult selectTags(){
-        List<TagsVo> result = tagService.selectTags();
+    public JSONResult selectTags(@RequestBody PageRequest pageRequest){
+        PageResult result = tagService.selectTags( pageRequest);
         if(result!=null){
             return JSONResult.build(200,"",result);
         }else{

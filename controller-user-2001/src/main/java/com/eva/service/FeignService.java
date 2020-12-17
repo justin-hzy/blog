@@ -23,11 +23,14 @@ public interface FeignService {
     JSONResult selectBlogs(PageRequest pageRequest );
 
     @PostMapping("/blogs/selectBlogsByRecommend")
-    JSONResult selectBlogsByRecommend();
+    JSONResult selectBlogsByRecommend(PageRequest pageRequest);
 
     @PostMapping("/types/selectTypes")
-    JSONResult selectTypes();
+    JSONResult selectTypes(PageRequest pageRequest);
 
     @PostMapping("/tags/selectTags")
-    JSONResult selectTags();
+    JSONResult selectTags(PageRequest pageRequest);
+
+
+
 }

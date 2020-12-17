@@ -24,13 +24,10 @@ var deleteTagByTagIdApi = "/blog/ad/admin/data/deleteTagByTagId"
 var getBlogsByPageApi = "/blog/ad/admin/getBlogsByPage"
 var getTypeByAllApi = "/blog/ad/admin/getTypeByAll"
 
-<<<<<<< HEAD
-var getBlogsApi="/blog/user/blogs/selectBlogs"
-var getTypesApi="/blog/user/types/selectTypes"
-var getTagsApi="/blog/user/tags/selectTags"
-var getRecommendApi="/blog/user/blogs/selectBlogsByRecommend"
-=======
->>>>>>> 5b6bbf8dbe3b30e820be94d12adf65e832f62832
+
+
+
+
 /**
  * 请求url地址
  */
@@ -57,15 +54,13 @@ var getTypeByAllUrl = domain1+getTypeByAllApi;
 
 
 
-<<<<<<< HEAD
-var getBlogsUrl = domain1+getBlogsApi
-var getTypesUrl = domain1+getTypesApi
-var getTagsUrl = domain1+getTagsApi
-var getRecommendUrl = domain1+getRecommendApi
-=======
 
 
->>>>>>> 5b6bbf8dbe3b30e820be94d12adf65e832f62832
+
+
+
+
+
 /**
  * 前端跳转 地址
  */
@@ -87,5 +82,15 @@ var tagEditPage = domain2+"/admin/tag-edit.html"
 
 
 /* 用户部分 */
+//查询博客列表
 var getBlogsApi="/blog/user/blogs/selectBlogs"
 var getBlogsUrl = domain1+getBlogsApi
+//查询分类列表
+var getTypesApi="/blog/user/types/selectTypes"
+var getTypesUrl = domain1+getTypesApi
+//查询标签列表
+var getTagsApi="/blog/user/tags/selectTags"
+var getTagsUrl = domain1+getTagsApi
+//查询推荐列表
+var getRecommendApi="/blog/user/blogs/selectBlogsByRecommend"
+var getRecommendUrl = domain1+getRecommendApi

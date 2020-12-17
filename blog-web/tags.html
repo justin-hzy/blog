@@ -292,20 +292,32 @@
         $.ajax({
             type:"post",
             data:{
-                // "pageNum":pageNum,
-                // "pageSize":pageSize
+                "pageNum":1,
+                "pageSize":999
             },
-            url:getRecommendUrl,
+            url:"",
             success:function(result){
                 if(result.data == undefined){
-
                 }else{
-                    showRecommends(result.data);
+                    showTags(result.data.content);
                     // totalPage = result.data.totalPages;
                 }
 
             }
         })
+    }
+    function showTags(content) {
+        //解析json字符串为json对象形式
+        var obj = content;
+        //动态拼接table
+        var trStr = '';
+        //循环遍历出json对象中的每一个数据并显示在对应的td中
+        for(var i = 0; i < obj.length; i++){
+            trStr +='<a href="#" target="blank" class="ui teal basic left pointing label m-margin-tb-large">\n' +
+                obj[i].tagName+'<div class="detail">23</div></a>'
+
+        }
+        $("#tagList").append(trStr);
     }
 </script>
 
