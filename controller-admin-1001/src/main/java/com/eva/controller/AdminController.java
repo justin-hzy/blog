@@ -115,4 +115,11 @@ public class AdminController {
         JSONResult jsonResult = feignService.deleteTagByTagId(tag);
         return jsonResult;
     }
+
+    @PostMapping("/getTypeByAll")
+    public JSONResult getTypeByAll(){
+        logger.info("进入getTypeByAll");
+        JSONResult jsonResult = feignService.getTypeByAll();
+        return jsonResult;
+    }
 }

@@ -1,11 +1,25 @@
 package com.eva.controller;
 
+import com.eva.service.TestService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+
 @RestController
-public class HelloController {
+public class TestController {
+
+
+    @Resource(name = "TestServiceImpl1" )
+    private TestService testService1;
+
+
+    @Resource(name = "TestServiceImpl2")
+    private TestService testService2;
 
     @RequestMapping("/hello1")
     public String hello1(){
@@ -41,6 +55,17 @@ public class HelloController {
         return null;
 
     }
+
+    @GetMapping("/test1")
+    public String testController1(){
+        return testService1.test();
+    }
+
+    @GetMapping("/test2")
+    public String testController2(){
+        return testService2.test();
+    }
+
 
 
 }

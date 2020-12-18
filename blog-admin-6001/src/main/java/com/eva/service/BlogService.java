@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface BlogService {
 
-    public PageResult getBlogsByPage(PageRequest pageRequest);
+    PageResult getBlogsByPage(PageRequest pageRequest);
 
     int addBlog(Blog blog);
 
@@ -21,4 +21,7 @@ public interface BlogService {
     int deleteBlogByBlogId(Blog blog);
 
     boolean getBlogByAll();
+
+    PageResult search(String title,String typeId,String recommend,PageRequest pageRequest);
+
 }

@@ -52,6 +52,12 @@ public class TypeServiceImpl implements TypeService {
         return PageUtils.getPageResult(pageRequest,getPageInfo(pageRequest));
     }
 
+    @Transactional
+    @Override
+    public List<Type> getTypeByAll() {
+        return typeMapper.getTypeByAll();
+    }
+
     /**
      * 调用分页插件完成分页
      * @param pageRequest

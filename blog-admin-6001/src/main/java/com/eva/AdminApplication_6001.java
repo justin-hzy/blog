@@ -9,6 +9,7 @@ import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * admin的service层
@@ -19,6 +20,7 @@ import org.springframework.context.annotation.Bean;
 @EnableEurekaClient //开启Eureka
 @EnableDiscoveryClient
 @EnableCircuitBreaker//添加对熔断的支持
+@EnableTransactionManagement
 public class AdminApplication_6001
 {
     public static void main( String[] args )
