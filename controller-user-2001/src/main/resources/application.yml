@@ -25,6 +25,10 @@ eureka:
       defaultZone: http://localhost:7961/eureka/
   instance:
     prefer-ip-address: true
+
 spring:
   application:
     name: controller-user
+  jackson:
+    date-format: "yyyy-MM-dd HH:mm:ss"
+    time-zone: GMT+8
