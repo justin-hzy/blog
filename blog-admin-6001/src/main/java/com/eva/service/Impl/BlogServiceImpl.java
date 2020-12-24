@@ -13,6 +13,8 @@ import com.eva.utils.SerializeUtil;
 import com.eva.vo.BlogVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -157,6 +159,8 @@ public class BlogServiceImpl implements BlogService {
         System.out.println("blogVoList.toString()="+blogVoList.toString());
         return new PageInfo<BlogVo>(blogVoList);
     }
+
+
 
 
 

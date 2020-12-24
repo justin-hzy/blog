@@ -33,7 +33,7 @@ public class LoginFilter extends ZuulFilter {
     /*filterOrder 过滤器的执行顺序 0为第一个执行 以此类推 0、1、2。。。。*/
     @Override
     public int filterOrder() {
-        return 0;
+        return 1;
     }
 
     @Override
