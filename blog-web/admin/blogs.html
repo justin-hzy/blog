@@ -256,7 +256,7 @@
             url:getTypeByAllUrl,
             success:function(result){
                 if(result.data == undefined){
-                    
+                    alert(result.msg)
                 }else{
                     showTypeMenu(result.data);
                 }
