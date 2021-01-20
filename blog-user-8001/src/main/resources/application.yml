@@ -19,9 +19,24 @@ spring:
     name: blog-user
   datasource:
     username: root
-    password: 123456
-    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    password: Hzy_1234
+    url: jdbc:mysql://47.115.36.38:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    host: 47.115.36.38
+    port: 6379
+    password: myredis_123
+    timeout: 3000
+    database: 0
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1
+        min-idle: 0
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
 
 
 
@@ -29,8 +44,9 @@ mybatis:
   mapper-locations: classpath:mapping/*Mapping.xml
   type-aliases-package: com.eva.dto
 
-second:
-  username: root
-  password: 123456
-  url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
-  driver-class-name: com.mysql.cj.jdbc.Driver
+# 插件配置 pagehelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql

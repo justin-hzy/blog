@@ -49,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <div class="ui attached segment m-padded-tb-large">
+            <div id="tags" class="ui attached segment m-padded-tb-large">
                 <a href="#" target="blank" class="ui teal basic left pointing label m-margin-tb-large">
                     方法论<div class="detail">23</div>
                 </a>
@@ -288,6 +288,37 @@
     $('.menu.toggle').click(function(){
         $('.m-item').toggleClass('m-mobile-hide');
     })
+    function getTags() {
+        $.ajax({
+            type:"post",
+            data:{
+                "pageNum":1,
+                "pageSize":999
+            },
+            url:"",
+            success:function(result){
+                if(result.data == undefined){
+                }else{
+                    showTags(result.data.content);
+                    // totalPage = result.data.totalPages;
+                }
+
+            }
+        })
+    }
+    function showTags(content) {
+        //解析json字符串为json对象形式
+        var obj = content;
+        //动态拼接table
+        var trStr = '';
+        //循环遍历出json对象中的每一个数据并显示在对应的td中
+        for(var i = 0; i < obj.length; i++){
+            trStr +='<a href="#" target="blank" class="ui teal basic left pointing label m-margin-tb-large">\n' +
+                obj[i].tagName+'<div class="detail">23</div></a>'
+
+        }
+        $("#tagList").append(trStr);
+    }
 </script>
 
 </body>

@@ -13,8 +13,23 @@ public class FeignFallBack implements FeignService {
 
 
     @Override
-    public JSONResult selectBlogs() {
+    public JSONResult selectBlogs(PageRequest pageRequest ) {
         return JSONResult.build(201,"selectBlogs服务降级",null);
+    }
+
+    @Override
+    public JSONResult selectBlogsByRecommend(PageRequest pageRequest) {
+        return JSONResult.build(201,"selectBlogsByRecommend服务降级",null);
+    }
+
+    @Override
+    public JSONResult selectTypes(PageRequest pageRequest) {
+        return JSONResult.build(201,"selectTypes服务降级",null);
+    }
+
+    @Override
+    public JSONResult selectTags(PageRequest pageRequest) {
+        return JSONResult.build(201,"selectTags服务降级",null);
     }
 
 

@@ -14,7 +14,8 @@ public interface BlogMapper {
 
     List<BlogsVo> selectBlogs();
     Blog selectBlogByID(@Param("blog_id") String blogId);
-    List<Blog>  selectBlogsByType(@Param("type_id") String typeId);
-    List<Blog> selectBlogsByTag(@Param("tag_id") String tagId);
+    List<BlogsVo>  selectBlogsByType(@Param("type_id") String typeId);
+    List<BlogsVo> selectBlogsByTag(@Param("tag_id") String tagId);
 
+    List<BlogsVo> selectBlogsByRecommend();
 }

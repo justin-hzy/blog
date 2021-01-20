@@ -6,12 +6,15 @@
         <id column="tag_id" jdbcType="INTEGER" property="tagId" />
         <result column="tag_name" jdbcType="VARCHAR" property="tagName" />
     </resultMap>
-    <select id="selectTags" resultMap="BaseTagMap">
-       select * from tag where tag_id=#{tag_id}
+    <resultMap id="TagsVo" extends="BaseTagMap" type="com.eva.vo.TagsVo">
+        <result column="blogNum" jdbcType="INTEGER" property="blogNum" />
+    </resultMap>
+    <select id="selectTags" resultMap="TagsVo">
+       select t.tag_id,t.tag_name,b.blogNum from tag t left join (select tag_id,count(*) as blogNum from tag_blog_relation  group by tag_id) b on t.tag_id=b.tag_id
     </select>
 
     <select id="selectTagById" resultMap="BaseTagMap">
-        select * from tag
+        select * from tag where tag_id=#{tag_id}
     </select>
 
 </mapper>

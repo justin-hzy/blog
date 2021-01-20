@@ -2,13 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eva.mapper.TypeMapper">
     <resultMap id="BaseTypeMap" type="com.eva.dto.Type">
-        <id column="type_id" jdbcType="INTEGER" property="typeId" />
+        <id column="type_id" jdbcType="VARCHAR" property="typeId" />
         <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    </resultMap>
+    <resultMap id="TypesVo" extends="BaseTypeMap" type="com.eva.vo.TypesVo">
+        <result column="blogNum" jdbcType="INTEGER" property="blogNum" />
     </resultMap>
 
 
-        <select id="selectTypes" resultMap="BaseTypeMap">
-        select * from type
+    <select id="selectTypes" resultMap="TypesVo">
+        select t.type_id,t.type_name,b.blogNum
+         from type t left join (select type_id,count(*) as blogNum from blog  group by type_id) b on t.type_id=b.type_id
     </select>
 
     <select id="selectTypeById" resultMap="BaseTypeMap">
