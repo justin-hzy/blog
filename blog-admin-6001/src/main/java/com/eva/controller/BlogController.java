@@ -15,6 +15,11 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Method;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 
 
 @RestController
@@ -28,6 +33,9 @@ public class BlogController {
 
     @Autowired
     private RedisTemplate redisTemplate;
+
+    @Autowired
+    private ExecutorService executorService;
 
     /*
    requestVolumeThreshold:
@@ -52,6 +60,22 @@ public class BlogController {
     },fallbackMethod = "errorHystrix")
     public JSONResult getBlogsByPage(@RequestBody PageRequest pageRequest){
         logger.info("进入getBlogsByPage");
+
+        Callable callable = new Callable() {
+            @Override
+            public Object call() throws Exception {
+                List list = redisTemplate.opsForHash().values("blog");
+                return null;
+            }
+        };
+        Future future = executorService.submit(callable);
+        try {
+            future.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
         PageResult pageResult = blogService.getBlogsByPage(pageRequest);
         if (pageResult != null){
             return JSONResult.build(200,"博客分页查询成功",pageResult);

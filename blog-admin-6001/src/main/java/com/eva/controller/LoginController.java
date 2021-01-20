@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.ExecutorService;
+
 
 @RestController
 @RequestMapping("admin")
@@ -31,9 +33,13 @@ public class LoginController {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
+    @Autowired
+    private ExecutorService executorService;
+
     @RequestMapping("/login")
     public JSONResult login(@RequestParam String username,@RequestParam String password){
         /*redisTemplate.boundValueOps("username").getKey();*/
+
         User user  = userService.checkUser(username, MD5Code.code(password));
         if (user != null){
             String token = JwtUtil.sign(username,password);
@@ -52,4 +58,6 @@ public class LoginController {
         logger.info("str="+str);
         return  str;
     }
+
+
 }
